@@ -7,7 +7,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analyzers", "Analyzers", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F4958FD4-3B0D-4780-8618-0A57F7219842}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adom.Analyzers", "Analyzers\src\Adom.Analyzers\Adom.Analyzers.csproj", "{25AC74A6-5CAE-4292-8761-C39C69ECE35A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adom.Analyzers", "Analyzers\src\Adom.Analyzers\Adom.Analyzers.csproj", "{25AC74A6-5CAE-4292-8761-C39C69ECE35A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0FC298CB-B166-44D9-896D-66C421E45A1A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{88BDE83C-3743-4ECF-BE70-2AE684A19DD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adom.Analyzers.Test", "Analyzers\tests\Adom.Analyzers.Test\Adom.Analyzers.Test.csproj", "{90B63249-B102-4F11-A401-75118BA38F0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,9 +26,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{25AC74A6-5CAE-4292-8761-C39C69ECE35A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -34,9 +40,29 @@ Global
 		{25AC74A6-5CAE-4292-8761-C39C69ECE35A}.Release|x64.Build.0 = Release|Any CPU
 		{25AC74A6-5CAE-4292-8761-C39C69ECE35A}.Release|x86.ActiveCfg = Release|Any CPU
 		{25AC74A6-5CAE-4292-8761-C39C69ECE35A}.Release|x86.Build.0 = Release|Any CPU
+		{90B63249-B102-4F11-A401-75118BA38F0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90B63249-B102-4F11-A401-75118BA38F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90B63249-B102-4F11-A401-75118BA38F0C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{90B63249-B102-4F11-A401-75118BA38F0C}.Debug|x64.Build.0 = Debug|Any CPU
+		{90B63249-B102-4F11-A401-75118BA38F0C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{90B63249-B102-4F11-A401-75118BA38F0C}.Debug|x86.Build.0 = Debug|Any CPU
+		{90B63249-B102-4F11-A401-75118BA38F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90B63249-B102-4F11-A401-75118BA38F0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90B63249-B102-4F11-A401-75118BA38F0C}.Release|x64.ActiveCfg = Release|Any CPU
+		{90B63249-B102-4F11-A401-75118BA38F0C}.Release|x64.Build.0 = Release|Any CPU
+		{90B63249-B102-4F11-A401-75118BA38F0C}.Release|x86.ActiveCfg = Release|Any CPU
+		{90B63249-B102-4F11-A401-75118BA38F0C}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F4958FD4-3B0D-4780-8618-0A57F7219842} = {A3CEDD34-4FAC-42F9-9167-584A02C4317E}
 		{25AC74A6-5CAE-4292-8761-C39C69ECE35A} = {F4958FD4-3B0D-4780-8618-0A57F7219842}
+		{88BDE83C-3743-4ECF-BE70-2AE684A19DD2} = {A3CEDD34-4FAC-42F9-9167-584A02C4317E}
+		{90B63249-B102-4F11-A401-75118BA38F0C} = {88BDE83C-3743-4ECF-BE70-2AE684A19DD2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FBD10619-E4E3-4326-ADD9-E00F23E98476}
 	EndGlobalSection
 EndGlobal
