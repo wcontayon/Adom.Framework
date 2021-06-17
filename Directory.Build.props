@@ -18,7 +18,7 @@
     <ReportAnalyzer>true</ReportAnalyzer>
 
     <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation>
-    <IsPackable>False</IsPackable>
+    <PackageOutputPath>$(RepoRootPath)bin\Packages\$(Configuration)\NuGet\</PackageOutputPath>
   </PropertyGroup>
 
   <!-- disable the nullable warnings when compiling for target that haven't annotation -->
@@ -42,7 +42,7 @@
     <Company>HADEM</Company>
     <PackageProjectUrl>https://github.com/wcontayon/Adom.Framework</PackageProjectUrl>
     <RepositoryUrl>https://github.com/wcontayon/Adom.Framework.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
+    <RepositoryType>github</RepositoryType>
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 
@@ -56,21 +56,4 @@
     <None Include="$(_PackageReadmeFilePath)" Pack="true" PackagePath="" Visible="false" Condition="$(_PackageReadmeFilePath) != ''" />
   </ItemGroup>
 
-  <!-- SourceLink: https://www.meziantou.net/2018/07/09/how-to-debug-nuget-packages-using-sourcelink -->
-  <Choose>
-    <When Condition="$(UseSourceLink) != 'false'">
-      <PropertyGroup>
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <PublishRepositoryUrl>true</PublishRepositoryUrl>
-        <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <ContinuousIntegrationBuild Condition="'$(ContinuousIntegrationBuild)' == ''">$(_ContinuousIntegrationBuild)</ContinuousIntegrationBuild>
-      </PropertyGroup>
-
-      <ItemGroup>
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-        <SourceRoot Include="$(MSBuildThisFileDirectory)/" />
-      </ItemGroup>
-    </When>
-  </Choose>
 </Project>

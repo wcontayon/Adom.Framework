@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{88BDE83C-3743-4ECF-BE70-2AE684A19DD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adom.Analyzers.Test", "Analyzers\tests\Adom.Analyzers.Test\Adom.Analyzers.Test.csproj", "{90B63249-B102-4F11-A401-75118BA38F0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adom.Analyzers.Test", "Analyzers\tests\Adom.Analyzers.Test\Adom.Analyzers.Test.csproj", "{90B63249-B102-4F11-A401-75118BA38F0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

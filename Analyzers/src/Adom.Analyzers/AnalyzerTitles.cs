@@ -1,9 +1,12 @@
-namespace Adom.Analyzers {
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Adom.Analyzers.Test")]
+namespace Adom.Analyzers 
+{
     using System;
 
-    internal class AnalyzerTitles {
+    internal class AnalyzerTitles 
+    {
         public const string UseStringEmptyAnalyzerTitles = "Use string.Empty";
     }
-
 }

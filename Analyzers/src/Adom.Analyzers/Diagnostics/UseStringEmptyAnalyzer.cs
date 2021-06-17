@@ -1,5 +1,5 @@
-namespace Adom.Analyzers.Diagnostics {
-
+namespace Adom.Analyzers.Diagnostics
+{
     using System;
     using System.Collections.Immutable;
     using Microsoft.CodeAnalysis;
@@ -9,8 +9,8 @@ namespace Adom.Analyzers.Diagnostics {
     using Microsoft.CodeAnalysis.Operations;
 
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UseStringEmptyDiagnosticAnalyzer : DiagnosticAnalyzer {
-
+    public sealed class UseStringEmptyDiagnosticAnalyzer : DiagnosticAnalyzer
+    {
         private static readonly DiagnosticDescriptor rule = new DiagnosticDescriptor(
                 RulesIds.UseStringEmpty,
                 AnalyzerTitles.UseStringEmptyAnalyzerTitles,
@@ -25,7 +25,8 @@ namespace Adom.Analyzers.Diagnostics {
 
         public override void Initialize(AnalysisContext context)
         {
-            if (context == null){
+            if (context == null)
+            {
                 throw new ArgumentNullException(nameof(context));
             }
 
@@ -36,28 +37,35 @@ namespace Adom.Analyzers.Diagnostics {
             context.RegisterSyntaxNodeAction(HandleVariableDeclarionStringEmptyNotUsed, SyntaxKind.VariableDeclaration);
         }
 
-        private static void HandleComparaisonStringEmptyNotUsed(OperationAnalysisContext context){
-            var operation = (IBinaryOperation)context.Operation;
-            if (operation.OperatorKind == BinaryOperatorKind.Equals){
-                var rightOperand = operation.RightOperand;
-                if (rightOperand.Type.GetType() == typeof(string) &&
-                    rightOperand.ConstantValue.HasValue &&
-#pragma warning disable CA1820 // We are checking that the developer is not used ""
-                    (string)rightOperand.ConstantValue.Value == "") {
-#pragma warning restore CA1820 // We are checking that the developer is not used ""
-                    context.ReportDiagnostic(Diagnostic.Create(rule, operation.Syntax.GetLocation()));
+        private static void HandleComparaisonStringEmptyNotUsed(OperationAnalysisContext context)
+        {
+            var operation = (IConditionalOperation)context.Operation;
+            if (operation != null)
+            {
+                var condition = (IBinaryOperation)operation.Condition;
+                if (condition.OperatorKind == BinaryOperatorKind.Equals)
+                {
+                    var rightOperand = condition.RightOperand;
+                    if (rightOperand.Type != null && rightOperand.Type.Name.ToLower().Contains("string")  && rightOperand.ConstantValue.HasValue && rightOperand.ConstantValue.Value as string == "")
+                    {
+                        context.ReportDiagnostic(Diagnostic.Create(rule, rightOperand.Syntax.GetLocation()));
+                    }
                 }
             }
         }
 
-        private static void HandleVariableDeclarionStringEmptyNotUsed(SyntaxNodeAnalysisContext context){
+        private static void HandleVariableDeclarionStringEmptyNotUsed(SyntaxNodeAnalysisContext context)
+        {
             var declaration = context.Node as VariableDeclarationSyntax;
-            if (declaration != null){
+            if (declaration != null)
+            {
                 var predifinedType = declaration.Type;
-                if (predifinedType.GetType() == typeof(string)){
+                if (predifinedType.GetType() == typeof(string) || predifinedType.IsVar)
+                {
                     var variableValue = declaration.Variables.First().Initializer.Value.GetFirstToken().Text;
 #pragma warning disable CA1820 // We are checking that the developer is not used ""
-                    if (variableValue == ""){
+                    if (variableValue == "")
+                    {
 #pragma warning restore CA1820 // We are checking that the developer is not used ""
                         context.ReportDiagnostic(Diagnostic.Create(rule, declaration.GetLocation(), variableValue));
                     }
