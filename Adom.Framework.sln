@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adom.Framework", "Adom.Framework", "{3F5E22DF-B4EA-4B0D-BE34-C58F7B9E3C12}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5577F40D-AA0A-4262-9975-50D001017A15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adom.Framework", "Adom.Framework\src\Adom.Framework\Adom.Framework.csproj", "{915722A6-850C-4D58-8195-6888961FC8B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,5 +20,23 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{915722A6-850C-4D58-8195-6888961FC8B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{915722A6-850C-4D58-8195-6888961FC8B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{915722A6-850C-4D58-8195-6888961FC8B8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{915722A6-850C-4D58-8195-6888961FC8B8}.Debug|x64.Build.0 = Debug|Any CPU
+		{915722A6-850C-4D58-8195-6888961FC8B8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{915722A6-850C-4D58-8195-6888961FC8B8}.Debug|x86.Build.0 = Debug|Any CPU
+		{915722A6-850C-4D58-8195-6888961FC8B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{915722A6-850C-4D58-8195-6888961FC8B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{915722A6-850C-4D58-8195-6888961FC8B8}.Release|x64.ActiveCfg = Release|Any CPU
+		{915722A6-850C-4D58-8195-6888961FC8B8}.Release|x64.Build.0 = Release|Any CPU
+		{915722A6-850C-4D58-8195-6888961FC8B8}.Release|x86.ActiveCfg = Release|Any CPU
+		{915722A6-850C-4D58-8195-6888961FC8B8}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5577F40D-AA0A-4262-9975-50D001017A15} = {3F5E22DF-B4EA-4B0D-BE34-C58F7B9E3C12}
+		{915722A6-850C-4D58-8195-6888961FC8B8} = {5577F40D-AA0A-4262-9975-50D001017A15}
 	EndGlobalSection
 EndGlobal
