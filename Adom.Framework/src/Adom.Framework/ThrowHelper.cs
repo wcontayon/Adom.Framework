@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Adom.Framework
 {
+    [StackTraceHidden]
     internal static class ThrowHelper
     {
         [DoesNotReturn]
@@ -24,5 +26,12 @@ namespace Adom.Framework
         [DoesNotReturn]
         internal static void ThrowArgumentException(string message)
             => throw new ArgumentException(message);
+
+        [DoesNotReturn]
+        internal static void ThrowInvalidOperation_EnumeratorHasFailed(string message)
+            => throw new InvalidOperationException(message);
+
+        [DoesNotReturn]
+        internal static void ThrowInvalidOperationException(string message) => throw new InvalidOperationException(message);
     }
 }
