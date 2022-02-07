@@ -42,7 +42,7 @@ namespace Adom.Framework.Linq
         /// </summary>
         /// <param name="source"><see cref="IEnumerable{string}"/></param>
         /// <returns><see cref="IEnumerable{string}"/> with non empty string</returns>
-        public static IEnumerable<string> RemoveNonEmpty(this IEnumerable<string?>? source)
+        public static IEnumerable<string> RemoveEmpty(this IEnumerable<string?>? source)
         {
             if (source == null)
             {
