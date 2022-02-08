@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Adom.Framework.Collections
 {
@@ -26,6 +24,8 @@ namespace Adom.Framework.Collections
         private const string MSG_FORMAT_NEGATIVE_CAPACITY = "Capacity must be greater than 0";
         private const string MSG_FORMAT_ENUM_FAILED = "Enumeration has failed, items has been added during enumeration";
         private const string MSG_FORMAT_ENUM_CANNOT_HAPPEN = "Enumeration cannot be done";
+        private const string MSG_FORMAT_COUNT_ITEM_GREATHER_THAN_SIZE = "Count parameter is greather than of the LimitedList size";
+        private const string MSG_FORMAT_INDEX_OUTOFRANGE = "Index parameter must be greather than 0 and less than the LimitedList size";
 
         public LimitedList(int maxCapacity)
         {
@@ -82,7 +82,7 @@ namespace Adom.Framework.Collections
             {
                 if (index < 0 || index >= _capacity)
                 {
-                    ThrowHelper.ThrowArgumentOutOfRangeException();
+                    ThrowHelper.ThrowIndexOutOfRangeException(MSG_FORMAT_INDEX_OUTOFRANGE);
                 }
                 return _data[index];
             }
@@ -90,7 +90,7 @@ namespace Adom.Framework.Collections
             {
                 if (index < 0 || index >= _capacity)
                 {
-                    ThrowHelper.ThrowArgumentOutOfRangeException();
+                    ThrowHelper.ThrowIndexOutOfRangeException(MSG_FORMAT_INDEX_OUTOFRANGE);
                 }
 
                 EnsureCapacityNotReached();
@@ -261,7 +261,7 @@ namespace Adom.Framework.Collections
         public int LastIndexOf(T item, int index)
         {
             if (index >= _size)
-                ThrowHelper.ThrowArgumentOutOfRangeException();
+                ThrowHelper.ThrowIndexOutOfRangeException(MSG_FORMAT_INDEX_OUTOFRANGE);
 
             return LastIndexOf(item, index, _size);
         }
@@ -278,17 +278,17 @@ namespace Adom.Framework.Collections
         {
             if (count < 0 || count > _size)
             {
-                ThrowHelper.ThrowArgumentOutOfRangeException();
+                ThrowHelper.ThrowArgumentOutOfRangeException(MSG_FORMAT_COUNT_ITEM_GREATHER_THAN_SIZE);
             }
 
             if (index < 0 || index >= _size)
             {
-                ThrowHelper.ThrowArgumentOutOfRangeException();
+                ThrowHelper.ThrowIndexOutOfRangeException(MSG_FORMAT_INDEX_OUTOFRANGE);
             }
 
-            if (count >= index + 1)
+            if (count <= index + 1)
             {
-                ThrowHelper.ThrowArgumentOutOfRangeException();
+                ThrowHelper.ThrowIndexOutOfRangeException(MSG_FORMAT_INDEX_OUTOFRANGE);
             }
 
             if (_size == 0) return -1;
@@ -302,7 +302,7 @@ namespace Adom.Framework.Collections
         {
             if (index < 0 || ((uint)index > (uint)_size))
             {
-                ThrowHelper.ThrowArgumentOutOfRangeException();
+                ThrowHelper.ThrowIndexOutOfRangeException(MSG_FORMAT_INDEX_OUTOFRANGE);
             }
 
             EnsureCapacityNotReached();
@@ -334,7 +334,7 @@ namespace Adom.Framework.Collections
         {
             if ((uint)index >= (uint)_size)
             {
-                ThrowHelper.ThrowArgumentOutOfRangeException();
+                ThrowHelper.ThrowIndexOutOfRangeException(MSG_FORMAT_INDEX_OUTOFRANGE);
             }
 
             _size--;
@@ -416,12 +416,12 @@ namespace Adom.Framework.Collections
         {
             if ((uint)startIndex > (uint)_size)
             {
-                ThrowHelper.ThrowArgumentOutOfRangeException();
+                ThrowHelper.ThrowIndexOutOfRangeException(MSG_FORMAT_INDEX_OUTOFRANGE);
             }
 
             if (count < 0 || startIndex > _size - count)
             {
-                ThrowHelper.ThrowArgumentOutOfRangeException();
+                ThrowHelper.ThrowArgumentOutOfRangeException(MSG_FORMAT_COUNT_ITEM_GREATHER_THAN_SIZE);
             }
 
             if (match == null)
@@ -438,13 +438,47 @@ namespace Adom.Framework.Collections
             return -1;
         }
 
-        private void AddItemToArray(T[] array, T item)
+        /// <summary>
+        /// Searches a section of the list for a given element using a binary search
+        /// algorithm.
+        /// </summary>
+        /// <param name="item">The item to search.</param>
+        /// <param name="index">Starting index</param>
+        /// <param name="count">Count elements to use for the search</param>
+        /// <param name="comparer">The <see cref="IComparer{T}"/></param>
+        /// <returns></returns>
+        public int BinarySearch(T? item, int index, int count, IComparer<T>? comparer)
         {
-            if (array == null)
+            if (index < 0)
             {
-                ThrowHelper.ThrowArgumentNullException(nameof(array));
+                ThrowHelper.ThrowIndexOutOfRangeException(MSG_FORMAT_INDEX_OUTOFRANGE);
             }
+
+            if (index != 0 && count > _size)
+            {
+                ThrowHelper.ThrowIndexOutOfRangeException(MSG_FORMAT_INDEX_OUTOFRANGE);
+            }
+
+            if (count < 0)
+            {
+                ThrowHelper.ThrowArgumentOutOfRangeException(MSG_FORMAT_COUNT_ITEM_GREATHER_THAN_SIZE);
+            }
+
+            if (_size - index < count)
+            {
+                ThrowHelper.ThrowArgumentOutOfRangeException(MSG_FORMAT_COUNT_ITEM_GREATHER_THAN_SIZE);
+            }
+
+            return Array.BinarySearch(_data, index, count, item, comparer!);
         }
+
+        public int BinarySearch(T? item, int index)
+        {
+            if (index < 0) ThrowHelper.ThrowIndexOutOfRangeException(MSG_FORMAT_INDEX_OUTOFRANGE);
+            return BinarySearch(item, index, _size, null);
+        }
+
+        public int BinarySearch(T? item) => BinarySearch(item, 0, _size, null);
 
         #endregion
 
@@ -493,12 +527,12 @@ namespace Adom.Framework.Collections
         {
             if (index < 0 || count < 0)
             {
-                ThrowHelper.ThrowArgumentOutOfRangeException();
+                ThrowHelper.ThrowIndexOutOfRangeException(MSG_FORMAT_INDEX_OUTOFRANGE);
             }
 
             if (_size - index < count)
             {
-                ThrowHelper.ThrowArgumentOutOfRangeException();
+                ThrowHelper.ThrowArgumentOutOfRangeException(MSG_FORMAT_COUNT_ITEM_GREATHER_THAN_SIZE);
             }
 
             if (count > 1)
