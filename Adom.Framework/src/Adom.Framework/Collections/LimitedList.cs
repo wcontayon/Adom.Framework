@@ -104,8 +104,6 @@ namespace Adom.Framework.Collections
 
         public bool IsReadOnly => false;
 
-        public object CollectionMarshal { get; private set; }
-
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Add(T item)
         {
@@ -199,12 +197,40 @@ namespace Adom.Framework.Collections
 
         public IEnumerator<T> GetEnumerator() => new LimitedListEnumerator(this);
 
-        public bool Remove(T item)
+        public T[] ToArray()
         {
-            throw new NotImplementedException();
+            if (_size == 0)
+            {
+                return Array.Empty<T>();
+            }
+
+            T[] array = new T[_size];
+            Array.Copy(_data, array, _size);
+            return array;
         }
 
         IEnumerator IEnumerable.GetEnumerator() => new LimitedListEnumerator(this);
+
+        public void ForEach(Action<T> action)
+        {
+            if (action == null)
+            {
+                ThrowHelper.ThrowArgumentNullException(nameof(action));
+            }
+
+            // Copy the version, to check if he has changed
+            int version = _version;
+            for (int i = 0; i < _size; i++)
+            {
+                if (version != _version) // _data has changed
+                    break;
+
+                action(_data[i]);
+            }
+
+            if (version != _version)
+                ThrowHelper.ThrowInvalidOperation_EnumeratorHasFailed(MSG_FORMAT_ENUM_FAILED);
+        }
 
         private void EnsureCapacityNotReached()
         {
@@ -214,7 +240,63 @@ namespace Adom.Framework.Collections
             }
         }
 
+        #region IndexOf
+
         public int IndexOf(T item) => Array.IndexOf(_data, item, 0, _size);
+
+        /// <summary>
+        /// Determines the index of the last item in the <see cref="LimitedList{T}"/>.
+        /// </summary>
+        /// <param name="item">The item to search</param>
+        /// <returns>The last index of item</returns>
+        public int LastIndexOf(T item) => Array.LastIndexOf(_data, item, 0, _size);
+
+        /// <summary>
+        /// Determines the index of the last item in the <see cref="LimitedList{T}"/>,
+        /// starting a the specified index.
+        /// </summary>
+        /// <param name="item">The item to search</param>
+        /// <param name="index">Starting index</param>
+        /// <returns>The last index of item</returns>
+        public int LastIndexOf(T item, int index)
+        {
+            if (index >= _size)
+                ThrowHelper.ThrowArgumentOutOfRangeException();
+
+            return LastIndexOf(item, index, _size);
+        }
+
+        /// <summary>
+        /// Determines the index of the last item in the <see cref="LimitedList{T}"/>,
+        /// starting a the specified index, and upto count the elements
+        /// </summary>
+        /// <param name="item">The item to search</param>
+        /// <param name="index">Starting index</param>
+        /// <param name="count">Count element</param>
+        /// <returns>The last index of item</returns>
+        public int LastIndexOf(T item, int index, int count)
+        {
+            if (count < 0 || count > _size)
+            {
+                ThrowHelper.ThrowArgumentOutOfRangeException();
+            }
+
+            if (index < 0 || index >= _size)
+            {
+                ThrowHelper.ThrowArgumentOutOfRangeException();
+            }
+
+            if (count >= index + 1)
+            {
+                ThrowHelper.ThrowArgumentOutOfRangeException();
+            }
+
+            if (_size == 0) return -1;
+
+            return Array.LastIndexOf(_data, item, index, count);
+        }
+
+        #endregion
 
         public void Insert(int index, T item)
         {
@@ -233,6 +315,21 @@ namespace Adom.Framework.Collections
             _size++;
         }
 
+        #region Remove
+
+        public bool Remove(T item)
+        {
+            int index = IndexOf(item); 
+            if (index < 0)
+            {
+                return false;
+            }
+
+            RemoveAt(index);
+
+            return true;
+        }
+
         public void RemoveAt(int index)
         {
             if ((uint)index >= (uint)_size)
@@ -243,14 +340,35 @@ namespace Adom.Framework.Collections
             _size--;
             if (index < _size)
             {
-                Array.Copy(_data, index+1, _data, index, _size - index);
+                Array.Copy(_data, index + 1, _data, index, _size - index);
             }
 
             _data[_size] = default;
             _version++;
         }
 
+        #endregion
+
         #region Search
+
+        public bool Exists(Predicate<T> match) => FindIndex(match) != -1;
+
+        public T? Find(Predicate<T> match)
+        {
+            if (match == null)
+            {
+                ThrowHelper.ThrowArgumentNullException(nameof(match));
+            }
+
+            for (int i = 0; i < _size; i++)
+            {
+                if (match(_data[i]))
+                {
+                    return _data[i];
+                }
+            }
+            return default;
+        }
 
         public ReadOnlySpan<T> FindAllAsSpan(Predicate<T> match)
         {
@@ -271,7 +389,7 @@ namespace Adom.Framework.Collections
             return array.AsSpan();
         }
 
-        public List<T> FindAll(Predicate<T> match)
+        public LimitedList<T> FindAll(Predicate<T> match)
         {
             if (match == null)
             {
@@ -287,7 +405,7 @@ namespace Adom.Framework.Collections
                 }
             }
 
-            return list;
+            return list.ToLimitedSize(_capacity);
         }
 
         public int FindIndex(Predicate<T> match) => FindIndex(0, _size, match);
@@ -326,6 +444,69 @@ namespace Adom.Framework.Collections
             {
                 ThrowHelper.ThrowArgumentNullException(nameof(array));
             }
+        }
+
+        #endregion
+
+        #region Sort
+
+        /// <summary>
+        /// Sort the items in the <see cref="LimitedList{T}"/>.
+        /// </summary>
+        public void Sort() => Sort(0, _size, null);
+
+        /// <summary>
+        /// Sort the items in the <see cref="LimitedList{T}"/>
+        /// using the specified <see cref="IComparer{T}"/>.
+        /// </summary>
+        /// <param name="comparison">The <see cref="Comparer{T}"/></param>
+        public void Sort(IComparer<T>? comparer) => Sort(0, _size, comparer);
+
+        /// <summary>
+        /// Sort the items in the <see cref="LimitedList{T}"/>
+        /// using the <see cref="Comparison{T}"/> method.
+        /// </summary>
+        /// <param name="comparison">The <see cref="Comparison{T}"/> method to use</param>
+        public void Sort(Comparison<T> comparison)
+        {
+            if (comparison == null)
+            {
+                ThrowHelper.ThrowArgumentNullException(nameof(comparison));
+            }
+
+            if (_size > 1)
+            {
+                Array.Sort<T>(_data, comparison);
+            }
+
+            _version++;
+        }
+
+        /// <summary>
+        /// Sort the items in the <see cref="LimitedList{T}"/>
+        /// using the specified <see cref="IComparer{T}{T}"/>.
+        /// </summary>
+        /// <param name="index">The start index</param>
+        /// <param name="count">The count item to use</param>
+        /// <param name="comparer">The <see cref="IComparer{T}"/></param>
+        public void Sort(int index, int count, IComparer<T>? comparer)
+        {
+            if (index < 0 || count < 0)
+            {
+                ThrowHelper.ThrowArgumentOutOfRangeException();
+            }
+
+            if (_size - index < count)
+            {
+                ThrowHelper.ThrowArgumentOutOfRangeException();
+            }
+
+            if (count > 1)
+            {
+                Array.Sort(_data, index, count, comparer);
+            }
+
+            _version++;
         }
 
         #endregion
@@ -396,6 +577,19 @@ namespace Adom.Framework.Collections
                 _current = default;
                 _index = 0;
             }
+        }
+    }
+
+    public static partial class EnumerableExtensions
+    {
+        public static LimitedList<T> ToLimitedSize<T>(this IEnumerable<T> source, int capacity)
+        {
+            if (source == null) ThrowHelper.ThrowArgumentNullException(nameof(source));
+
+            if (capacity < 0 || capacity > source.Count())
+                ThrowHelper.ThrowArgumentOutOfRangeException();
+
+            return new(source, capacity);
         }
     }
 }
