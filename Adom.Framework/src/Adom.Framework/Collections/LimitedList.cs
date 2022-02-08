@@ -123,7 +123,7 @@ namespace Adom.Framework.Collections
         }
 
         /// <summary>
-        /// Resize the max capacity of the <see cref="LimitedList{T} />
+        /// Resize the max capacity of the <see cref="LimitedList{T}" />
         /// </summary>
         /// <param name="newCapacity"></param>
         public void ReSize(int newCapacity)
