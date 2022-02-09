@@ -44,11 +44,8 @@ namespace Adom.Framework.Linq
         /// <returns><see cref="IEnumerable{string}"/> with non empty string</returns>
         public static IEnumerable<string> RemoveEmpty(this IEnumerable<string?>? source)
         {
-            if (source == null)
-            {
-                ThrowHelper.ThrowArgumentNullException(nameof(source));
-            }
-
+            ArgumentNullException.ThrowIfNull(source, nameof(source));
+            
             foreach (var item in source)
             {
                 if (!string.IsNullOrWhiteSpace(item))

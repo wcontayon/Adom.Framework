@@ -213,10 +213,7 @@ namespace Adom.Framework.Collections
 
         public void ForEach(Action<T> action)
         {
-            if (action == null)
-            {
-                ThrowHelper.ThrowArgumentNullException(nameof(action));
-            }
+            ArgumentNullException.ThrowIfNull(action, nameof(action));
 
             // Copy the version, to check if he has changed
             int version = _version;
@@ -355,10 +352,7 @@ namespace Adom.Framework.Collections
 
         public T? Find(Predicate<T> match)
         {
-            if (match == null)
-            {
-                ThrowHelper.ThrowArgumentNullException(nameof(match));
-            }
+            ArgumentNullException.ThrowIfNull(match, nameof(match));
 
             for (int i = 0; i < _size; i++)
             {
@@ -372,10 +366,7 @@ namespace Adom.Framework.Collections
 
         public ReadOnlySpan<T> FindAllAsSpan(Predicate<T> match)
         {
-            if (match == null)
-            {
-                ThrowHelper.ThrowArgumentNullException(nameof(match));
-            }
+            ArgumentNullException.ThrowIfNull(match, nameof(match));
 
             T[] array = Array.Empty<T>();
             for (int i = 0; i < _size; i++)
@@ -391,10 +382,7 @@ namespace Adom.Framework.Collections
 
         public LimitedList<T> FindAll(Predicate<T> match)
         {
-            if (match == null)
-            {
-                ThrowHelper.ThrowArgumentNullException(nameof(match));
-            }
+            ArgumentNullException.ThrowIfNull(match, nameof(match));
 
             List<T> list = new();
             for (int i = 0; i < _size; i++)
@@ -424,10 +412,7 @@ namespace Adom.Framework.Collections
                 ThrowHelper.ThrowArgumentOutOfRangeException(MSG_FORMAT_COUNT_ITEM_GREATHER_THAN_SIZE);
             }
 
-            if (match == null)
-            {
-                ThrowHelper.ThrowArgumentNullException(nameof(match));
-            }
+            ArgumentNullException.ThrowIfNull(match, nameof(match));
 
             // iterate through datas
             for (int i = startIndex; i < startIndex + count; i++)
@@ -554,6 +539,7 @@ namespace Adom.Framework.Collections
 
             public LimitedListEnumerator(LimitedList<T> list)
             {
+                ArgumentNullException.ThrowIfNull(list, nameof(list));
                 _list = list;
                 _index = 0;
                 _version = list._version;
