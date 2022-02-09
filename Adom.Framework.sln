@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adom.Framework", "Adom.Framework", "{3F5E22DF-B4EA-4B0D-BE34-C58F7B9E3C12}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5577F40D-AA0A-4262-9975-50D001017A15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adom.Framework", "Adom.Framework\src\Adom.Framework\Adom.Framework.csproj", "{915722A6-850C-4D58-8195-6888961FC8B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adom.Framework", "Adom.Framework\src\Adom.Framework\Adom.Framework.csproj", "{915722A6-850C-4D58-8195-6888961FC8B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1D5A26A6-3AB6-4397-AB3C-025E78B3E9CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adom.Framework.Tests", "Adom.Framework\tests\Adom.Framework.Tests\Adom.Framework.Tests.csproj", "{4CCBBF24-14F5-4D5F-852A-3A4A8ED3620F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adom.Framework.Tests", "Adom.Framework\tests\Adom.Framework.Tests\Adom.Framework.Tests.csproj", "{4CCBBF24-14F5-4D5F-852A-3A4A8ED3620F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{915722A6-850C-4D58-8195-6888961FC8B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -51,10 +48,16 @@ Global
 		{4CCBBF24-14F5-4D5F-852A-3A4A8ED3620F}.Release|x86.ActiveCfg = Release|Any CPU
 		{4CCBBF24-14F5-4D5F-852A-3A4A8ED3620F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5577F40D-AA0A-4262-9975-50D001017A15} = {3F5E22DF-B4EA-4B0D-BE34-C58F7B9E3C12}
 		{915722A6-850C-4D58-8195-6888961FC8B8} = {5577F40D-AA0A-4262-9975-50D001017A15}
 		{1D5A26A6-3AB6-4397-AB3C-025E78B3E9CF} = {3F5E22DF-B4EA-4B0D-BE34-C58F7B9E3C12}
 		{4CCBBF24-14F5-4D5F-852A-3A4A8ED3620F} = {1D5A26A6-3AB6-4397-AB3C-025E78B3E9CF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {07DAF11C-E597-464A-A257-B2F64449D372}
 	EndGlobalSection
 EndGlobal
