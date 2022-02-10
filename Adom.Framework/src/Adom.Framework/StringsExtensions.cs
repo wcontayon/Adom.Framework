@@ -4,6 +4,72 @@ namespace Adom.Framework
 {
     public static class StringsExtensions
     {
+        /// <summary>
+        /// Check if the <see cref="string"/> is a <see cref="Guid"/> value.
+        /// </summary>
+        /// <param name="str"><see cref="string"/></param>
+        /// <returns>true or false</returns>
+        public static bool IsGuid(this string str)
+        {
+            var span = str.AsSpan();
+            if (span.IsEmpty)
+                return false;
+
+            // use SplitLine method to split by '-'
+            int step = 0;
+            bool check = true;
+            foreach (SplitedLine line in str.SplitLine('-'))
+            {
+                // first digit should be on 8 length
+                if (step == 0 && line.Line.Length != 8)
+                {
+                    check = false;
+                    break;
+                }
+
+                // second and third digits should be on 4 length
+                if ((step == 1 || step == 2) && line.Line.Length != 4)
+                {
+                    check = false;
+                    break;
+                }
+
+                // fourth digit should be on 12 length
+                if (step == 3 && line.Line.Length != 12)
+                {
+                    check = false;
+                    break;
+                }
+
+                // Stop iteratation
+                if (step == 4) break;
+
+                // the current line should only contains allows chars (0-9 || A-Z || a-z)
+                check = _matchAllowedAscii(line.Line);
+                if (!check) break;
+
+                step++;
+            }
+
+            bool _matchAllowedAscii(ReadOnlySpan<char> str)
+            {
+                bool match = true;
+                for (int i = 0; i < str.Length; i++)
+                {
+                    // https://theasciicode.com.ar/
+                    match = (str[i] >= 48 && str[i] <= 57) // 0-9
+                            || (str[i] >= 65 && str[i] <= 90) // A-Z
+                            || (str[i] >= 97 && str[i] <= 122); // a-z
+
+                    if (!match) break;
+                }
+
+                return match;
+            }
+
+            return check;
+        }
+
         // Inspired from https://github.com/meziantou/Meziantou.Framework/blob/main/src/Meziantou.Framework/StringExtensions.SplitLines.cs
 
         /// <summary>
