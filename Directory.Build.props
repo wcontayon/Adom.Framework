@@ -4,8 +4,8 @@
   <PropertyGroup>
     <_ContinuousIntegrationBuild Condition="'$(TF_BUILD)' == 'true' or '$(GITHUB_ACTIONS)' == 'true' or '$(GITLAB_CI)' == 'true'">True</_ContinuousIntegrationBuild>
 
-    <LangVersion>9.0</LangVersion>
-    <TreatWarningsAsErrors Condition="'$(Configuration)' != 'Debug'">true</TreatWarningsAsErrors>
+    <LangVersion>latest</LangVersion>
+    <!--<TreatWarningsAsErrors Condition="'$(Configuration)' != 'Debug'">true</TreatWarningsAsErrors>-->
     <Deterministic>true</Deterministic>
     <LatestTargetFramework>net6.0</LatestTargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -13,9 +13,10 @@
 
     <Features>strict</Features>
     <AnalysisLevel>latest</AnalysisLevel>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
     <ReportAnalyzer>true</ReportAnalyzer>
+    <CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
 
     <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation>
     <PackageOutputPath>$(RepoRootPath)bin\Packages\$(Configuration)\NuGet\</PackageOutputPath>

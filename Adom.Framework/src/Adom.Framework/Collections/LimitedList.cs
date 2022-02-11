@@ -133,10 +133,17 @@ namespace Adom.Framework.Collections
                 ThrowHelper.ThrowArgumentException(MSG_FORMAT_NEGATIVE_CAPACITY);
             }
 
+#if NET6_0_OR_GREATER
             if ((uint)newCapacity > Array.MaxLength)
             {
                 _capacity = Array.MaxLength;
             } 
+#else
+            if ((uint)newCapacity > int.MaxValue)
+            {
+                _capacity = int.MaxValue;
+            }
+#endif
             else 
             {
                 _capacity += newCapacity;
@@ -213,7 +220,14 @@ namespace Adom.Framework.Collections
 
         public void ForEach(Action<T> action)
         {
+#if NET6_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(action, nameof(action));
+#else
+            if (action == null)
+            {
+                throw new ArgumentNullException(nameof(action));
+            }
+#endif
 
             // Copy the version, to check if he has changed
             int version = _version;
@@ -237,7 +251,7 @@ namespace Adom.Framework.Collections
             }
         }
 
-        #region IndexOf
+#region IndexOf
 
         public int IndexOf(T item) => Array.IndexOf(_data, item, 0, _size);
 
@@ -293,7 +307,7 @@ namespace Adom.Framework.Collections
             return Array.LastIndexOf(_data, item, index, count);
         }
 
-        #endregion
+#endregion
 
         public void Insert(int index, T item)
         {
@@ -312,7 +326,7 @@ namespace Adom.Framework.Collections
             _size++;
         }
 
-        #region Remove
+#region Remove
 
         public bool Remove(T item)
         {
@@ -344,15 +358,22 @@ namespace Adom.Framework.Collections
             _version++;
         }
 
-        #endregion
+#endregion
 
-        #region Search
+#region Search
 
         public bool Exists(Predicate<T> match) => FindIndex(match) != -1;
 
         public T? Find(Predicate<T> match)
         {
+#if NET6_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(match, nameof(match));
+#else
+            if (match == null)
+            {
+                throw new ArgumentNullException(nameof(match));
+            }
+#endif
 
             for (int i = 0; i < _size; i++)
             {
@@ -366,7 +387,14 @@ namespace Adom.Framework.Collections
 
         public ReadOnlySpan<T> FindAllAsSpan(Predicate<T> match)
         {
+#if NET6_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(match, nameof(match));
+#else
+            if (match == null)
+            {
+                throw new ArgumentNullException(nameof(match));
+            }
+#endif
 
             T[] array = Array.Empty<T>();
             for (int i = 0; i < _size; i++)
@@ -382,7 +410,14 @@ namespace Adom.Framework.Collections
 
         public LimitedList<T> FindAll(Predicate<T> match)
         {
+#if NET6_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(match, nameof(match));
+#else
+            if (match == null)
+            {
+                throw new ArgumentNullException(nameof(match));
+            }
+#endif
 
             List<T> list = new();
             for (int i = 0; i < _size; i++)
@@ -412,7 +447,14 @@ namespace Adom.Framework.Collections
                 ThrowHelper.ThrowArgumentOutOfRangeException(MSG_FORMAT_COUNT_ITEM_GREATHER_THAN_SIZE);
             }
 
+#if NET6_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(match, nameof(match));
+#else
+            if (match == null)
+            {
+                throw new ArgumentNullException(nameof(match));
+            }
+#endif
 
             // iterate through datas
             for (int i = startIndex; i < startIndex + count; i++)
@@ -465,9 +507,9 @@ namespace Adom.Framework.Collections
 
         public int BinarySearch(T? item) => BinarySearch(item, 0, _size, null);
 
-        #endregion
+#endregion
 
-        #region Sort
+#region Sort
 
         /// <summary>
         /// Sort the items in the <see cref="LimitedList{T}"/>.
@@ -528,7 +570,7 @@ namespace Adom.Framework.Collections
             _version++;
         }
 
-        #endregion
+#endregion
 
         public struct LimitedListEnumerator : IEnumerator, IEnumerator<T>
         {
@@ -539,7 +581,14 @@ namespace Adom.Framework.Collections
 
             public LimitedListEnumerator(LimitedList<T> list)
             {
-                ArgumentNullException.ThrowIfNull(list, nameof(list));
+#if NET6_0_OR_GREATER
+            ArgumentNullException.ThrowIfNull(list, nameof(list));
+#else
+                if (list == null)
+                {
+                    throw new ArgumentNullException(nameof(list));
+                }
+#endif
                 _list = list;
                 _index = 0;
                 _version = list._version;

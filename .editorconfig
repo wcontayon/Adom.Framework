@@ -2,3 +2,6 @@
 
 # Default severity for analyzer diagnostics with category 'MicrosoftCodeAnalysisReleaseTracking'
 dotnet_analyzer_diagnostic.category-MicrosoftCodeAnalysisReleaseTracking.severity = none
+
+[*.{cs,vb}]
+dotnet_diagnostic.CA1002.severity=silent

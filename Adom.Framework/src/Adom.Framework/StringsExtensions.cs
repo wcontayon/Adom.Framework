@@ -27,24 +27,24 @@ namespace Adom.Framework
                     break;
                 }
 
-                // second and third digits should be on 4 length
-                if ((step == 1 || step == 2) && line.Line.Length != 4)
+                // second, third and fourth digits should be on 4 length
+                if ((step == 1 || step == 2 || step == 3) && line.Line.Length != 4)
                 {
                     check = false;
                     break;
                 }
 
-                // fourth digit should be on 12 length
-                if (step == 3 && line.Line.Length != 12)
+                // fifth digit should be on 12 length
+                if (step == 4 && line.Line.Length != 12)
                 {
                     check = false;
                     break;
                 }
 
                 // Stop iteratation
-                if (step == 4) break;
+                if (step == 5) break;
 
-                // the current line should only contains allows chars (0-9 || A-Z || a-z)
+                // the current line should only contains allowed chars (0-9 || A-Z || a-z)
                 check = _matchAllowedAscii(line.Line);
                 if (!check) break;
 
@@ -70,6 +70,73 @@ namespace Adom.Framework
             return check;
         }
 
+        /// <summary>
+        /// Check if the <see cref="string"/> is a <see cref="Guid.Empty"/> value
+        /// wihtout converting to <see cref="Guid"/>.
+        /// </summary>
+        /// <param name="str"><see cref="string"/></param>
+        /// <returns>true of false</returns>
+        public static bool IsGuidEmpty(this string str)
+        {
+            var span = str.AsSpan();
+            if (span.IsEmpty)
+                return false;
+
+            // use SplitLine method to split by '-'
+            int step = 0;
+            bool check = true;
+            foreach (SplitedLine line in str.SplitLine('-'))
+            {
+                // the digit should contains only '0' char
+                check = _isZeroChar(line.Line);
+                if (!check) break;
+
+                // first digit should be on 8 length
+                if (step == 0 && line.Line.Length != 8)
+                {
+                    check = false;
+                    break;
+                }
+
+                // second, third and fourth digits should be on 4 length
+                if ((step == 1 || step == 2 || step == 3) && line.Line.Length != 4)
+                {
+                    check = false;
+                    break;
+                }
+
+                // fifth digit should be on 12 length
+                if (step == 4 && line.Line.Length != 12)
+                {
+                    check = false;
+                    break;
+                }
+
+                // Stop iteratation
+                if (step == 5) break;
+
+                if (!check) break;
+
+                step++;
+            }
+
+            bool _isZeroChar(ReadOnlySpan<char> str)
+            {
+                bool match = true;
+                for (int i = 0; i < str.Length; i++)
+                {
+                    // https://theasciicode.com.ar/
+                    match = (str[i] == 48);
+
+                    if (!match) break;
+                }
+
+                return match;
+            }
+
+            return check;
+        }
+
         // Inspired from https://github.com/meziantou/Meziantou.Framework/blob/main/src/Meziantou.Framework/StringExtensions.SplitLines.cs
 
         /// <summary>
@@ -84,6 +151,42 @@ namespace Adom.Framework
         {
             return new SplitedLineEnumerator(str.AsSpan(), separator);
         }
+
+        /// <summary>
+        /// Split the specified <see cref="ReadOnlySpan{char}"/> with the <see cref="char"/>
+        /// and return an <see cref="SplitedLineEnumerator"/> to iterate through the
+        /// Line (<see cref="SplitedLine"/>).
+        /// </summary>
+        /// <param name="str">The <see cref="ReadOnlySpan{char}"/> to split</param>
+        /// <param name="separator">st</param>
+        /// <returns></returns>
+        public static SplitedLineEnumerator SplitLine(this ReadOnlySpan<char> strAsSpan, char separator)
+        {
+            return new SplitedLineEnumerator(strAsSpan, separator);
+        }
+
+        /// <summary>
+        /// Split the specified <see cref="string"/> with the <see cref="char"/>
+        /// and return an <see cref="SplitedLineEnumerator"/> to iterate through the
+        /// Line (<see cref="SplitedLine"/>).
+        /// </summary>
+        /// <param name="str">The <see cref="string"/> to split</param>
+        /// <param name="separator">st</param>
+        /// <returns></returns>
+        public static SplitedLineEnumerator SplitLine(this string str, ReadOnlySpan<char> separator)
+        {
+            return new SplitedLineEnumerator(str.AsSpan(), separator);
+        }
+
+        /// <summary>
+        /// Split the specified <see cref="ReadOnlySpan{char}"/> with the <see cref="char"/>
+        /// and return an <see cref="SplitedLineEnumerator"/> to iterate through the
+        /// Line (<see cref="SplitedLine"/>).
+        /// </summary>
+        /// <param name="str">The <see cref="ReadOnlySpan{char}"/> to split</param>
+        /// <param name="separator">st</param>
+        /// <returns></returns>
+        public static SplitedLineEnumerator SplitLine(this ReadOnlySpan<char> strAsSpan, ReadOnlySpan<char> separator) => new SplitedLineEnumerator(strAsSpan, separator);
     }
 
     // Inspired from https://github.com/meziantou/Meziantou.Framework/blob/main/src/Meziantou.Framework/StringExtensions.SplitLines.cs
@@ -119,14 +222,14 @@ namespace Adom.Framework
             if (_splitedLine.IsEmpty) return false;
 
             var span = _splitedLine;
-            if (span .Length == 0) return false;
+            if (span.Length == 0) return false;
 
             int index = span.IndexOfAny(_seperator);
             // we have one line
             if (index == -1)
             {
                 _splitedLine = ReadOnlySpan<char>.Empty; // the next line will be empty
-                Current = new SplitedLine(span.Slice(0, index), _seperator);
+                Current = new SplitedLine(span.Slice(0, span.Length), _seperator);
                 return true;
             }
 

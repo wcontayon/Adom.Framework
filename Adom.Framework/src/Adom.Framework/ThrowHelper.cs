@@ -4,7 +4,9 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Adom.Framework
 {
+#if NET7_0
     [StackTraceHidden]
+#endif
     internal static class ThrowHelper
     {
         [DoesNotReturn]
