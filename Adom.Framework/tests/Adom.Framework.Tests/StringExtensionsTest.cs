@@ -88,5 +88,15 @@ namespace Adom.Framework.Tests
             string emptyGuid = Guid.Empty.ToString();
             Assert.True(emptyGuid.IsGuidEmpty());
         }
+
+        [InlineData("azertyuiop", "poiuytreza")]
+        [InlineData("qsdfghjklm", "mlkjhgfdsq")]
+        [InlineData("wxcvbn,;:!", "!:;,nbvcxw")]
+        [Theory]
+        public void StringShouldReturnReversedString(string str, string reversed)
+        {
+            var strReversed = str.Reverse();
+            Assert.True(strReversed == reversed);
+        }
     }
 }

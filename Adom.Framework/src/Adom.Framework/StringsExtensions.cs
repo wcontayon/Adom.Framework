@@ -1,9 +1,53 @@
 ﻿using System;
+using System.Text;
 
 namespace Adom.Framework
 {
     public static class StringsExtensions
     {
+        /// <summary>
+        /// Reverse the <see cref="string"/>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string Reverse(this string str)
+        {
+            var span = str.AsSpan();
+            if (span.IsEmpty)
+            {
+                return string.Empty;
+            }
+
+            ValueStringBuilder reversedString = new ValueStringBuilder(stackalloc char[span.Length]);
+            for (int i = span.Length - 1; i >= 0; i--)
+            {
+                reversedString.AppendSpan(span[i]);
+            }
+            
+            return reversedString.ToString();
+        }
+
+        /// <summary>
+        /// Reverse the <see cref="string"/>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static ReadOnlySpan<char> Reverse(this ReadOnlySpan<char> span)
+        {
+            if (span.IsEmpty)
+            {
+                return Span<char>.Empty;
+            }
+
+            ValueStringBuilder reversedString = new ValueStringBuilder(stackalloc char[span.Length]);
+            for (int i = span.Length - 1; i >= 0; i--)
+            {
+                reversedString.AppendSpan(span[i]);
+            }
+
+            return reversedString.ToString().AsSpan();
+        }
+
         /// <summary>
         /// Check if the <see cref="string"/> is a <see cref="Guid"/> value.
         /// </summary>

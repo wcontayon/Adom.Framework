@@ -582,7 +582,7 @@ namespace Adom.Framework.Collections
             public LimitedListEnumerator(LimitedList<T> list)
             {
 #if NET6_0_OR_GREATER
-            ArgumentNullException.ThrowIfNull(list, nameof(list));
+                ArgumentNullException.ThrowIfNull(list, nameof(list));
 #else
                 if (list == null)
                 {
