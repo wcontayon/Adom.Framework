@@ -23,8 +23,10 @@ namespace Adom.Framework
             {
                 reversedString.AppendSpan(span[i]);
             }
-            
-            return reversedString.ToString();
+
+            string s = reversedString.ToString();
+            reversedString.Dispose();
+            return s;
         }
 
         /// <summary>
@@ -45,7 +47,9 @@ namespace Adom.Framework
                 reversedString.AppendSpan(span[i]);
             }
 
-            return reversedString.ToString().AsSpan();
+            string s = reversedString.ToString();
+            reversedString.Dispose();
+            return s.AsSpan();
         }
 
         /// <summary>

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +13,15 @@ namespace Adom.Framework.MoneyType
         internal Currency _currency;
         internal string _otherCurrency;
         internal double _amount;
+        internal DefaultMoneyStringFormatter _moneyStringFormatter;
 
         #region Exception Message
+
+        internal const string EXCEPTION_MSG_CURRENCY_MISMATCH = "Cannot compare. Currency mismatch !";
+        internal const string EXCEPTION_MSG_TYPE_MISMATCH = "The object is not a type of {0}";
+        internal const string EXCEPTION_MSG_CANTHAVE_TWO_CURRENCY = "A Money struct value cannot have two currency codes";
+        internal const string EXCEPTION_MSG_MONEY_MUST_HAVE_CURRENCY = "A money struct value required a currency code";
+        internal const string EXCEPTION_MSG_MONEY_DIVIDED_BY_ZERO = "Cannot divide Money by zero";
 
         #endregion
 
@@ -40,43 +49,49 @@ namespace Adom.Framework.MoneyType
         public Money(double value, Currency currency)
         {
             _currency = currency;
-            _OtherCurrency = string.Empty;
+            _otherCurrency = string.Empty;
             _amount = value;
+            _moneyStringFormatter = new DefaultMoneyStringFormatter();
         }
 
         public Money(Currency currency, string otherCurrency)
         {
             _currency = currency;
-            _OtherCurrency = otherCurrency;
+            _otherCurrency = otherCurrency;
             _amount = 0d;
+            _moneyStringFormatter = new DefaultMoneyStringFormatter();
         }
 
         public Money(double value, string otherCurrency)
         {
             _currency = Currency.None;
-            _OtherCurrency = otherCurrency;
+            _otherCurrency = otherCurrency;
             _amount = value;
+            _moneyStringFormatter = new DefaultMoneyStringFormatter();
         }
 
         public Money(string otherCurrency)
         {
             _currency = Currency.None;
-            _OtherCurrency = otherCurrency;
+            _otherCurrency = otherCurrency;
             _amount = 0d;
+            _moneyStringFormatter = new DefaultMoneyStringFormatter();
         }
 
         public Money(Currency currency)
         {
             _currency = currency;
-            _OtherCurrency = string.Empty;
+            _otherCurrency = string.Empty;
             _amount = 0d;
+            _moneyStringFormatter = new DefaultMoneyStringFormatter();
         }
 
         public Money(double value)
         {
             _currency = Currency.None;
-            _OtherCurrency = string.Empty;
+            _otherCurrency = string.Empty;
             _amount = value;
+            _moneyStringFormatter = new DefaultMoneyStringFormatter();
         }
 
         #endregion
@@ -86,13 +101,14 @@ namespace Adom.Framework.MoneyType
 
         public int CompareTo(Money other)
         {
-            if (this._currency == other._currency && this._OtherCurrency == other._OtherCurrency)
+            if (this._currency != other._currency)
             {
-                if (this > other) return 1;
-                else if (this < other) return -1;
-                else return 0;
+                ThrowHelper.ThrowInvalidOperationException(EXCEPTION_MSG_CURRENCY_MISMATCH);
             }
-            throw new Exception("Impossible de comparer de objet de type Money, avec des codes monétaires différents");
+
+            if (this > other) return 1;
+            else if (this < other) return -1;
+            else return 0;
         }
 
         public bool Equals(Money other)
@@ -100,64 +116,47 @@ namespace Adom.Framework.MoneyType
             return (this == other);
         }
 
-        public int CompareTo(object obj)
+        public int CompareTo(object? obj)
         {
-            if (obj is Money)
+            if (obj is Money && obj != null)
             {
                 return CompareTo((Money)obj);
             }
-            throw new Exception("L'objet doit être du type Money");
+
+            ThrowHelper.ThrowInvalidOperationException(string.Format(CultureInfo.InvariantCulture, EXCEPTION_MSG_TYPE_MISMATCH, "Money"));
+            return -1;
         }
 
         #endregion
 
 
-        #region Opérations
+        #region Operations
 
         #region Operator +
 
         public static Money operator +(Money m1, Money m2)
         {
-            if ((m1._currency == m2._currency) || (m1._OtherCurrency == m2._OtherCurrency))
+            IsCurrencyMatch(m1, m2);
+            EnsureMoneyHasOneCurrency(m1);
+            EnsureMoneyHasOneCurrency(m2);
+
+            if (m1._currency != Currency.None)
             {
-                Money m_somm = new Money();
-                if (m1._OtherCurrency == string.Empty && m1._currency != Currency.NONE)
-                {
-                    m_somm = new Money(m1._amount + m2._amount, m1._currency);
-                }
-                else if (m1._OtherCurrency != string.Empty && m1._currency == Currency.NONE)
-                {
-                    m_somm = new Money(m1._amount + m2._amount, m1._OtherCurrency);
-                }
-                else throw new Exception("Un objet de type Money ne peut avoir deux codes monétaires (currency)");
-                return m_somm;
+                return new Money(m1._amount + m2._amount, m1._currency);
             }
-            else throw new Exception("Impossible de définir un objet de type Money, sans un definir un code monétaire (currency)");
+            else 
+            {
+                return new Money(m1._amount + m2._amount, m1._otherCurrency);
+            }
         }
 
-        public static Money operator +(Money m1, int value)
-        {
-            Money m_somm = new Money(m1._amount + (double)value);
-            m_somm._currency = m1._currency;
-            m_somm._OtherCurrency = m1._OtherCurrency;
-            return m_somm;
-        }
+        public static Money operator +(Money m1, int value) => Add(m1, (double) value);
 
-        public static Money operator +(Money m1, long value)
-        {
-            Money m_somm = new Money(m1._amount + (double)value);
-            m_somm._currency = m1._currency;
-            m_somm._OtherCurrency = m1._OtherCurrency;
-            return m_somm;
-        }
+        public static Money operator +(Money m1, long value) => Add(m1, (double) value);
 
-        public static Money operator +(Money m1, decimal value)
-        {
-            Money m_somm = new Money(m1._amount + (double)value);
-            m_somm._currency = m1._currency;
-            m_somm._OtherCurrency = m1._OtherCurrency;
-            return m_somm;
-        }
+        public static Money operator +(Money m1, decimal value) => Add(m1, (double) value);
+
+        public static Money Add(Money m1, double value) => Operate(m1, (double)value, MoneyOperator.Add);
 
         #endregion
 
@@ -165,139 +164,84 @@ namespace Adom.Framework.MoneyType
 
         public static Money operator -(Money m1, Money m2)
         {
-            if ((m1._currency == m2._currency) || (m1._OtherCurrency == m2._OtherCurrency))
+            IsCurrencyMatch(m1, m2);
+            EnsureMoneyHasOneCurrency(m1);
+            EnsureMoneyHasOneCurrency(m2);
+
+            if (m1._currency != Currency.None)
             {
-                Money m_somm = new Money();
-                if (m1._OtherCurrency == string.Empty && m1._currency != Currency.NONE)
-                {
-                    m_somm = new Money(m1._amount - m2._amount, m1._currency);
-                }
-                else if (m1._OtherCurrency != string.Empty && m1._currency == Currency.NONE)
-                {
-                    m_somm = new Money(m1._amount - m2._amount, m1._OtherCurrency);
-                }
-                else throw new Exception("Un objet de type Money ne peut avoir deux codes monétaires (currency)");
-                return m_somm;
+                return new Money(m1._amount - m2._amount, m1._currency);
             }
-            else throw new Exception("Impossible de définir un objet de type Money, sans un definir un code monétaire (currency)");
+            else
+            {
+                return new Money(m1._amount - m2._amount, m1._otherCurrency);
+            }
         }
 
-        public static Money operator -(Money m1, int value)
-        {
-            Money m_somm = new Money(m1._amount - (double)value);
-            m_somm._currency = m1._currency;
-            m_somm._OtherCurrency = m1._OtherCurrency;
-            return m_somm;
-        }
+        public static Money operator -(Money m1, int value) => Subtract(m1, (double)value);
 
-        public static Money operator -(Money m1, long value)
-        {
-            Money m_somm = new Money(m1._amount - (double)value);
-            m_somm._currency = m1._currency;
-            m_somm._OtherCurrency = m1._OtherCurrency;
-            return m_somm;
-        }
+        public static Money operator -(Money m1, long value) => Subtract(m1, (double)value);
 
-        public static Money operator -(Money m1, decimal value)
-        {
-            Money m_somm = new Money(m1._amount - (double)value);
-            m_somm._currency = m1._currency;
-            m_somm._OtherCurrency = m1._OtherCurrency;
-            return m_somm;
-        }
+        public static Money operator -(Money m1, decimal value) => Subtract(m1, (double)value);
+
+        public static Money Subtract(Money m1, double value) => Operate(m1, value, MoneyOperator.Subtract);
 
         #endregion
 
         #region Operator *
 
-        public static Money operator *(Money m1, int value)
-        {
-            Money m_somm = new Money(m1._amount * (double)value);
-            m_somm._currency = m1._currency;
-            m_somm._OtherCurrency = m1._OtherCurrency;
-            return m_somm;
-        }
+        public static Money operator *(Money m1, int value) => Multiply(m1, (double)value);
 
-        public static Money operator *(Money m1, long value)
-        {
-            Money m_somm = new Money(m1._amount * (double)value);
-            m_somm._currency = m1._currency;
-            m_somm._OtherCurrency = m1._OtherCurrency;
-            return m_somm;
-        }
+        public static Money operator *(Money m1, long value) => Multiply(m1, (double)value);
 
-        public static Money operator *(Money m1, decimal value)
-        {
-            Money m_somm = new Money(m1._amount * (double)value);
-            m_somm._currency = m1._currency;
-            m_somm._OtherCurrency = m1._OtherCurrency;
-            return m_somm;
-        }
+        public static Money operator *(Money m1, decimal value) => Multiply(m1, (double)value);
+
+        public static Money Multiply(Money m1, double value) => Operate(m1, value, MoneyOperator.Multiply);
 
         #endregion
 
         #region Operator /
 
-        public static Money operator /(Money m1, int value)
-        {
-            if ((double)value != 0)
-            {
-                Money m_somm = new Money(m1._amount / (double)value);
-                m_somm._currency = m1._currency;
-                m_somm._OtherCurrency = m1._OtherCurrency;
-                return m_somm;
-            }
-            else throw new Exception("Division impossible par zero");
-        }
+        public static Money operator /(Money m1, int value) => Divide(m1, (double)value);
 
-        public static Money operator /(Money m1, long value)
-        {
-            if ((double)value != 0)
-            {
-                Money m_somm = new Money(m1._amount / (double)value);
-                m_somm._currency = m1._currency;
-                m_somm._OtherCurrency = m1._OtherCurrency;
-                return m_somm;
-            }
-            else throw new Exception("Division impossible par zero");
-        }
+        public static Money operator /(Money m1, long value) => Divide(m1, (double)value);
 
-        public static Money operator /(Money m1, decimal value)
+        public static Money operator /(Money m1, decimal value) => Divide(m1, (double)value);
+
+        public static Money Divide(Money m1, double value)
         {
-            if ((double)value != 0)
+            if (value == 0)
             {
-                Money m_somm = new Money(m1._amount / (double)value);
-                m_somm._currency = m1._currency;
-                m_somm._OtherCurrency = m1._OtherCurrency;
-                return m_somm;
+                ThrowHelper.ThrowDivideByZeroException(EXCEPTION_MSG_MONEY_DIVIDED_BY_ZERO);
             }
-            else throw new Exception("Division impossible par zero");
+
+            return Operate(m1, value, MoneyOperator.Divide);
         }
 
         #endregion
 
         public static bool operator ==(Money m1, Money m2)
         {
-            return ((m1._currency == m2._currency) && (m1._OtherCurrency == m2._OtherCurrency) &&
+            return ((m1._currency == m2._currency) && (m1._otherCurrency == m2._otherCurrency) &&
                 (m1._amount == m2._amount));
         }
 
         public static bool operator !=(Money m1, Money m2)
         {
-            return ((m1._currency != m2._currency) || (m1._OtherCurrency != m2._OtherCurrency) ||
+            return ((m1._currency != m2._currency) || (m1._otherCurrency != m2._otherCurrency) ||
                 (m1._amount != m2._amount));
         }
 
         public static bool operator >(Money m1, Money m2)
         {
-            if ((m1._currency == m2._currency) || (m1._OtherCurrency == m2._OtherCurrency))
+            if ((m1._currency == m2._currency) || (m1._otherCurrency == m2._otherCurrency))
                 return (m1._amount > m2._amount);
             else return false;
         }
 
         public static bool operator <(Money m1, Money m2)
         {
-            if ((m1._currency == m2._currency) || (m1._OtherCurrency == m2._OtherCurrency))
+            if ((m1._currency == m2._currency) || (m1._otherCurrency == m2._otherCurrency))
                 return (m1._amount < m2._amount);
             else return false;
         }
@@ -305,113 +249,88 @@ namespace Adom.Framework.MoneyType
 
         #endregion
 
+        public new string ToString() => _moneyStringFormatter.Format(this, MoneyThousandSeparator.Space);
 
-        //#region Extensions
-
-        //public static double ToDouble(this Convert c, Money m)
-        //{
-        //    return m._amount;
-        //}
-
-        //public static decimal ToDecimal(this Convert c, Money m)
-        //{
-        //    return (decimal)m._amount;
-        //}
-
-        //public static long ToLong(this Convert c, Money m)
-        //{
-        //    return (long)m._amount;
-        //}
-
-        //public static int ToInt32(this Convert c, Money m)
-        //{
-        //    return (int)m._amount;
-        //}
-
-        //public static int Parse(this int i, Money m)
-        //{
-        //    return (int)m._amount;
-        //}
-
-        //public static long Parse(this long l, Money m)
-        //{
-        //    return (long)m._amount;
-        //}
-
-        //public static decimal Parse(this decimal d, Money m)
-        //{
-        //    return (decimal)m._amount;
-        //}
-
-        //#endregion
+        public string ToString(MoneyThousandSeparator separator) => _moneyStringFormatter.Format(this, separator);
 
 
-        #region Fonctions
+        #region Convert
 
-        public new string ToString()
+        public static explicit operator double(Money m1) => m1._amount;
+        public static double ToDouble(Money m1) => m1._amount;
+
+        public static explicit operator int(Money m1) => (int)m1._amount;
+        public static int ToInt32(Money m1) => (int)m1._amount;
+
+        public static explicit operator long(Money m1) => (long)m1._amount;
+        public static long ToInt64(Money m1) => (long)m1._amount;
+
+        public static explicit operator decimal(Money m1) => (decimal)m1._amount;
+        public static decimal ToDecimal(Money m1) => (decimal)m1._amount;
+
+        #endregion
+
+        #region Internals
+
+        [DoesNotReturn]
+        private static void IsCurrencyMatch(Money m1, Money m2)
         {
-            if (_currency != Currency.NONE) return _amount.ToString() + " " + _String_Code_CurrencyMoney.CurrencyMoneyCode[_currency];
-            else if (_OtherCurrency != string.Empty)
-                return _amount.ToString() + " " + _OtherCurrency;
-            else throw new Exception("Veuillez definir un code monétaire pour l'affichage");
+            if ((m1._currency != m2._currency) && (m1._otherCurrency != m2._otherCurrency))
+            {
+                ThrowHelper.ThrowInvalidOperationException(EXCEPTION_MSG_CURRENCY_MISMATCH);
+            }
         }
 
-        public new string ToString(MoneyThousandSeparator separator)
+        [DoesNotReturn]
+        private static void EnsureMoneyHasOneCurrency(Money m1)
         {
-            //Avant toutes chose, on récupère le code monétaire
-            string codeMonnaie = ((_currency != Currency.NONE) ? _String_Code_CurrencyMoney.CurrencyMoneyCode[_currency] :
-                ((_OtherCurrency != string.Empty) ? _OtherCurrency : string.Empty));
-
-            //On procède maintenant à la conversion
-            string montant = _amount.ToString().Reverse();
-            string new_montant = string.Empty;
-            char c_separator = Money.CaractereSeparator(separator);
-            string str_separator = (c_separator == '0') ? "" : c_separator.ToString();
-            char[] __chiffres = montant.ToCharArray();
-            int nombre_chiffres = montant.Length;
-            if (nombre_chiffres > 3)
+            if (m1._currency != Currency.None && !string.IsNullOrEmpty(m1._otherCurrency))
             {
-                int nombre_restant = 0;
-                int dernier_index = 0;
-                for (int i = 0; i < nombre_chiffres; i += 3)
-                {
-                    try
-                    {
-                        string milier = montant.Substring(i, 3);
-                        foreach (var c in milier)
-                        {
-                            new_montant = c.ToString() + new_montant;
-                        }
-                        new_montant = str_separator + new_montant;
-                    }
-                    catch
-                    {
-                        nombre_restant = montant.Length - i;
-                        dernier_index = i;
-                        break;
-                    }
-                }
-                if (0 != nombre_restant)
-                {
-                    foreach (char c in montant.Substring(dernier_index, nombre_restant))
-                    {
-                        new_montant = c.ToString() + new_montant;
-                    }
-                }
-
-                //Avant de retourner la valeur, on vérifie le 1er char, si c'est le separator
-                //on le supprime
-                var _1erChar = new_montant[0];
-                if (_1erChar.ToString() == c_separator.ToString())
-                {
-                    new_montant = new_montant.Substring(1, new_montant.Length - 1);
-                }
+                ThrowHelper.ThrowInvalidOperationException(EXCEPTION_MSG_CANTHAVE_TWO_CURRENCY);
             }
-            else return _amount.ToString() + " " + codeMonnaie;
-            return new_montant.ToString() + " " + codeMonnaie;
+        }
+
+        private static Money Operate(Money left, double value, MoneyOperator @operator)
+        {
+            Money sum = @operator switch
+            {
+                MoneyOperator.Add => new Money(left._amount + value),
+                MoneyOperator.Subtract => new Money(left._amount - value),
+                MoneyOperator.Multiply => new Money(left._amount * value),
+                MoneyOperator.Divide => new Money(left._amount / value),
+                _ => left
+            };
+
+            sum._currency = left._currency;
+            sum._otherCurrency = left._otherCurrency;
+            return sum;
         }
 
         #endregion
+
+        public override bool Equals(object? obj) => this.CompareTo(obj) <= 0;
+
+        public override int GetHashCode() => this._amount.GetHashCode() + this._currency.GetHashCode()
+            + this._otherCurrency.GetHashCode(StringComparison.InvariantCulture);
+
+        public static bool operator <=(Money left, Money right)
+        {
+            return left.CompareTo(right) <= 0;
+        }
+
+        public static bool operator >=(Money left, Money right)
+        {
+            return left.CompareTo(right) >= 0;
+        }
+    }
+
+    enum MoneyOperator
+    {
+        None,
+        Add,
+        Subtract,
+        Multiply,
+        Divide
     }
 
     public enum MoneyThousandSeparator

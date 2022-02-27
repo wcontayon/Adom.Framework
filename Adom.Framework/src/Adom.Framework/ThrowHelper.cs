@@ -39,5 +39,8 @@ namespace Adom.Framework
 
         [DoesNotReturn]
         internal static void ThrowInvalidOperationException(string message) => throw new InvalidOperationException(message);
+
+        [DoesNotReturn]
+        internal static void ThrowDivideByZeroException(string message) => throw new DivideByZeroException(message);
     }
 }

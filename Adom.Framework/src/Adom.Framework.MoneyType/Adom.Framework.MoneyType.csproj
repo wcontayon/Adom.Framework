@@ -7,15 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\Adom.Framework\ValueStringBuilder\ValueStringBuilder.cs" Link="ValueStringBuilder\ValueStringBuilder.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Adom.Framework\Adom.Framework.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ValueStringBuilder\" />
+    <Compile Include="..\Adom.Framework\StringsExtensions.cs" Link="Internals\StringsExtensions.cs" />
+    <Compile Include="..\Adom.Framework\ThrowHelper.cs" Link="Internals\ThrowHelper.cs" />
+    <Compile Include="..\Adom.Framework\ValueStringBuilder\ValueStringBuilder.cs" Link="Internals\ValueStringBuilder.cs" />
   </ItemGroup>
 
 </Project>
