@@ -246,6 +246,9 @@ namespace Adom.Framework.MoneyType
             else return false;
         }
 
+        public static bool operator <=(Money left, Money right) => left.CompareTo(right) <= 0;
+
+        public static bool operator >=(Money left, Money right) => left.CompareTo(right) >= 0;
 
         #endregion
 
@@ -312,16 +315,6 @@ namespace Adom.Framework.MoneyType
 
         public override int GetHashCode() => this._amount.GetHashCode() + this._currency.GetHashCode()
             + this._otherCurrency.GetHashCode(StringComparison.InvariantCulture);
-
-        public static bool operator <=(Money left, Money right)
-        {
-            return left.CompareTo(right) <= 0;
-        }
-
-        public static bool operator >=(Money left, Money right)
-        {
-            return left.CompareTo(right) >= 0;
-        }
     }
 
     enum MoneyOperator
