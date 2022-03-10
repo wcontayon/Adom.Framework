@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net5.0; net6.0</TargetFrameworks>
+    <!--<ImplicitUsings>enable</ImplicitUsings>-->
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Validation.Assume.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Validation.Assume.cs" />
+  </ItemGroup>
+
+</Project>
