@@ -21,12 +21,12 @@ namespace Adom.Framework.MoneyType
         internal static string GetLabel(this Currency currency)
         {
             // Get fieldinfo for this type
-            FieldInfo fieldInfo = typeof(Currency).GetField(currency.ToString());
+            FieldInfo fieldInfo = typeof(Currency).GetField(currency.ToString())!;
 
             if (fieldInfo != null)
             {
                 // Get the stringvalue attributes
-                CurrencyLabelAttribute symboleAttribute = fieldInfo.GetCustomAttribute(typeof(CurrencyLabelAttribute)) as CurrencyLabelAttribute;
+                CurrencyLabelAttribute symboleAttribute = (fieldInfo.GetCustomAttribute(typeof(CurrencyLabelAttribute)) as CurrencyLabelAttribute)!;
 
                 if (symboleAttribute != null)
                 {

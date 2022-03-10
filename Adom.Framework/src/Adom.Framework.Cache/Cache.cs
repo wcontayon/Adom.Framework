@@ -24,6 +24,7 @@ namespace Adom.Framework.Cache
         {
             _cacheStore = memoryCache;
             _keys = new HashSet<string>();
+            _disposed = false;
         }
 
         public async Task Clear()

@@ -15,7 +15,7 @@ namespace Adom.Framework.Validation.Model
             {
                 return Checker.NotNull<T>(value, paramName, checkType, level) != null;
             }
-            catch
+            catch (CheckException)
             {
 #pragma warning disable CS8777 // Le paramètre doit avoir une valeur non null au moment de la sortie.
                 return false;
@@ -31,7 +31,7 @@ namespace Adom.Framework.Validation.Model
                 Checker.NotNull<T>(value, paramName, checkType, level);
                 return true;
             }
-            catch
+            catch (CheckException)
             {
 #pragma warning disable CS8777 // Le paramètre doit avoir une valeur non null au moment de la sortie.
                 return false;

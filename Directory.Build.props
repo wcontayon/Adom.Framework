@@ -9,7 +9,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ValidateProjectTargets>true</ValidateProjectTargets>
     <Features>strict</Features>
-    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisLevel>6.0</AnalysisLevel>
     <EnableNETAnalyzers>false</EnableNETAnalyzers>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
     <ReportAnalyzer>true</ReportAnalyzer>

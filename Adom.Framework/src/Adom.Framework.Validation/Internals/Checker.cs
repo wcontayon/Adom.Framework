@@ -174,21 +174,21 @@ namespace Adom.Framework.Validation
         /// <param name="checkLevel">The <see cref="CheckLevel"/> executed.</param>
         /// <param name="nullCheck">Define if we do a null (data/input) check.</param>
         //[DebuggerStepThrough]
-        private static Exception Fail([DoesNotReturnIf(true)] bool condition, string? message, CheckType checkType, CheckLevel checkLevel, bool nullCheck) =>
+        private static CheckException Fail([DoesNotReturnIf(true)] bool condition, string? message, CheckType checkType, CheckLevel checkLevel, bool nullCheck) =>
             !condition ? checkType switch
             {
-                CheckType.Assume => ThrowHelper.ThrowInternalException(message),
+                CheckType.Assume => ThrowHelper.ThrowCheckException(CheckType.Assume, message),
                 CheckType.Required =>
                     checkLevel switch
                     {
                         CheckLevel.Argument => nullCheck ? ThrowHelper.ThrowNullArgumentException(message) : ThrowHelper.ThrowArgumentException(message),
-                        CheckLevel.Data => nullCheck ? ThrowHelper.ThrowNullReferenceException(message) : ThrowHelper.ThrowException(message),
+                        CheckLevel.Data => nullCheck ? ThrowHelper.ThrowNullReferenceException(message) : ThrowHelper.ThrowCheckException(message),
                         CheckLevel.Operation => ThrowHelper.ThrowInvalidOperationException(message),
-                        _ => ThrowHelper.ThrowException(message),
+                        _ => ThrowHelper.ThrowCheckException(message),
                     },
                 CheckType.NotRequired => null!,
-                CheckType.Validation => ThrowHelper.ThrowInvalidOperationException(message),
-                _ => ThrowHelper.ThrowException(message),
+                CheckType.Validation => ThrowHelper.ThrowCheckException(CheckType.Validation, message),
+                _ => ThrowHelper.ThrowCheckException(message),
             } : null!;
 
         #endregion

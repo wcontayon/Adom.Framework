@@ -31,13 +31,13 @@ namespace Adom.Framework.ValuePath
 
         public string Value => _valuePath ?? "";
 
-        public string Name => Path.GetFileName(_valuePath);
+        public string Name => Path.GetFileName(_valuePath)!;
 
-        public string NameWithoutExtension => Path.GetFileNameWithoutExtension(_valuePath);
+        public string NameWithoutExtension => Path.GetFileNameWithoutExtension(_valuePath)!;
 
-        public string DirectoryName => Path.GetDirectoryName(_valuePath);
+        public string DirectoryName => Path.GetDirectoryName(_valuePath)!;
 
-        public string Extension => Path.GetExtension(_valuePath);
+        public string Extension => Path.GetExtension(_valuePath)!;
 
         #endregion
 
