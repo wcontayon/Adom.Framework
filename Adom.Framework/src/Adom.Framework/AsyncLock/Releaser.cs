@@ -23,6 +23,7 @@ namespace Adom.Framework.AsyncLock
             _asyncLock._semaphore.Release();
             _asyncLock._semaphore.Dispose();
             _disposed = true;
+            _asyncLock._disposed = true;
         }
 
         public async ValueTask DisposeAsync()

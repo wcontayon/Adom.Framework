@@ -10,7 +10,7 @@ namespace Adom.Framework.Cache
     /// Default <see cref="ICache"/> implementation
     /// using the <see cref="ICacheStore"/>
     /// </summary>
-    internal sealed class Cache : ICache
+    internal sealed class Cache : ICache, IAsyncDisposable, IDisposable
     {
         private readonly ICacheStore _cacheStore;
 
@@ -18,6 +18,7 @@ namespace Adom.Framework.Cache
         private readonly HashSet<string> _keys;
         private readonly object _lock = new object();
         private readonly AsyncLock.AsyncLock _asyncLock = new AsyncLock.AsyncLock();
+        private bool _disposed;
 
         public Cache(ICacheStore memoryCache)
         {
@@ -39,6 +40,32 @@ namespace Adom.Framework.Cache
 
             await Task.CompletedTask.ConfigureAwait(false);
         }
+
+        #region Dispose
+
+        public void Dispose()
+        {
+            if (!_disposed)
+            {
+                _asyncLock.Dispose();
+                _cacheStore.Dispose();
+                _keys.Clear();
+                _disposed = true;
+            }
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            if (!_disposed)
+            {
+                _asyncLock.Dispose();
+                await _cacheStore.DisposeAsync().ConfigureAwait(false);
+                _keys.Clear();
+                _disposed = true;
+            }
+        }
+
+        #endregion
 
         #region Get Methods
 

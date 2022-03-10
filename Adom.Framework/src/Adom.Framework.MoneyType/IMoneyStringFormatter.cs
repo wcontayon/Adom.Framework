@@ -32,51 +32,53 @@ namespace Adom.Framework.MoneyType
             string currencySymbol = $" {money._currency.Symbol()}";
             ReadOnlySpan<char> amountSpan = money._amount.ToString(CultureInfo.InvariantCulture).Reverse();
 
-            ValueStringBuilder vsbAmount = new ValueStringBuilder();
-            char separatorChar = CreateThousandSeparatorChar(separator);
-
-            if (amountSpan.Length > 3)
+            using (ValueStringBuilder vsbAmount = new ValueStringBuilder())
             {
-                ReadOnlySpan<char> thousand = Span<char>.Empty;
-                int lastIndex = 0;
-                for (int i = 0; i < amountSpan.Length; i+= 3)
+                char separatorChar = CreateThousandSeparatorChar(separator);
+
+                if (amountSpan.Length > 3)
                 {
-                    if (amountSpan.Length > 3)
+                    ReadOnlySpan<char> thousand = Span<char>.Empty;
+                    int lastIndex = 0;
+                    for (int i = 0; i < amountSpan.Length; i += 3)
                     {
-                        thousand = amountSpan.Slice(i, 3);
-                        for (int j = 0; j < 3; j++)
+                        if (amountSpan.Length > 3)
                         {
-                            vsbAmount.Append(thousand[j]);
+                            thousand = amountSpan.Slice(i, 3);
+                            for (int j = 0; j < 3; j++)
+                            {
+                                vsbAmount.Append(thousand[j]);
+                            }
+                            vsbAmount.Append(separatorChar);
                         }
-                        vsbAmount.Append(separatorChar);
+                        else
+                        {
+                            amountSpan = amountSpan.Slice(i);
+                            lastIndex = i;
+                            break;
+                        }
                     }
-                    else
+
+                    if (!amountSpan.IsEmpty)
                     {
-                        amountSpan = amountSpan.Slice(i);
-                        lastIndex = i;
-                        break;
+                        for (int i = 0; i < amountSpan.Length; i++)
+                        {
+                            vsbAmount.Append(amountSpan[i]);
+                        }
                     }
-                }
 
-                if (!amountSpan.IsEmpty)
-                {
-                    for (int i = 0; i< amountSpan.Length; i++)
+                    // Before return the value, check that the first char is not the 
+                    // separator. If then delete it
+                    string s = vsbAmount.ToString();
+                    if (s[0] == separatorChar)
                     {
-                        vsbAmount.Append(amountSpan[i]);
+                        s = s.AsSpan().Slice(1, s.Length - 1).ToString();
                     }
-                }
 
-                // Before return the value, check that the first char is not the 
-                // separator. If then delete it
-                string s = vsbAmount.ToString();
-                if (s[0] == separatorChar)
-                {
-                    s = s.AsSpan().Slice(1, s.Length - 1).ToString();
+                    return $"{s}{currencySymbol}";
                 }
-
-                return $"{s}{currencySymbol}";
             }
-
+                
             return $"{amountSpan.ToString()}{currencySymbol}";
         }
     }

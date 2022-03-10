@@ -62,14 +62,18 @@ namespace Adom.Framework.ValuePath
             return -1;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
+#pragma warning disable CA1065 // Ne pas lever d'exceptions dans les emplacements inattendus
             throw new NotImplementedException();
+#pragma warning restore CA1065 // Ne pas lever d'exceptions dans les emplacements inattendus
         }
 
         public override int GetHashCode()
         {
+#pragma warning disable CA1065 // Ne pas lever d'exceptions dans les emplacements inattendus
             throw new NotImplementedException();
+#pragma warning restore CA1065 // Ne pas lever d'exceptions dans les emplacements inattendus
         }
 
         #endregion
@@ -83,6 +87,7 @@ namespace Adom.Framework.ValuePath
 
         public static ValuePath FromPath(string path)
         {
+            Debug.Assert(!string.IsNullOrEmpty(path));
             if (PathInternal.IsExtended(path))
             {
                 path = path[4..];
@@ -111,5 +116,25 @@ namespace Adom.Framework.ValuePath
         #endregion
 
         public static ValuePath Combine(ValuePath root, params string[] paths) => FromPath(Path.Combine(paths));
+
+        public static bool operator <(ValuePath left, ValuePath right)
+        {
+            return left.CompareTo(right) < 0;
+        }
+
+        public static bool operator <=(ValuePath left, ValuePath right)
+        {
+            return left.CompareTo(right) <= 0;
+        }
+
+        public static bool operator >(ValuePath left, ValuePath right)
+        {
+            return left.CompareTo(right) > 0;
+        }
+
+        public static bool operator >=(ValuePath left, ValuePath right)
+        {
+            return left.CompareTo(right) >= 0;
+        }
     }
 }

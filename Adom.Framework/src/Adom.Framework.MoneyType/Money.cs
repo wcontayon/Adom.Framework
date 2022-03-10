@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Adom.Framework.MoneyType
 {
@@ -282,7 +278,9 @@ namespace Adom.Framework.MoneyType
             {
                 ThrowHelper.ThrowInvalidOperationException(EXCEPTION_MSG_CURRENCY_MISMATCH);
             }
+#pragma warning disable CS8763 // Une méthode marquée [DoesNotReturn] ne doit pas être retournée.
         }
+#pragma warning restore CS8763 // Une méthode marquée [DoesNotReturn] ne doit pas être retournée.
 
         [DoesNotReturn]
         private static void EnsureMoneyHasOneCurrency(Money m1)
@@ -291,7 +289,9 @@ namespace Adom.Framework.MoneyType
             {
                 ThrowHelper.ThrowInvalidOperationException(EXCEPTION_MSG_CANTHAVE_TWO_CURRENCY);
             }
+#pragma warning disable CS8763 // Une méthode marquée [DoesNotReturn] ne doit pas être retournée.
         }
+#pragma warning restore CS8763 // Une méthode marquée [DoesNotReturn] ne doit pas être retournée.
 
         private static Money Operate(Money left, double value, MoneyOperator @operator)
         {

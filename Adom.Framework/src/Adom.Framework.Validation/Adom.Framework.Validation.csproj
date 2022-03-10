@@ -6,16 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Validation.Assume.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Validation.Assume.cs" />
-  </ItemGroup>
-
 </Project>

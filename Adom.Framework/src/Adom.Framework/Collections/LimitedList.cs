@@ -354,7 +354,7 @@ namespace Adom.Framework.Collections
                 Array.Copy(_data, index + 1, _data, index, _size - index);
             }
 
-            _data[_size] = default;
+            _data[_size] = default!;
             _version++;
         }
 

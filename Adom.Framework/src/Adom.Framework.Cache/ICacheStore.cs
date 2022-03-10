@@ -9,7 +9,7 @@ namespace Adom.Framework.Cache
     /// <summary>
     /// Represents a data store used to cache data.
     /// </summary>
-    public interface ICacheStore
+    public interface ICacheStore : IAsyncDisposable, IDisposable
     {
         Task<bool> HasKeyAsync(string key);
 
