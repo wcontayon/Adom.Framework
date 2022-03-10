@@ -14,16 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        fetch-depth: 0
-    - name: Setup .NET5 environment
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore Adom.Framework.sln
-    - name: Build
-      run: dotnet build Adom.Framework.sln --configuration Release --no-restore
-      
+        fetch-depth: 0      
     - name: Setup .NET6 environment
       uses: actions/setup-dotnet@v1
       with:
