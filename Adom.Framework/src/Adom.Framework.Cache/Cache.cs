@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 namespace Adom.Framework.Cache
@@ -10,6 +11,7 @@ namespace Adom.Framework.Cache
     /// Default <see cref="ICache"/> implementation
     /// using the <see cref="ICacheStore"/>
     /// </summary>
+    [SuppressMessage("Microsoft.Naming", "CA1812")]
     internal sealed class Cache : ICache, IAsyncDisposable, IDisposable
     {
         private readonly ICacheStore _cacheStore;

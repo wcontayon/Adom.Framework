@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Adom.Framework.Tests
@@ -40,9 +38,9 @@ namespace Adom.Framework.Tests
         [Fact]
         public void ReplaceShouldThrowSpecificException()
         {
-            List<FakeObject> nullList = null;
+            List<FakeObject> nullList = null!;
             FakeObject fakeObjectToReplace = FakeObject.Create(100_000_000, "one hundred million");
-            Assert.Throws<ArgumentNullException>(() => nullList.Replace(_nullFakeObject, fakeObjectToReplace));
+            Assert.Throws<ArgumentNullException>(() => nullList!.Replace(_nullFakeObject, fakeObjectToReplace));
 
             Assert.Throws<ArgumentOutOfRangeException>(() => listFakeObjects.Replace(_fakeObject2, fakeObjectToReplace));
         }

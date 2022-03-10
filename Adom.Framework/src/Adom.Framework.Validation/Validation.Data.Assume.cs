@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Adom.Framework.Validation
 {
+    [SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces")]
     public sealed partial class Data
     {
 #pragma warning disable CA1034 // Les types imbriqués ne doivent pas être visibles

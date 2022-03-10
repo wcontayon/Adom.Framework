@@ -1,11 +1,13 @@
 ﻿using Adom.Framework.ValuePath.Internals;
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.InteropServices;
 
 namespace Adom.Framework.ValuePath
 {
+    [SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces")]
     public readonly struct ValuePath : IValuePathComparer
     {
         private readonly string? _valuePath;
