@@ -48,6 +48,9 @@
     <None Include="$(MSBuildThisFileDirectory)\LICENSE.txt" Pack="true" PackagePath="" Visible="false" />
     <None Include="$(_PackageReadmeFilePath)" Pack="true" PackagePath="" Visible="false" Condition="$(_PackageReadmeFilePath) != ''" />
   </ItemGroup>
+    <ItemGroup>
+      <EditorConfigFiles Include=".editorconfig" />
+    </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Nerdbank.GitVersioning" Condition="!Exists('packages.config')">
       <Version>3.4.255</Version>

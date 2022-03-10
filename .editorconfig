@@ -7,3 +7,4 @@ dotnet_analyzer_diagnostic.category-MicrosoftCodeAnalysisReleaseTracking.severit
 dotnet_diagnostic.CA1002.severity=silent
 dotnet_diagnostic.CA1303.severity=silent
 dotnet_diagnostic.CA1823.severity=silent
+dotnet_diagnostic.CA1014.severity=none
