@@ -48,7 +48,9 @@ namespace Adom.Framework.ValuePath
 
         public static bool Equals(ValuePath left, ValuePath right) => left._valuePath == right._valuePath;
 
+#pragma warning disable CA1309 // Utiliser la comparaison de chaînes ordinales
         public int CompareTo(ValuePath other) => string.Compare(_valuePath, other._valuePath, RuntimeInformation.IsOSPlatform(OSPlatform.Windows), System.Globalization.CultureInfo.InvariantCulture);
+#pragma warning restore CA1309 // Utiliser la comparaison de chaînes ordinales
 
         public bool Equals(ValuePath other) => this == other;
 
