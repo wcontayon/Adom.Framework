@@ -1,0 +1,30 @@
+name: Publish CodeChecker Nuget package
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with: 
+          fetch-depth: 0
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+      
+      - name: Install NerdBank.GitVersioning
+        run: dotnet install --tool-path . nbgv
+        run: nbgv cloud
+
+      - name: Build with dotnet
+        run: dotnet build Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --configuration Release
+      
+      - name: Pack with dotnet
+        run: dotnet pack Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --output nuget-packages --configuration Release
+      
+      - name: Push generated package to Nuget
+        if: github.ref == 'refs/heads/main'
+        run: dotnet nuget push nuget-packages/Adom.Framework.Validation.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
