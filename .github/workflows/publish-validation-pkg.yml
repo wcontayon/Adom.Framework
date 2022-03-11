@@ -17,6 +17,8 @@ jobs:
       
       - name: Install NerdBank.GitVersioning
         run: dotnet install --tool-path . nbgv
+        
+      - name: Run NBGV command
         run: nbgv cloud
 
       - name: Build with dotnet
