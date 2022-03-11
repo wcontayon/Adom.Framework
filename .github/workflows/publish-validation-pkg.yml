@@ -30,5 +30,4 @@ jobs:
       
       - name: Push generated package to Nuget
         if: github.ref == 'refs/heads/main'
-        run: Adom.Framework/src/Adom.Framework.Validation/
-            dotnet nuget push nuget-packages/Adom.Framework.Validation.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push nuget-packages/Adom.Framework.Validation.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
