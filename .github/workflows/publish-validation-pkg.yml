@@ -1,4 +1,4 @@
-name: Publish CodeChecker Nuget package
+name: Publish Adom.Framework.Validation Nuget package
 
 on:
   workflow_dispatch:
@@ -16,15 +16,19 @@ jobs:
           dotnet-version: 6.0.x
       
       - name: Install NerdBank.GitVersioning
-        run: dotnet install --tool-path . nbgv
+        run: dotnet tool update -g nbgv
+        
+      - name: Run NBGV command (Set Version Number)
         run: nbgv cloud
 
       - name: Build with dotnet
         run: dotnet build Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --configuration Release
       
       - name: Pack with dotnet
-        run: dotnet pack Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --output nuget-packages --configuration Release
+        run: cd Adom.Framework/src/Adom.Framework.Validation/
+            dotnet pack --output nuget-packages --configuration Release
       
       - name: Push generated package to Nuget
         if: github.ref == 'refs/heads/main'
-        run: dotnet nuget push nuget-packages/Adom.Framework.Validation.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        run: Adom.Framework/src/Adom.Framework.Validation/
+            dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
