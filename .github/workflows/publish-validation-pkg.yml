@@ -26,7 +26,7 @@ jobs:
         run: dotnet build Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --configuration Release
       
       - name: Pack with dotnet
-        run: dotnet pack Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --output nuget-packages --configuration Release -p:Version=${{ steps.NerdbankGitVersioning.outputs.SemVer2 }}
+        run: dotnet pack Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --output nuget-packages --configuration Release -p:Version=${{ steps.nbgv.outputs.SemVer2 }}
       
       - name: Push generated package to Nuget
         if: github.ref == 'refs/heads/main'
