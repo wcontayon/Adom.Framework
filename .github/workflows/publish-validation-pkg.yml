@@ -15,20 +15,20 @@ jobs:
         with:
           dotnet-version: 6.0.x
           
-      # - name: NerdbankGitVersioning
-      #   uses: dotnet/nbgv@v0.4.0
-      #   id: nbgv
-      #   with:
-      #     # The path to the directory for which the version should be determined. This should be at or below the directory containing the version.json file. Default is repo root directory.
-      #    dotnet pack Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --output nuget-packages --configuration Release -p:Version=${{ steps.nbgv.outputs.SemVer2 }}
-      #     path: .
+      - name: NerdbankGitVersioning
+        uses: dotnet/nbgv@v0.4.0
+        id: nbgv
+        with:
+          # The path to the directory for which the version should be determined. This should be at or below the directory containing the version.json file. Default is repo root directory.
+          path: .
+        run: ls -l
           
       - name: Build with dotnet
         run: dotnet build Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --configuration Release
       
       - name: Pack with dotnet
         run: | 
-          dotnet pack Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --output nuget-packages --configuration Release --no-build
+          dotnet pack Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --output nuget-packages --configuration Release -p:Version=${{ steps.nbgv.outputs.SemVer2 }} --no-build
           cd nuget-packages
           ls -l
           cd ..\
