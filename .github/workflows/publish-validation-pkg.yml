@@ -16,7 +16,7 @@ jobs:
           dotnet-version: 6.0.x
       
       - name: Install NerdBank.GitVersioning
-        run: dotnet tool update --tool-path . nbgv
+        run: dotnet tool update -g nbgv
         
       - name: Run NBGV command (Set Version Number)
         run: nbgv cloud
