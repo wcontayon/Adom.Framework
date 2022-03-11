@@ -1,15 +1,11 @@
 {
   "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/master/src/NerdBank.GitVersioning/version.schema.json",
-  "version": "1.0-preview",
+  "version": "1.0.0-preview.1",
+  "gitCommitIdShortAutoMinimum": 7,
   "nugetPackageVersion": {
     "semVer": 2
   },
   "publicReleaseRefSpec": [
-    "^refs/heads/master$",
     "^refs/heads/v\\d+(?:\\.\\d+)?$"
-  ],
-  "release": {
-    "versionIncrement" : "minor",
-    "firstUnstableTag": "alpha"
-  }
+  ]
 }
