@@ -9,6 +9,7 @@
     "^refs/heads/v\\d+(?:\\.\\d+)?$"
   ],
   "release": {
-    "firstUnstableTag": "preview"
+    "versionIncrement" : "minor",
+    "firstUnstableTag": "alpha"
   }
 }
