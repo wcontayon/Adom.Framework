@@ -14,21 +14,20 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.0.x
-      
-      - name: Install NerdBank.GitVersioning
-        run: dotnet tool update -g nbgv
-        
-      - name: Run NBGV command (Set Version Number)
-        run: nbgv cloud
-
+          
+      - name: NerdbankGitVersioning
+        uses: dotnet/nbgv@v0.4.0
+        with:
+          # The path to the directory for which the version should be determined. This should be at or below the directory containing the version.json file. Default is repo root directory.
+          path: .
+          
       - name: Build with dotnet
         run: dotnet build Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --configuration Release
       
       - name: Pack with dotnet
-        run: cd Adom.Framework/src/Adom.Framework.Validation/
-            dotnet pack --output nuget-packages --configuration Release
+        run: dotnet pack Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --output nuget-packages --configuration Release -p:Version=${{ steps.NerdbankGitVersioning.outputs.SemVer2 }}
       
       - name: Push generated package to Nuget
         if: github.ref == 'refs/heads/main'
         run: Adom.Framework/src/Adom.Framework.Validation/
-            dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+            dotnet nuget push nuget-packages/Adom.Framework.Validation.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
