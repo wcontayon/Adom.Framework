@@ -1,4 +1,4 @@
-name: Publish CodeChecker Nuget package
+name: Publish Adom.Framework.Validation Nuget package
 
 on:
   workflow_dispatch:
