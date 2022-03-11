@@ -5,7 +5,7 @@ on:
   
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
         with: 
@@ -22,11 +22,11 @@ jobs:
         run: nbgv cloud
 
       - name: Build with dotnet
-        run: dotnet build Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --configuration Release
+        run: dotnet build .\Adom.Framework\src\Adom.Framework.Validation\Adom.Framework.Validation.csproj --configuration Release
       
       - name: Pack with dotnet
-        run: dotnet pack Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --output nuget-packages --configuration Release
+        run: dotnet pack .\Adom.Framework\src\Adom.Framework.Validation\Adom.Framework.Validation.csproj --output nuget-packages --configuration Release
       
       - name: Push generated package to Nuget
         if: github.ref == 'refs/heads/main'
-        run: dotnet nuget push nuget-packages/Adom.Framework.Validation.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push .\nuget-packages\Adom.Framework.Validation.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
