@@ -1,4 +1,4 @@
-name: Build Adom.Framework Solution
+name: Build Adom.Framework Solution - Unix Platform
 
 on:
   push:
