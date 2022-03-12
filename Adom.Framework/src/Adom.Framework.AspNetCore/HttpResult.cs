@@ -106,7 +106,7 @@ namespace Adom.Framework.AspNetCore
         /// <summary>
         /// Gets the HTTP status code.
         /// </summary>
-        public int? StatusCode { get; private set; }
+        public int? StatusCode => _statusCode;
 
         /// <summary>
         /// Indicates if the HttpResult is success
