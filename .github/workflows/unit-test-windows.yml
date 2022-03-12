@@ -24,4 +24,4 @@ jobs:
     - name: Build
       run: dotnet build Adom.Framework.sln --configuration Debug --no-restore
     - name: Test
-      run: dotnet test Adom.Framework.sln --verbosity normal --no-build
+      run: dotnet test Adom.Framework.sln --verbosity normal --no-build --framework net6.0
