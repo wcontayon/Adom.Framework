@@ -21,7 +21,7 @@ namespace Adom.Framework
             ValueStringBuilder reversedString = new ValueStringBuilder(stackalloc char[span.Length]);
             for (int i = span.Length - 1; i >= 0; i--)
             {
-                reversedString.AppendSpan(span[i]);
+                reversedString.Append(span[i]);
             }
 
             string s = reversedString.ToString();
@@ -44,7 +44,7 @@ namespace Adom.Framework
             ValueStringBuilder reversedString = new ValueStringBuilder(stackalloc char[span.Length]);
             for (int i = span.Length - 1; i >= 0; i--)
             {
-                reversedString.AppendSpan(span[i]);
+                reversedString.Append(span[i]);
             }
 
             string s = reversedString.ToString();

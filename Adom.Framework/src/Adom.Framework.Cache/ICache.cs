@@ -72,7 +72,7 @@ namespace Adom.Framework.Cache
         /// </summary>
         /// <param name="key">The cache key</param>
         /// <param name="data">The data to store in the cache store</param>
-        Task SetKeyAsync<T>(string key, object? data);
+        Task SetKeyAsync(string key, object? data);
 
         /// <summary>
         /// Check either the key exist in the cache store

@@ -51,7 +51,6 @@ namespace Adom.Framework.Cache
             if (!_disposed)
             {
                 _asyncLock.Dispose();
-                _cacheStore.Dispose();
                 _keys.Clear();
                 _disposed = true;
             }
@@ -61,7 +60,7 @@ namespace Adom.Framework.Cache
         {
             if (!_disposed)
             {
-                _asyncLock.Dispose();
+                await _asyncLock.DisposeAsync().ConfigureAwait(false); ;
                 await _cacheStore.DisposeAsync().ConfigureAwait(false);
                 _keys.Clear();
                 _disposed = true;
@@ -174,19 +173,51 @@ namespace Adom.Framework.Cache
             }
         }
 
-        public Task SetKeyAsync<T>(string key, Func<T> getMethod)
+        public async Task SetKeyAsync<T>(string key, Func<T> getMethod)
         {
-            throw new NotImplementedException();
+            Debug.Assert(!string.IsNullOrEmpty(key));
+            Debug.Assert(getMethod != null);
+
+            await using (await _asyncLock.LockAsync().ConfigureAwait(false))
+            {
+                T data = getMethod();
+                Debug.Assert(data != null);
+                await _cacheStore.SetEntryAsync(key, data).ConfigureAwait(false);
+                lock (_lock)
+                {
+                    _keys.Add(key);
+                }
+            }
         }
 
-        public Task SetKeyAsync<T>(string key, T data)
+        public async Task SetKeyAsync<T>(string key, T data)
         {
-            throw new NotImplementedException();
+            Debug.Assert(!string.IsNullOrEmpty(key));
+            Debug.Assert(data != null);
+
+            await using (await _asyncLock.LockAsync().ConfigureAwait(false))
+            {
+                await _cacheStore.SetEntryAsync(key, data).ConfigureAwait(false);
+                lock (_lock)
+                {
+                    _keys.Add(key);
+                }
+            }
         }
 
-        public Task SetKeyAsync<T>(string key, object? data)
+        public async Task SetKeyAsync(string key, object? data)
         {
-            throw new NotImplementedException();
+            Debug.Assert(!string.IsNullOrEmpty(key));
+            Debug.Assert(data != null);
+
+            await using (await _asyncLock.LockAsync().ConfigureAwait(false))
+            {
+                await _cacheStore.SetEntryAsync(key, data).ConfigureAwait(false);
+                lock (_lock)
+                {
+                    _keys.Add(key);
+                }
+            }
         }
     }
 }

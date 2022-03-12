@@ -4,39 +4,59 @@ using System.Threading.Tasks;
 
 namespace Adom.Framework.AsyncLock
 {
-    internal sealed class AsyncLock : IDisposable
+    public sealed class AsyncLock : IDisposable, IAsyncDisposable
     {
         internal readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
         private readonly Releaser _releaser;
-        internal bool _disposed;
+        private bool _disposed;
 
         public AsyncLock()
         {
             _releaser = new Releaser(this);
-            _disposed = true;
+            _disposed = false;
         }
 
-        public void Dispose()
+        public void Release()
         {
             if (!_disposed)
             {
                 _semaphore.Release();
                 _semaphore.Dispose();
+                _disposed = true;
             }
         }
 
-        public Task<Releaser> LockAsync()
+        public ValueTask<Releaser> LockAsync() => LockAsync(CancellationToken.None);
+
+        public ValueTask<Releaser> LockAsync(CancellationToken cancellationToken)
         {
-            var slim = _semaphore.WaitAsync();
-            return slim.IsCompleted ? Task.FromResult<Releaser>(_releaser) :
-                 slim.ContinueWith(
-#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
-                     (_, state) => new Releaser(asyncLock: state as AsyncLock),
-#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
-                     this, CancellationToken.None,
-                     TaskContinuationOptions.ExecuteSynchronously, 
-                     TaskScheduler.Default);
-            
+            if (cancellationToken.IsCancellationRequested)
+            {
+                return ValueTask.FromCanceled<Releaser>(cancellationToken);
+            }
+
+            var slim = _semaphore.WaitAsync(cancellationToken);
+            if (slim.IsCompleted)
+            {
+                return ValueTask.FromResult<Releaser>(_releaser);
+            }
+            else
+            {
+                Func<Task, object?, Releaser> releaseAction = (_, state) => new Releaser((state as AsyncLock)!);
+                var task = slim.ContinueWith(releaseAction, this, cancellationToken, TaskContinuationOptions.None, TaskScheduler.Default);
+                return new ValueTask<Releaser>(task);
+            }
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            Release();
+            await ValueTask.CompletedTask.ConfigureAwait(false);
+        }
+
+        public void Dispose()
+        {
+            Release();
         }
     }
 }

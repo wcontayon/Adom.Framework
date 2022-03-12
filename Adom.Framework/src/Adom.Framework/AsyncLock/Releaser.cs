@@ -4,26 +4,19 @@ using System.Threading.Tasks;
 
 namespace Adom.Framework.AsyncLock
 {
-    internal struct Releaser : IAsyncDisposable
+    public readonly struct Releaser : IAsyncDisposable, IDisposable
     {
-        private readonly AsyncLock _asyncLock;
-        private bool _disposed;
+        private readonly AsyncLock? _asyncLock;
 
         internal Releaser(AsyncLock asyncLock)
         {
             _asyncLock = asyncLock;
-            _disposed = false;
         }
 
         public void Dispose()
         {
             Debug.Assert(_asyncLock != null);
-            Debug.Assert(!_disposed);
-            Debug.Assert(_asyncLock._semaphore != null);
-            _asyncLock._semaphore.Release();
-            _asyncLock._semaphore.Dispose();
-            _disposed = true;
-            _asyncLock._disposed = true;
+            _asyncLock.Release();
         }
 
         public async ValueTask DisposeAsync()
