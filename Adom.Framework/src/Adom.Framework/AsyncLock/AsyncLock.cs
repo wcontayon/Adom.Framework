@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Adom.Framework.AsyncLock
 {
+    [SuppressMessage("Microsoft.Naming", "CA1724")]
     public sealed class AsyncLock : IDisposable, IAsyncDisposable
     {
         internal readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
