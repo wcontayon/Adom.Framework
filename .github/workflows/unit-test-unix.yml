@@ -22,4 +22,4 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore Adom.Framework.sln
     - name: Test
-      run: dotnet test --verbosity normal
+      run: dotnet test Adom.Framework.sln --verbosity normal
