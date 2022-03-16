@@ -17,16 +17,33 @@ namespace Adom.Framework.AspNetCore
 
             if (context != null)
             {
-                var httpResult = context.Result switch
+                HttpResult httpResult;
+                if (context.Result == null)
                 {
-                    OkObjectResult okObjResult => new HttpResult(okObjResult),
-                    OkResult okResult => new HttpResult(okResult),
-                    UnauthorizedObjectResult unauthorizedObjectResult => new HttpResult(unauthorizedObjectResult),
-                    UnauthorizedResult unauthorized => new HttpResult(unauthorized),
-                    BadRequestObjectResult badRequestObjectResult => new HttpResult(badRequestObjectResult),
-                    BadRequestResult badRequestResult => new HttpResult(badRequestResult),
-                    _ => new HttpResult(StatusCodes.Status200OK)
-                };
+                    if (context.Exception != null)
+                    {
+                        httpResult = new HttpResult(context.Exception);
+                    }
+                    else
+                    {
+                        httpResult = new HttpResult(StatusCodes.Status500InternalServerError, "Exception occured");
+                    }
+                }
+                else
+                {
+                    httpResult = context.Result switch
+                    {
+                        OkObjectResult okObjResult => new HttpResult(okObjResult),
+                        OkResult okResult => new HttpResult(okResult),
+                        UnauthorizedObjectResult unauthorizedObjectResult => new HttpResult(unauthorizedObjectResult),
+                        UnauthorizedResult unauthorized => new HttpResult(unauthorized),
+                        BadRequestObjectResult badRequestObjectResult => new HttpResult(badRequestObjectResult),
+                        BadRequestResult badRequestResult => new HttpResult(badRequestResult),
+                        _ => new HttpResult(context.Result as ObjectResult)
+                    };
+                }               
+
+                httpResult.SetAdditionalInforation(context.HttpContext);
 
                 context.Result = controller.Ok(httpResult); 
             }

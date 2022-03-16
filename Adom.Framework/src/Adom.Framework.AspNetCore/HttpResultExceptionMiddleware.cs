@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,7 +39,9 @@ namespace Adom.Framework.AspNetCore
             // We return a StatusCode 200OK.
             // The Http response contains the underlying http error code and the exception message
             context.Response.StatusCode = StatusCodes.Status200OK;
-            return context.Response.WriteAsync(JsonConvert.SerializeObject(new HttpResult(exception)));
+            var httpResult = new HttpResult(exception);
+            httpResult.SetAdditionalInforation(context);
+            return context.Response.WriteAsync(JsonConvert.SerializeObject(httpResult));
         }
 
         private static string GetHeaderString(Microsoft.AspNetCore.Http.HttpContext context)
@@ -53,6 +53,15 @@ namespace Adom.Framework.AspNetCore
             }
 
             return responseHeadersString.ToString();
+        }
+    }
+
+    public static class ExceptionToHttpResultMiddlewareExtensions
+    {
+        public static IApplicationBuilder UseExceptionToHttpResult(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<ExceptionToHttpResultMiddleware>();
+            return app;
         }
     }
 }
