@@ -1,4 +1,6 @@
-﻿namespace Adom.Framework.Perf
+﻿using System;
+
+namespace Adom.Framework.Perf
 {
     class Program
     {

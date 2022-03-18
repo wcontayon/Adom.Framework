@@ -39,7 +39,7 @@ namespace Adom.Framework.AspNetCore
                         UnauthorizedResult unauthorized => new HttpResult(unauthorized),
                         BadRequestObjectResult badRequestObjectResult => new HttpResult(badRequestObjectResult),
                         BadRequestResult badRequestResult => new HttpResult(badRequestResult),
-                        _ => new HttpResult(context.Result as ObjectResult)
+                        _ => new HttpResult((context.Result as ObjectResult)!)
                     };
                 }               
 

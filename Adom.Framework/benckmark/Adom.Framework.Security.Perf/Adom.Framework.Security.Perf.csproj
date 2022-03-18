@@ -1,9 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
     <OutputType>Exe</OutputType>
-    <!--<TargetFramework>net7.0</TargetFramework>-->
     <TargetFrameworks>net6.0;net5.0</TargetFrameworks>
     <!--<ImplicitUsings>enable</ImplicitUsings>-->
     <Nullable>enable</Nullable>
@@ -11,11 +9,10 @@
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
-    <PackageReference Include="BenchmarkDotNet.Annotations" Version="0.13.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Adom.Framework\Adom.Framework.csproj" />
+    <ProjectReference Include="..\..\src\Adom.Framework.Security\Adom.Framework.Security.csproj" />
   </ItemGroup>
 
 </Project>
