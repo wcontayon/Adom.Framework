@@ -2,9 +2,11 @@ name: Build Adom.Framework Solution - Unix Platform
 
 on:
   push:
-    branches: [ main ]
+    branches: 
+      - main
   pull_request:
-    branches: [ main ]
+    branches: 
+      - main
 
 jobs:
   build:
@@ -23,5 +25,3 @@ jobs:
       run: dotnet restore Adom.Framework.sln
     - name: Build
       run: dotnet build Adom.Framework.sln --configuration Release --no-restore
-   ## - name: Test
-   ##   run: dotnet test --no-build --verbosity normal
