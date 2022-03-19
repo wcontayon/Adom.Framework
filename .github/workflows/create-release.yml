@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with: 
+          fetch-depth: 0
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -31,10 +33,7 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.0.x
-          
-      - name: Build with dotnet
-        run: dotnet build Adom.Framework/src/Adom.Framework.AspNetCore/Adom.Framework.AspNetCore.csproj --configuration Release
-        
+      
       - name: Publish Adom.Framework
         env:
           RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
