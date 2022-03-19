@@ -7,6 +7,8 @@
     <!-- <ImplicitUsings>enable</ImplicitUsings> -->
     <Nullable>enable</Nullable>
     <EnableNETAnalyzers>false</EnableNETAnalyzers>
+	<IsPackable>True</IsPackable>
+	<PackageId>Adom.Framework</PackageId>
   </PropertyGroup>
 
 </Project>

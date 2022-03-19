@@ -92,5 +92,25 @@ namespace Adom.Framework.Collections
 
             return Span<string>.Empty;
         }
+
+        /// <summary>
+        /// Add items from another dictionary
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="dictionary">The current dictionary</param>
+        /// <param name="items">Items to add</param>
+        public static void Add<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, IDictionary<TKey, TValue> items)
+        {
+            Debug.Assert(dictionary != null);
+
+            if (items != null)
+            {
+                foreach (var item in items)
+                {
+                    dictionary[item.Key] = item.Value;
+                }
+            }
+        }
     }
 }
