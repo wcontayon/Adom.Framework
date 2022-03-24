@@ -33,7 +33,7 @@ jobs:
       
       - name: Publish Adom.Framework.Validation
         env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+          RELEASE_VERSION: ${{ github.event.inputs.pkg_version }}
         run: | 
           dotnet build Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --configuration Release
           dotnet pack Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --output nuget-packages --configuration Release -p:Version=$RELEASE_VERSION
@@ -41,7 +41,7 @@ jobs:
           
       - name: Publish Adom.Framework.AspNetCore
         env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+          RELEASE_VERSION: ${{ github.event.inputs.pkg_version }}
         run: | 
           dotnet build Adom.Framework/src/Adom.Framework.AspNetCore/Adom.Framework.AspNetCore.csproj --configuration Release
           dotnet pack Adom.Framework/src/Adom.Framework.AspNetCore/Adom.Framework.AspNetCore.csproj --output nuget-packages --configuration Release -p:Version=$RELEASE_VERSION
@@ -49,7 +49,7 @@ jobs:
           
       - name: Publish Adom.Framework.Security
         env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+          RELEASE_VERSION: ${{ github.event.inputs.pkg_version }}
         run: | 
           dotnet build Adom.Framework/src/Adom.Framework.Security/Adom.Framework.Security.csproj --configuration Release
           dotnet pack Adom.Framework/src/Adom.Framework.Security/Adom.Framework.Security.csproj --output nuget-packages --configuration Release -p:Version=$RELEASE_VERSION
