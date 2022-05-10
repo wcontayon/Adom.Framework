@@ -1,30 +1,46 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Adom.Framework.AsyncLock
 {
-    [SuppressMessage("Microsoft.Naming", "CA1724")]
-    public sealed class AsyncLock : IDisposable, IAsyncDisposable
+    public sealed class AsyncLock
     {
-        internal readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
-        private readonly Releaser _releaser;
-        private bool _disposed;
+        private readonly bool _allowInliningAwaiters;
+        internal readonly Action<object> _onCancellationRequestHandled;
+        private readonly Queue<AsyncLockWaiterCompletionSource> _awaiters = new();
+        private bool _signaled = true;
 
-        public AsyncLock()
+        public AsyncLock() : this(allowInliningAwaiters: false)
         {
-            _releaser = new Releaser(this);
-            _disposed = false;
+        }
+
+        public AsyncLock(bool allowInliningAwaiters)
+        {
+            _allowInliningAwaiters = allowInliningAwaiters;
+            _onCancellationRequestHandled = OnCancellationRequest;
         }
 
         public void Release()
         {
-            if (!_disposed)
+            AsyncLockWaiterCompletionSource? releaseObject = default;
+            lock (_awaiters)
             {
-                _semaphore.Release();
-                _semaphore.Dispose();
-                _disposed = true;
+                if (_awaiters.Count > 0)
+                {
+                    releaseObject = _awaiters.Dequeue();
+                }
+                else if (!_signaled)
+                {
+                    _signaled = true;
+                }
+            }
+
+            if (releaseObject != null && releaseObject != default)
+            {
+                releaseObject.CancellationTokenRegistration.Dispose();
+                releaseObject.TrySetResult(new Releaser(this));
             }
         }
 
@@ -37,28 +53,105 @@ namespace Adom.Framework.AsyncLock
                 return ValueTask.FromCanceled<Releaser>(cancellationToken);
             }
 
-            var slim = _semaphore.WaitAsync(cancellationToken);
-            if (slim.IsCompleted)
+            lock (_awaiters)
             {
-                return ValueTask.FromResult<Releaser>(_releaser);
-            }
-            else
-            {
-                Func<Task, object?, Releaser> releaseAction = (_, state) => new Releaser((state as AsyncLock)!);
-                var task = slim.ContinueWith(releaseAction, this, cancellationToken, TaskContinuationOptions.None, TaskScheduler.Default);
-                return new ValueTask<Releaser>(task);
+                if (_signaled)
+                {
+                    _signaled = false;
+                    return ValueTask.FromResult<Releaser>(new Releaser(this));
+                }
+                else
+                {
+                    var waiter = new AsyncLockWaiterCompletionSource(this, _allowInliningAwaiters, cancellationToken);
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        waiter.TrySetCanceled(cancellationToken);
+                    }
+                    else
+                    {
+                        _awaiters.Enqueue(waiter);
+                    }
+
+                    return ValueTask.FromResult<Releaser>(waiter.Task.Result);
+                }
             }
         }
 
-        public async ValueTask DisposeAsync()
+        public bool TryLock(out Releaser releaser)
         {
-            Release();
-            await ValueTask.CompletedTask.ConfigureAwait(false);
+            if (_signaled)
+            {
+                lock (_awaiters)
+                {
+                    if (_signaled)
+                    {
+                        _signaled = false;
+                        releaser = new Releaser(this);
+                        return true;
+                    }
+                }
+            }
+
+            releaser = new Releaser();
+            return false;
         }
 
-        public void Dispose()
+        // Copied from https://github.com/meziantou/Meziantou.Framework/blob/67816c4e5f7a2b6116e24a3d8a9a77348acb5efb/src/Meziantou.Framework/Threading/AsyncLock.cs
+        private void OnCancellationRequest(object state)
         {
-            Release();
+            var tcs = (AsyncLockWaiterCompletionSource)state;
+            bool removed;
+            lock (_awaiters)
+            {
+                removed = RemoveMidQueue(_awaiters, tcs);
+            }
+
+            // We only cancel the task if we removed it from the queue.
+            // If it wasn't in the queue, either it has already been signaled
+            // or it hasn't even been added to the queue yet. If the latter,
+            // the Task will be canceled later so long as the signal hasn't been awarded
+            // to this Task yet.
+            if (removed)
+            {
+                tcs.TrySetCanceled(tcs.CancellationToken);
+            }
         }
+
+        // Copied from https://github.com/meziantou/Meziantou.Framework/blob/67816c4e5f7a2b6116e24a3d8a9a77348acb5efb/src/Meziantou.Framework/Threading/AsyncLock.cs
+        private static bool RemoveMidQueue<T>(Queue<T> queue, T valueToRemove)
+            where T : class
+        {
+            var originalCount = queue.Count;
+            var dequeueCounter = 0;
+            var found = false;
+            while (dequeueCounter < originalCount)
+            {
+                dequeueCounter++;
+                var dequeued = queue.Dequeue();
+                if (!found && dequeued == valueToRemove)
+                { // only find 1 match
+                    found = true;
+                }
+                else
+                {
+                    queue.Enqueue(dequeued);
+                }
+            }
+
+            return found;
+        }
+    }
+
+    sealed class AsyncLockWaiterCompletionSource : TaskCompletionSource<Releaser>
+    {
+        internal AsyncLockWaiterCompletionSource(AsyncLock parent, bool allowInligningContinuations, CancellationToken cancellationToken)
+            : base(allowInligningContinuations ? TaskCreationOptions.None : TaskCreationOptions.RunContinuationsAsynchronously)
+        {
+            CancellationToken = cancellationToken;
+            CancellationTokenRegistration = cancellationToken.Register(parent._onCancellationRequestHandled!, this);
+        }
+
+        internal CancellationToken CancellationToken { get; }
+        internal CancellationTokenRegistration CancellationTokenRegistration { get; }
     }
 }
