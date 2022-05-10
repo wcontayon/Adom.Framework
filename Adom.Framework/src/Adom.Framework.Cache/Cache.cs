@@ -50,7 +50,7 @@ namespace Adom.Framework.Cache
         {
             if (!_disposed)
             {
-                _asyncLock.Dispose();
+                _asyncLock.Release();
                 _keys.Clear();
                 _disposed = true;
             }
@@ -60,7 +60,7 @@ namespace Adom.Framework.Cache
         {
             if (!_disposed)
             {
-                await _asyncLock.DisposeAsync().ConfigureAwait(false); ;
+                _asyncLock.Release();
                 await _cacheStore.DisposeAsync().ConfigureAwait(false);
                 _keys.Clear();
                 _disposed = true;
