@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace Adom.Framework.AsyncLock
 {
+    [SuppressMessage("Performance", "CA1815", Justification = "We do not need the override Equals")]
     [StructLayout(LayoutKind.Auto)]
     public readonly struct Releaser : IAsyncDisposable, IDisposable
     {

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Adom.Framework.AsyncLock
 {
+    [SuppressMessage("Microsoft.Naming", "CA1724", Justification = "We keep the name asyncLock")]
     public sealed class AsyncLock
     {
         private readonly bool _allowInliningAwaiters;
@@ -37,7 +39,9 @@ namespace Adom.Framework.AsyncLock
                 }
             }
 
+#pragma warning disable CA1508
             if (releaseObject != null && releaseObject != default)
+#pragma warning restore CA1508
             {
                 releaseObject.CancellationTokenRegistration.Dispose();
                 releaseObject.TrySetResult(new Releaser(this));
@@ -72,7 +76,9 @@ namespace Adom.Framework.AsyncLock
                         _awaiters.Enqueue(waiter);
                     }
 
+#pragma warning disable CA1849
                     return ValueTask.FromResult<Releaser>(waiter.Task.Result);
+#pragma warning restore CA1849
                 }
             }
         }
