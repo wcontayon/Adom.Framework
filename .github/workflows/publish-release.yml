@@ -47,6 +47,14 @@ jobs:
           dotnet pack Adom.Framework/src/Adom.Framework.AspNetCore/Adom.Framework.AspNetCore.csproj --output nuget-packages --configuration Release -p:Version=$RELEASE_VERSION
           dotnet nuget push nuget-packages/Adom.Framework.AspNetCore*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
           
+      - name: Publish Adom.Framework.MoneyType
+        env:
+          RELEASE_VERSION: ${{ github.event.inputs.pkg_version }}
+        run: | 
+          dotnet build Adom.Framework/src/Adom.Framework.MoneyType/Adom.Framework.MoneyType.csproj --configuration Release
+          dotnet pack Adom.Framework/src/Adom.Framework.MoneyType/Adom.Framework.MoneyType.csproj --output nuget-packages --configuration Release -p:Version=$RELEASE_VERSION
+          dotnet nuget push nuget-packages/Adom.Framework.MoneyType*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+          
       - name: Publish Adom.Framework.Security
         env:
           RELEASE_VERSION: ${{ github.event.inputs.pkg_version }}
