@@ -18,9 +18,9 @@ namespace Adom.Framework.AspNetCore
     {
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
-        private readonly Action? _afterHandlerAction;
+        private readonly Action<Exception>? _afterHandlerAction;
 
-        public ExceptionToHttpResultMiddleware(RequestDelegate request, ILoggerFactory loggerFactory, Action? handlerAction = null)
+        public ExceptionToHttpResultMiddleware(RequestDelegate request, ILoggerFactory loggerFactory, Action<Exception>? handlerAction = null)
         {
             _next = request;
             _logger = loggerFactory.CreateLogger<ExceptionToHttpResultMiddleware>();
@@ -90,7 +90,7 @@ namespace Adom.Framework.AspNetCore
                 // Execute custom Handler before rewrite the response
                 if (_afterHandlerAction != null)
                 {
-                    _afterHandlerAction();
+                    _afterHandlerAction(exceptionDispatch!.SourceException);
                 }
                 
                 await context.Response.WriteAsync(JsonConvert.SerializeObject(httpResult)).ConfigureAwait(false);
@@ -111,9 +111,9 @@ namespace Adom.Framework.AspNetCore
 
     public static class ExceptionToHttpResultMiddlewareExtensions
     {
-        public static IApplicationBuilder UseExceptionToHttpResult(this IApplicationBuilder app)
+        public static IApplicationBuilder UseExceptionToHttpResult(this IApplicationBuilder app, Action<Exception>? handlerExceptionAction = null)
         {
-            app.UseMiddleware<ExceptionToHttpResultMiddleware>();
+            app.UseMiddleware<ExceptionToHttpResultMiddleware>(handlerExceptionAction);
             return app;
         }
     }
