@@ -248,9 +248,13 @@ namespace Adom.Framework.MoneyType
 
         #endregion
 
-        public new string ToString() => _moneyStringFormatter.Format(this, MoneyThousandSeparator.Space);
+        public new string ToString() => FormatMoneyToString(this, _moneyStringFormatter, MoneyThousandSeparator.Space);
 
-        public string ToString(MoneyThousandSeparator separator) => _moneyStringFormatter.Format(this, separator);
+        public string ToString(MoneyThousandSeparator separator) => FormatMoneyToString(this, _moneyStringFormatter, separator);
+
+        public string ToString([NotNull] IMoneyStringFormatter formatter) => FormatMoneyToString(this, formatter!, MoneyThousandSeparator.Space);
+
+        public string ToString([NotNull] IMoneyStringFormatter formatter, MoneyThousandSeparator separator) => FormatMoneyToString(this, formatter!, separator);
 
 
         #region Convert
@@ -307,6 +311,11 @@ namespace Adom.Framework.MoneyType
             sum._currency = left._currency;
             sum._otherCurrency = left._otherCurrency;
             return sum;
+        }
+
+        private static string FormatMoneyToString(Money m, IMoneyStringFormatter formatter, MoneyThousandSeparator separator)
+        {
+            return formatter.Format(m, separator);
         }
 
         #endregion

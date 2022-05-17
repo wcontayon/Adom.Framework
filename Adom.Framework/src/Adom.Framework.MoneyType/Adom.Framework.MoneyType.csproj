@@ -4,6 +4,8 @@
     <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
     <!-- <ImplicitUsings>enable</ImplicitUsings> -->
     <Nullable>enable</Nullable>
+    <IsPackable>True</IsPackable>
+    <PackageId>Adom.Framework.MoneyType</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
