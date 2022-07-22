@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Adom.Framework.AspNetCore
 {
@@ -204,6 +205,15 @@ namespace Adom.Framework.AspNetCore
                 "DELETE" => HttpVerb.Delete.ToString(),
                 _ => HttpVerb.Get.ToString()
             };
+        }
+
+        #endregion
+
+        #region IResult
+
+        public Task ExecuteAsync(HttpContext httpContext)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
