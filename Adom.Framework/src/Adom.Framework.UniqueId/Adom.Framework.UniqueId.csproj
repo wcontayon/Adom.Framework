@@ -6,12 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Ulid\Ulid.Extensions.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Ulid\Ulid.Extensions.cs" />
-  </ItemGroup>
-
 </Project>
