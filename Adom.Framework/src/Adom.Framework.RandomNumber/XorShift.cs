@@ -4,22 +4,19 @@ using System.Numerics;
 
 namespace Adom.Framework.RandomNumber
 {
-    internal struct XorShift32_State
-    {
-        uint state;
-    }
-
     /// <summary>
     /// Implement of XorShift random number generator algorihtm<br />
     /// <see href="https://en.wikipedia.org/wiki/Xorshift">https://en.wikipedia.org/wiki/Xorshift</see>
     /// </summary>
-    internal class XorShift
+    internal class XorShift : RngAlgo
     {
         [ThreadStatic] uint _xorShift32_state = 0;
 
         [ThreadStatic] ulong _xorShift64_state = 0;
 
         [ThreadStatic] uint[] _xorShift128_state = new uint[4];
+
+        public XorShift(): base() { }
 
         /// <summary>
         /// Generate a seed number by increment the <see cref="_xorShift32_state"/>
@@ -44,8 +41,14 @@ namespace Adom.Framework.RandomNumber
             _xorShift128_state[3] = (_xorShift32_state++) + (uint)Environment.TickCount;
         }
 
-        // Algorithm "xor" from p.4 of Marsaglia, "XorShift" RNGs
-        internal uint XorShift32(uint seed = 0)
+        /// <summary>
+        /// Generate a random <see cref="uint"/> number
+        /// by using the specific XorShift algorithm.<br />
+        /// Algorithm "xor" from p.4 of Marsaglia, "XorShift" RNGs
+        /// </summary>
+        /// <param name="seed">The seed used to generate</param>
+        /// <returns>Random <see cref="uint"/> number</returns>
+        internal override uint RandomInt32(uint seed = 0)
         {
             Seed32();
             uint x = seed == 0 ? _xorShift32_state : seed;
@@ -55,7 +58,14 @@ namespace Adom.Framework.RandomNumber
             return x;
         }
 
-        internal ulong XorShift64(ulong seed = 0)
+        /// <summary>
+        /// Generate a random <see cref="ulong"/> number
+        /// by using the specific XorShift algorithm.<br />
+        /// Algorithm "xor" from p.4 of Marsaglia, "XorShift" RNGs
+        /// </summary>
+        /// <param name="seed">The seed used to generate</param>
+        /// <returns>Random <see cref="ulong"/> number</returns>
+        internal override ulong RandomInt64(ulong seed = 0)
         {
             Seed64();
             ulong x = seed == 0 ? _xorShift64_state : seed;
@@ -65,7 +75,14 @@ namespace Adom.Framework.RandomNumber
             return x;
         }
 
-        internal BigInteger XorShift128(uint[] seedArray)
+        /// <summary>
+        /// Generate a random <see cref="BigInteger"/> (128 bytes) number
+        /// by using the specific XorShift algorithm.<br />
+        /// Algorithm "xor" from p.5 of Marsaglia, "XorShift" RNGs
+        /// </summary>
+        /// <param name="seedArray">The seed used to generate</param>
+        /// <returns>Random <see cref="BigInteger"/> (128 bytes) number</returns>
+        internal override BigInteger RandomBigInteger(uint[] seedArray)
         {
             // Algorithm "xor128" from p. 5 of Marsaglia
             if (seedArray.IsEmpty() && seedArray.IsUniqueValue<uint>(0))
