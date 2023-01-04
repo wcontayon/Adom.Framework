@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Analyzers/tests/Adom.Analyzers.Test/bin/Debug/net5.0/Adom.Analyzers.Test.dll",
+            "program": "${workspaceFolder}/Analyzers/tests/Adom.Analyzers.Test/bin/Debug/net7.0/Adom.Analyzers.Test.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Analyzers/tests/Adom.Analyzers.Test",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console

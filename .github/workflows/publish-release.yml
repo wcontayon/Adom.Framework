@@ -2,9 +2,9 @@ on:
   workflow_dispatch:
     inputs:
       pkg_version:
-        description: 'release version'
+        description: "release version"
         required: true
-        default: '1.2.1-rc.1'
+        default: "1.2.1-rc.1"
 
 name: Publish Release Adom.Framework
 
@@ -15,50 +15,50 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with: 
+        with:
           fetch-depth: 0
-      
+
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 6.0.x
-      
+          dotnet-version: 7.0.x
+
       - name: Publish Adom.Framework
         env:
           RELEASE_VERSION: ${{ github.event.inputs.pkg_version }}
-        run: | 
+        run: |
           dotnet build Adom.Framework/src/Adom.Framework/Adom.Framework.csproj --configuration Release
           dotnet pack Adom.Framework/src/Adom.Framework/Adom.Framework.csproj --output nuget-packages --configuration Release -p:Version=$RELEASE_VERSION
           dotnet nuget push nuget-packages/Adom.Framework*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
-      
+
       - name: Publish Adom.Framework.Validation
         env:
           RELEASE_VERSION: ${{ github.event.inputs.pkg_version }}
-        run: | 
+        run: |
           dotnet build Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --configuration Release
           dotnet pack Adom.Framework/src/Adom.Framework.Validation/Adom.Framework.Validation.csproj --output nuget-packages --configuration Release -p:Version=$RELEASE_VERSION
           dotnet nuget push nuget-packages/Adom.Framework.Validation*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
-          
+
       - name: Publish Adom.Framework.AspNetCore
         env:
           RELEASE_VERSION: ${{ github.event.inputs.pkg_version }}
-        run: | 
+        run: |
           dotnet build Adom.Framework/src/Adom.Framework.AspNetCore/Adom.Framework.AspNetCore.csproj --configuration Release
           dotnet pack Adom.Framework/src/Adom.Framework.AspNetCore/Adom.Framework.AspNetCore.csproj --output nuget-packages --configuration Release -p:Version=$RELEASE_VERSION
           dotnet nuget push nuget-packages/Adom.Framework.AspNetCore*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
-          
+
       - name: Publish Adom.Framework.MoneyType
         env:
           RELEASE_VERSION: ${{ github.event.inputs.pkg_version }}
-        run: | 
+        run: |
           dotnet build Adom.Framework/src/Adom.Framework.MoneyType/Adom.Framework.MoneyType.csproj --configuration Release
           dotnet pack Adom.Framework/src/Adom.Framework.MoneyType/Adom.Framework.MoneyType.csproj --output nuget-packages --configuration Release -p:Version=$RELEASE_VERSION
           dotnet nuget push nuget-packages/Adom.Framework.MoneyType*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
-          
+
       - name: Publish Adom.Framework.Security
         env:
           RELEASE_VERSION: ${{ github.event.inputs.pkg_version }}
-        run: | 
+        run: |
           dotnet build Adom.Framework/src/Adom.Framework.Security/Adom.Framework.Security.csproj --configuration Release
           dotnet pack Adom.Framework/src/Adom.Framework.Security/Adom.Framework.Security.csproj --output nuget-packages --configuration Release -p:Version=$RELEASE_VERSION
           dotnet nuget push nuget-packages/Adom.Framework.Security*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
