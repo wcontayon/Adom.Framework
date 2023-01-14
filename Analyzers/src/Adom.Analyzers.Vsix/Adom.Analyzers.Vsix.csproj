@@ -15,8 +15,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Adom.Analyzers.Vsix</RootNamespace>
     <AssemblyName>Adom.Analyzers.Vsix</AssemblyName>
-    <!--<TargetFrameworkVersion>net5.0</TargetFrameworkVersion>-->
-    <TargetFrameworks>net5.0;</TargetFrameworks>
+    <!--<TargetFrameworkVersion>net7.0</TargetFrameworkVersion>-->
+    <TargetFrameworks>net7.0;</TargetFrameworks>
     <GeneratePkgDefFile>false</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>false</IncludeAssemblyInVSIXContainer>
     <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>

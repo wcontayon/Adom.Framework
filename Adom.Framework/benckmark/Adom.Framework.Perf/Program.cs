@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CA1852
+
+using System;
 
 namespace Adom.Framework.Perf
 {

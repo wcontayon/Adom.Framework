@@ -2,26 +2,25 @@ name: Test Adom.Framework Solution - Windows Platform
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
-
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0      
-    - name: Setup .NET6 environment
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore Adom.Framework.sln
-    - name: Build
-      run: dotnet build Adom.Framework.sln --configuration Debug --no-restore
-    - name: Test
-      run: dotnet test Adom.Framework.sln --verbosity normal --no-build --framework net6.0
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup .NET6 environment
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 7.0.x
+      - name: Restore dependencies
+        run: dotnet restore Adom.Framework.sln
+      - name: Build
+        run: dotnet build Adom.Framework.sln --configuration Debug --no-restore
+      - name: Test
+        run: dotnet test Adom.Framework.sln --verbosity normal --no-build --framework net6.0
