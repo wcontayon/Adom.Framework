@@ -33,7 +33,7 @@ jobs:
           draft: false
           prerelease: false
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
 
