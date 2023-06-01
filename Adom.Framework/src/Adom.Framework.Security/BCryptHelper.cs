@@ -373,17 +373,10 @@ namespace Adom.Framework.Security
         /// <returns>The hashed password.</returns>
         public static string HashPassword(string input, string salt)
         {
-            if (input == null)
-            {
-                throw new ArgumentNullException(nameof(input));
-            }
+            ArgumentNullException.ThrowIfNull(input, nameof(input));
+            ArgumentException.ThrowIfNullOrEmpty(salt, nameof(salt));
 
-            if (string.IsNullOrEmpty(salt))
-            {
-                throw new ArgumentException("Invalid salt", nameof(salt));
-            }
-
-            // Determinthe starting offset and validate the salt
+            // Determine starting offset and validate the salt
             int startingOffset;
             var minor = (char)0;
             if (salt[0] != '$' || salt[1] != '2')

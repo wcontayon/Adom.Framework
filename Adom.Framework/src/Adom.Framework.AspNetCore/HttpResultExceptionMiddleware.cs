@@ -102,7 +102,7 @@ namespace Adom.Framework.AspNetCore
             var responseHeadersString = new StringBuilder();
             foreach (var header in context.Request.Headers)
             {
-                responseHeadersString.Append($"{header.Key}: {string.Join(", ", header.Value)}{Environment.NewLine}");
+                responseHeadersString.Append($"{header.Key}: {string.Join(", ", header.Value.ToString())}{Environment.NewLine}");
             }
 
             return responseHeadersString.ToString();

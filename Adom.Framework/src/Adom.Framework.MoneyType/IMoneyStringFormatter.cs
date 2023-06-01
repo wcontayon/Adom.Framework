@@ -15,7 +15,7 @@ namespace Adom.Framework.MoneyType
         char CreateThousandSeparatorChar(MoneyThousandSeparator separator);
     }
 
-    internal class DefaultMoneyStringFormatter : IMoneyStringFormatter
+    internal sealed class DefaultMoneyStringFormatter : IMoneyStringFormatter
     {
         public char CreateThousandSeparatorChar(MoneyThousandSeparator separator) => separator switch
             {

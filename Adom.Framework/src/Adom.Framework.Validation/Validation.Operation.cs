@@ -6,7 +6,9 @@ namespace Adom.Framework.Validation
     public sealed partial class Operation
     {
         [ThreadStatic]
+#pragma warning disable CA2019 // Improper 'ThreadStatic' field initialization
         private const CheckLevel LEVEL = CheckLevel.Operation;
+#pragma warning restore CA2019 // Improper 'ThreadStatic' field initialization
 
         /// <summary>
         /// Throw an <see cref="InvalidOperationException"/> if the condition is true.

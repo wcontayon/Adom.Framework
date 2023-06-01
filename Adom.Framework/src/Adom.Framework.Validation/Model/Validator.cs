@@ -27,9 +27,9 @@ namespace Adom.Framework.Validation.Model
 
             foreach (PropertyInfo property in properties)
             {
-                var ruleAttributes = property.GetCustomAttributes<BaseRuleAttribute>();
+                var ruleAttributes = property.GetCustomAttributes<BaseRuleAttribute>().ToList();
 
-                if (ruleAttributes.Any())
+                if (ruleAttributes!.Count != 0)
                 {
                     foreach (BaseRuleAttribute attribute in ruleAttributes)
                     {
