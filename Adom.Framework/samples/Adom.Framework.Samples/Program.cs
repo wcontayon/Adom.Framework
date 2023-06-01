@@ -3,7 +3,7 @@ using System;
 
 namespace Adom.Framework.Samples
 {
-    class Program
+    sealed class Program
     {
         static void Main(string[] args)
         {

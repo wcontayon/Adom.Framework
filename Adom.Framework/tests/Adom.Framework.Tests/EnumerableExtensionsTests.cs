@@ -12,12 +12,12 @@ namespace Adom.Framework.Tests
         private const string MSG_FORMAT_ENUM_FAILED = "Enumeration has failed, items has been added during enumeration";
         private const string MSG_FORMAT_ENUM_CANNOT_HAPPEN = "Enumeration cannot be done";
         private const string MSG_FORMAT_COUNT_ITEM_GREATHER_THAN_SIZE = "Count parameter is greather than of the LimitedList size";
-        private const string MSG_FORMAT_INDEX_OUTOFRANGE = "Index parameter must be greather than 0 and less than the LimitedList size";
+        private const string MSG_FORMAT_INDEX_OUTOFRANGE = "Index parameter must be greater than 0 and less than the LimitedList size";
 
         private const FakeObject _nullFakeObject = null;
         private static readonly FakeObject _fakeObject2 = FakeObject.ConstFakeObject;
 
-        IList<FakeObject> listFakeObjects = new List<FakeObject>()
+        List<FakeObject> listFakeObjects = new List<FakeObject>()
         {
             FakeObject.Create(1_000, "one thousand"),
             FakeObject.Create(10_000, "ten thousand"),
@@ -25,7 +25,7 @@ namespace Adom.Framework.Tests
             FakeObject.Create(1_000_000, "one million")
         };
 
-        internal class FakeObject
+        internal sealed class FakeObject
         {
             public int Prop1 { get; set; } = 100;
             public string Prop2 { get; set; } = "EnumerationExtension";

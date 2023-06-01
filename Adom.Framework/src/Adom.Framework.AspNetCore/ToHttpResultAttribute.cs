@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 namespace Adom.Framework.AspNetCore
 {
     /// <summary>
-    /// Attribute used to mapp IActionResult to HttpResult
+    /// Attribute used to map IActionResult to HttpResult
     /// </summary>
     public sealed class ToHttpResultAttribute : ActionFilterAttribute
     {
@@ -26,7 +26,7 @@ namespace Adom.Framework.AspNetCore
                     }
                     else
                     {
-                        httpResult = new HttpResult(StatusCodes.Status500InternalServerError, "Exception occured");
+                        httpResult = new HttpResult(StatusCodes.Status500InternalServerError, "Exception occurred");
                     }
                 }
                 else

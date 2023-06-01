@@ -12,7 +12,9 @@ namespace Adom.Framework.Validation
 #pragma warning restore CA1034 // Les types imbriqués ne doivent pas être visibles
         {
             [ThreadStatic]
+#pragma warning disable CA2019 // Improper 'ThreadStatic' field initialization
             private const CheckType TYPE = CheckType.Assume;
+#pragma warning restore CA2019 // Improper 'ThreadStatic' field initialization
 
             /// <summary>
             /// Throw an <see cref="InternalCheckException"/> if the value is null.

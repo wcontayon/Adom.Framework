@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Adom.Framework.Validation.Model
 {
-    internal partial class CheckerExtension
+    internal static partial class CheckerExtension
     {
         public static bool NotNull<T>([NotNull] T? value, string? paramName, CheckType checkType, CheckLevel level)
             where T : class
@@ -46,7 +46,7 @@ namespace Adom.Framework.Validation.Model
 
         public static bool NotNullOrEmpty<T>(ICollection<T>? values, CheckType checkType, CheckLevel checkLevel)
             => NotNull(values, "collection", checkType, checkLevel) &&
-               Checker.True(values!.Any(), "Should not be empty", false, checkType, checkLevel);
+               Checker.True(values!.Count != 0, "Should not be empty", false, checkType, checkLevel);
 
         public static bool NotNullOrEmpty<T>(IEnumerable<T>? values, CheckType checkType, CheckLevel checkLevel)
             => NotNull(values, "collection", checkType, checkLevel) &&
