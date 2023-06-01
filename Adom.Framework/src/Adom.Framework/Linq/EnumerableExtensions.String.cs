@@ -15,9 +15,7 @@ namespace Adom.Framework.Linq
         /// <returns>True or false</returns>
         public static bool AnyEmpty(this IEnumerable<string>? source)
         {
-            if (source == null){
-                ThrowHelper.ThrowArgumentNullException(nameof(source));
-            }
+            ArgumentNullException.ThrowIfNull(source, nameof(source));
 
             return CountPredicate(source, str => string.IsNullOrWhiteSpace(str)) > 0;
         }
@@ -29,10 +27,7 @@ namespace Adom.Framework.Linq
         /// <returns>True or false</returns>
         public static bool AnyNotEmpty(this IEnumerable<string>? source)
         {
-            if (source == null)
-            {
-                ThrowHelper.ThrowArgumentNullException(nameof(source));
-            }
+            ArgumentNullException.ThrowIfNull(source, nameof(source));
 
             return CountPredicate(source, str => !string.IsNullOrWhiteSpace(str)) > 0;
         }
@@ -44,14 +39,7 @@ namespace Adom.Framework.Linq
         /// <returns><see cref="IEnumerable{string}"/> with non empty string</returns>
         public static IEnumerable<string> RemoveEmpty(this IEnumerable<string?>? source)
         {
-#if NET6_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source, nameof(source));
-#else
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-#endif
 
             foreach (var item in source)
             {

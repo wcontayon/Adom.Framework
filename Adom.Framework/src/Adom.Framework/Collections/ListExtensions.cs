@@ -14,8 +14,7 @@ namespace Adom.Framework.Collections
         /// <param name="items">Items to be added</param>
         public static void Add<T>(this IList<T> list, params T[] items)
         {
-            Debug.Assert(list != null);
-
+            ArgumentNullException.ThrowIfNull(list, nameof(list));
             for (int i = 0; i < items.Length; i++) list.Add(items[i]);
         }
 
@@ -27,8 +26,7 @@ namespace Adom.Framework.Collections
         /// <param name="items">Items to be added</param>
         public static void Add<T>(this IList<T> list, IEnumerable<T> items)
         {
-            Debug.Assert(list != null);
-
+            ArgumentNullException.ThrowIfNull(list);
             foreach (var item in items) list.Add(item);
         }
 
@@ -40,8 +38,7 @@ namespace Adom.Framework.Collections
         /// <param name="items">Items to be added</param>
         public static void Add<T>(this IList<T> list, ReadOnlySpan<T> items)
         {
-            Debug.Assert(list != null);
-
+            ArgumentNullException.ThrowIfNull(list);
             for (int i = 0; i < items.Length; i++) list.Add(items[i]);
         }
 
@@ -53,8 +50,7 @@ namespace Adom.Framework.Collections
         /// <param name="items">Items to be added</param>
         public static void Add<T>(this IList<T> list, Span<T> items)
         {
-            Debug.Assert(list != null);
-
+            ArgumentNullException.ThrowIfNull(list);
             for (int i = 0; i < items.Length; i++) list.Add(items[i]);
         }
     }

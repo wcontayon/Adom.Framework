@@ -18,9 +18,9 @@ namespace Adom.Framework.Collections
         /// <returns></returns>
         public static string ToString<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, char keyAndValueSeparator, char dataSeparator)
         {
-            Debug.Assert(!string.IsNullOrEmpty($"{keyAndValueSeparator}"));
-            Debug.Assert(!string.IsNullOrEmpty($"{dataSeparator}"));
-            Debug.Assert(dictionary != null);
+            ArgumentException.ThrowIfNullOrEmpty(keyAndValueSeparator.ToString(), nameof(keyAndValueSeparator));
+            ArgumentException.ThrowIfNullOrEmpty(dataSeparator.ToString(), nameof(dataSeparator));
+            ArgumentNullException.ThrowIfNull(dictionary);
 
             if (dictionary.Count > 0)
             {
@@ -49,8 +49,8 @@ namespace Adom.Framework.Collections
         /// <returns></returns>
         public static string[] ToStringArray<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, char keyAndValueSeparator)
         {
-            Debug.Assert(!string.IsNullOrEmpty($"{keyAndValueSeparator}"));
-            Debug.Assert(dictionary != null);
+            ArgumentNullException.ThrowIfNull(dictionary);
+            ArgumentException.ThrowIfNullOrEmpty(keyAndValueSeparator.ToString(), nameof(keyAndValueSeparator));
 
             if (dictionary.Count > 0)
             {
@@ -76,8 +76,8 @@ namespace Adom.Framework.Collections
         /// <returns></returns>
         public static Span<string> ToStringArrayAsSpan<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, char keyAndValueSeparator)
         {
-            Debug.Assert(!string.IsNullOrEmpty($"{keyAndValueSeparator}"));
-            Debug.Assert(dictionary != null);
+            ArgumentNullException.ThrowIfNull(dictionary);
+            ArgumentNullException.ThrowIfNullOrEmpty(keyAndValueSeparator.ToString());
 
             if (dictionary.Count > 0)
             {
@@ -102,7 +102,7 @@ namespace Adom.Framework.Collections
         /// <param name="items">Items to add</param>
         public static void Add<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, IDictionary<TKey, TValue> items)
         {
-            Debug.Assert(dictionary != null);
+            ArgumentNullException.ThrowIfNull(dictionary);
 
             if (items != null)
             {

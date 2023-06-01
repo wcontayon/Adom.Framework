@@ -19,1253 +19,1253 @@ namespace Adom.Framework.MoneyType
         /// <summary>
         /// UAE Dirham (UNITED ARAB EMIRATES)
         /// </summary>
-        [CurrencySymbole("د.إ")]
+        [CurrencySymbol("د.إ")]
         [CurrencyLabel("AED")]
         AED = 784,
 
         /// <summary>
         /// Afghani (AFGHANISTAN)
         /// </summary>
-        [CurrencySymbole("؋")]
+        [CurrencySymbol("؋")]
         [CurrencyLabel("AFN")]
         AFN = 971,
 
         /// <summary>
         /// Lek (ALBANIA)
         /// </summary>
-        [CurrencySymbole("Lek")]
+        [CurrencySymbol("Lek")]
         [CurrencyLabel("ALL")]
         ALL = 008,
 
         /// <summary>
         /// Armenian Dram (ARMENIA)
         /// </summary>
-        [CurrencySymbole("AMD")]
+        [CurrencySymbol("AMD")]
         [CurrencyLabel("AMD")]
         AMD = 051,
 
         /// <summary>
         /// Netherlands Antillean Guilder (CURACAO)
         /// </summary>
-        [CurrencySymbole("ƒ")]
+        [CurrencySymbol("ƒ")]
         [CurrencyLabel("ANG")]
         ANG = 532,
 
         /// <summary>
         /// Kwanza (ANGOLA)
         /// </summary>
-        [CurrencySymbole("AOA")]
+        [CurrencySymbol("AOA")]
         [CurrencyLabel("AOA")]
         AOA = 973,
 
         /// <summary>
         /// Argentine Peso (ARGENTINA)
         /// </summary>
-        [CurrencySymbole("$")]
+        [CurrencySymbol("$")]
         [CurrencyLabel("ARS")]
         ARS = 032,
 
         /// <summary>
         /// Australian Dollar (AUSTRALIA)
         /// </summary>
-        [CurrencySymbole("$")]
+        [CurrencySymbol("$")]
         [CurrencyLabel("AUD")]
         AUD = 036,
 
         /// <summary>
         /// Aruban Guilder (ARUBA)
         /// </summary>
-        [CurrencySymbole("ƒ")]
+        [CurrencySymbol("ƒ")]
         [CurrencyLabel("AWG")]
         AWG = 533,
 
         /// <summary>
         /// Azerbaijanian Manat (AZERBAIJAN)
         /// </summary>
-        [CurrencySymbole("₼")]
+        [CurrencySymbol("₼")]
         [CurrencyLabel("AZN")]
         AZN = 944,
 
         /// <summary>
         /// Convertible Mark (BOSNIA HERZEGOVINA)
         /// </summary>
-        [CurrencySymbole("KM")]
+        [CurrencySymbol("KM")]
         [CurrencyLabel("BAM")]
         BAM = 977,
 
         /// <summary>
         /// Barbados Dollar (BARBADOS)
         /// </summary>
-        [CurrencySymbole("$")]
+        [CurrencySymbol("$")]
         [CurrencyLabel("BBD")]
         BBD = 052,
 
         /// <summary>
         /// Taka (BANGLADESH)
         /// </summary>
-        [CurrencySymbole("BDT")]
+        [CurrencySymbol("BDT")]
         [CurrencyLabel("BDT")]
         BDT = 050,
 
         /// <summary>
         /// Bulgarian Lev (BULGARIA)
         /// </summary>
-        [CurrencySymbole("лв")]
+        [CurrencySymbol("лв")]
         [CurrencyLabel("BGN")]
         BGN = 975,
 
         /// <summary>
         /// Bahraini Dinar (BAHRAIN)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("BHD")]
         BHD = 048,
 
         /// <summary>
         /// Burundi Franc (BURUNDI)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("BIF")]
         BIF = 108,
 
         /// <summary>
         /// Bermudian Dollar (BERMUDA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("BMD")]
         BMD = 060,
 
         /// <summary>
         /// Brunei Dollar (BRUNEI DARUSSALAM)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("BND")]
         BND = 096,
 
         /// <summary>
         /// Boliviano (BOLIVIA, PLURINATIONAL STATE OF)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("BOB")]
         BOB = 068,
 
         /// <summary>
         /// Mvdol (BOLIVIA, PLURINATIONAL STATE OF)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("BOV")]
         BOV = 984,
 
         /// <summary>
         /// Brazilian Real (BRAZIL)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("BRL")]
         BRL = 986,
 
         /// <summary>
         /// Bahamian Dollar (BAHAMAS)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("BSD")]
         BSD = 044,
 
         /// <summary>
         /// Ngultrum  (BHUTAN)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("BTN")]
         BTN = 064,
 
         /// <summary>
         /// Pula (BOTSWANA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("BWP")]
         BWP = 072,
 
         /// <summary>
         /// Belarussian Ruble (BELARUS)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("BYR")]
         BYR = 974,
 
         /// <summary>
         /// Belize Dollar (BELIZE)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("BZD")]
         BZD = 084,
 
         /// <summary>
         /// Canadian Dollar (CANADA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CAD")]
         CAD = 124,
 
         /// <summary>
         /// Congolese Franc (CONGO, THE DEMOCRATIC REPUBLIC OF)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CDF")]
         CDF = 976,
 
         /// <summary>
         /// WIR Euro (SWITZERLAND)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CHE")]
         CHE = 947,
 
         /// <summary>
         /// Swiss Franc (SWITZERLAND)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CHF")]
         CHF = 756,
 
         /// <summary>
         /// WIR Franc (SWITZERLAND)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CHW")]
         CHW = 948,
 
         /// <summary>
         /// Unidades de fomento  (CHILE)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CLF")]
         CLF = 990,
 
         /// <summary>
         /// Chilean Peso (CHILE)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CLP")]
         CLP = 152,
 
         /// <summary>
         /// Yuan Renminbi (CHINA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CNY")]
         CNY = 156,
 
         /// <summary>
         /// Colombian Peso (COLOMBIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("COP")]
         COP = 170,
 
         /// <summary>
         /// Unidad de Valor Real (COLOMBIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("COU")]
         COU = 970,
 
         /// <summary>
         /// Costa Rican Colon (COSTA RICA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CRC")]
         CRC = 188,
 
         /// <summary>
         /// Peso Convertible (CUBA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CUC")]
         CUC = 931,
 
         /// <summary>
         /// Cuban Peso (CUBA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CUP")]
         CUP = 192,
 
         /// <summary>
         /// Cape Verde Escudo (CAPE VERDE)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CVE")]
         CVE = 132,
 
         /// <summary>
         /// Czech Koruna (CZECH REPUBLIC)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CZK")]
         CZK = 203,
 
         /// <summary>
         /// Djibouti Franc (DJIBOUTI)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("DJF")]
         DJF = 262,
 
         /// <summary>
         /// Danish Krone (DENMARK)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("DKK")]
         DKK = 208,
 
         /// <summary>
         /// Dominican Peso (DOMINICAN REPUBLIC)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("DOP")]
         DOP = 214,
 
         /// <summary>
         /// Algerian Dinar (ALGERIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("DZD")]
         DZD = 012,
 
         /// <summary>
         /// Egyptian Pound (EGYPT)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("EGP")]
         EGP = 818,
 
         /// <summary>
         /// Nakfa (ERITREA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ERN")]
         ERN = 232,
 
         /// <summary>
         /// Ethiopian Birr (ETHIOPIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ETB")]
         ETB = 230,
 
         /// <summary>
         /// Euro (Europe)
         /// </summary>
-        [CurrencySymbole("€")]
+        [CurrencySymbol("€")]
         [CurrencyLabel("EUR")]
         EUR = 978,
 
         /// <summary>
         /// Fiji Dollar (FIJI)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("FJD")]
         FJD = 242,
 
         /// <summary>
         /// Falkland Islands Pound (FALKLAND ISLANDS (MALVINAS))
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("FKP")]
         FKP = 238,
 
         /// <summary>
         /// Pound Sterling
         /// </summary>
-        [CurrencySymbole("£")]
+        [CurrencySymbol("£")]
         [CurrencyLabel("GBP")]
         GBP = 826,
 
         /// <summary>
         /// Lari (GEORGIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("GEL")]
         GEL = 981,
 
         /// <summary>
         /// Cedi (GHANA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("GHS")]
         GHS = 936,
 
         /// <summary>
         /// Gibraltar Pound (GIBRALTAR)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("GIP")]
         GIP = 292,
 
         /// <summary>
         /// Dalasi (GAMBIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("GMD")]
         GMD = 270,
 
         /// <summary>
         /// Guinea Franc (GUINEA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("GNF")]
         GNF = 324,
 
         /// <summary>
         /// Quetzal (GUATEMALA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("GTQ")]
         GTQ = 320,
 
         /// <summary>
         /// Guyana Dollar (GUYANA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("GYD")]
         GYD = 328,
 
         /// <summary>
         /// Hong Kong Dollar (HONG KONG)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("HKD")]
         HKD = 344,
 
         /// <summary>
         /// Lempira (HONDURAS)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("HNL")]
         HNL = 340,
 
         /// <summary>
         /// Croatian Kuna (CROATIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("HRK")]
         HRK = 191,
 
         /// <summary>
         /// Gourde (HAITI)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("HTG")]
         HTG = 332,
 
         /// <summary>
         /// Forint (HUNGARY)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("HUF")]
         HUF = 348,
 
         /// <summary>
         /// Rupiah (INDONESIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("IDR")]
         IDR = 360,
 
         /// <summary>
         /// New Israeli Sheqel (ISRAEL)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ILS")]
         ILS = 376,
 
         /// <summary>
         /// Indian Rupee (BHUTAN)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("INR")]
         INR = 356,
 
         /// <summary>
         /// Iraqi Dinar (IRAQ)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("IQD")]
         IQD = 368,
 
         /// <summary>
         /// Iranian Rial (IRAN, ISLAMIC REPUBLIC OF)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("IRR")]
         IRR = 364,
 
         /// <summary>
         /// Iceland Krona (ICELAND)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ISK")]
         ISK = 352,
 
         /// <summary>
         /// Jamaican Dollar (JAMAICA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("JMD")]
         JMD = 388,
 
         /// <summary>
         /// Jordanian Dinar (JORDAN)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("JOD")]
         JOD = 400,
 
         /// <summary>
         /// Yen (JAPAN) (ALT 0165)
         /// </summary>
-        [CurrencySymbole("¥")]
+        [CurrencySymbol("¥")]
         [CurrencyLabel("JPY")]
         JPY = 392,
 
         /// <summary>
         /// Kenyan Shilling (KENYA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("KES")]
         KES = 404,
 
         /// <summary>
         /// Som (KYRGYZSTAN)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("KGS")]
         KGS = 417,
 
         /// <summary>
         /// Riel (CAMBODIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("KHR")]
         KHR = 116,
 
         /// <summary>
         /// Comoro Franc (COMOROS)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("KMF")]
         KMF = 174,
 
         /// <summary>
         /// North Korean Won (KOREA, DEMOCRATIC PEOPLE’S REPUBLIC OF)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("KPW")]
         KPW = 408,
 
         /// <summary>
         /// Won (KOREA, REPUBLIC OF)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("KRW")]
         KRW = 410,
 
         /// <summary>
         /// Kuwaiti Dinar (KUWAIT)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("KWD")]
         KWD = 414,
 
         /// <summary>
         /// Cayman Islands Dollar (CAYMAN ISLANDS)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("KYD")]
         KYD = 136,
 
         /// <summary>
         /// Tenge (KAZAKHSTAN)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("KZT")]
         KZT = 398,
 
         /// <summary>
         /// Kip (LAO PEOPLE’S DEMOCRATIC REPUBLIC)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("LAK")]
         LAK = 418,
 
         /// <summary>
         /// Lebanese Pound (LEBANON)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("LBP")]
         LBP = 422,
 
         /// <summary>
         /// Sri Lanka Rupee (SRI LANKA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("LKR")]
         LKR = 144,
 
         /// <summary>
         /// Liberian Dollar (LIBERIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("LRD")]
         LRD = 430,
 
         /// <summary>
         /// Loti (LESOTHO)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("LSL")]
         LSL = 426,
 
         /// <summary>
         /// Lithuanian Litas (LITHUANIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("LTL")]
         LTL = 440,
 
         /// <summary>
         /// Latvian Lats (LATVIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("LVL")]
         LVL = 428,
 
         /// <summary>
         /// Libyan Dinar (LIBYAN ARAB JAMAHIRIYA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("LYD")]
         LYD = 434,
 
         /// <summary>
         /// Moroccan Dirham (MOROCCO)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MAD")]
         MAD = 504,
 
         /// <summary>
         /// Moldovan Leu (MOLDOVA, REPUBLIC OF)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MDL")]
         MDL = 498,
 
         /// <summary>
         /// Malagasy Ariary (MADAGASCAR)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MGA")]
         MGA = 969,
 
         /// <summary>
         /// Denar (MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MKD")]
         MKD = 807,
 
         /// <summary>
         /// Kyat (MYANMAR)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MMK")]
         MMK = 104,
 
         /// <summary>
         /// Tugrik (MONGOLIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MNT")]
         MNT = 496,
 
         /// <summary>
         /// Pataca (MACAO)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MOP")]
         MOP = 446,
 
         /// <summary>
         /// Ouguiya (MAURITANIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MRO")]
         MRO = 478,
 
         /// <summary>
         /// Mauritius Rupee (MAURITIUS)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MUR")]
         MUR = 480,
 
         /// <summary>
         /// Rufiyaa (MALDIVES)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MVR")]
         MVR = 462,
 
         /// <summary>
         /// Kwacha (MALAWI)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MWK")]
         MWK = 454,
 
         /// <summary>
         /// Mexican Peso (MEXICO)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MXN")]
         MXN = 484,
 
         /// <summary>
         /// Mexican Unidad de Inversion (UDI) (MEXICO)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MXV")]
         MXV = 979,
 
         /// <summary>
         /// Malaysian Ringgit (MALAYSIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MYR")]
         MYR = 458,
 
         /// <summary>
         /// Metical (MOZAMBIQUE)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MZN")]
         MZN = 943,
 
         /// <summary>
         /// Namibia Dollar (NAMIBIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("NAD")]
         NAD = 516,
 
         /// <summary>
         /// Naira (NIGERIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("NGN")]
         NGN = 566,
 
         /// <summary>
         /// Cordoba Oro (NICARAGUA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("NIO")]
         NIO = 558,
 
         /// <summary>
         /// Norwegian Krone
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("NOK")]
         NOK = 578,
 
         /// <summary>
         /// Nepalese Rupee (NEPAL)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("NPR")]
         NPR = 524,
 
         /// <summary>
         /// New Zealand Dollar
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("NZD")]
         NZD = 554,
 
         /// <summary>
         /// Rial Omani (OMAN)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("OMR")]
         OMR = 512,
 
         /// <summary>
         /// Balboa (PANAMA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("PAB")]
         PAB = 590,
 
         /// <summary>
         /// Nuevo Sol (PERU)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("PEN")]
         PEN = 604,
 
         /// <summary>
         /// Kina (PAPUA NEW GUINEA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("PGK")]
         PGK = 598,
 
         /// <summary>
         /// Philippine Peso (PHILIPPINES)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("PHP")]
         PHP = 608,
 
         /// <summary>
         /// Pakistan Rupee (PAKISTAN)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("PKR")]
         PKR = 586,
 
         /// <summary>
         /// Zloty (POLAND)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("PLN")]
         PLN = 985,
 
         /// <summary>
         /// Guarani (PARAGUAY)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("PYG")]
         PYG = 600,
 
         /// <summary>
         /// Qatari Rial (QATAR)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("QAR")]
         QAR = 634,
 
         /// <summary>
         /// Leu (ROMANIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("RON")]
         RON = 946,
 
         /// <summary>
         /// Serbian Dinar (SERBIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("RSD")]
         RSD = 941,
 
         /// <summary>
         /// Russian Ruble (RUSSIAN FEDERATION)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("RUB")]
         RUB = 643,
 
         /// <summary>
         /// Rwanda Franc (RWANDA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("RWF")]
         RWF = 646,
 
         /// <summary>
         /// Saudi Riyal (SAUDI ARABIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SAR")]
         SAR = 682,
 
         /// <summary>
         /// Solomon Islands Dollar (SOLOMON ISLANDS)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SBD")]
         SBD = 090,
 
         /// <summary>
         /// Seychelles Rupee (SEYCHELLES)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SCR")]
         SCR = 690,
 
         /// <summary>
         /// Sudanese Pound (SUDAN)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SDG")]
         SDG = 938,
 
         /// <summary>
         /// Swedish Krona (SWEDEN)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SEK")]
         SEK = 752,
 
         /// <summary>
         /// Singapore Dollar (SINGAPORE)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SGD")]
         SGD = 702,
 
         /// <summary>
         /// Saint Helena Pound (SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SHP")]
         SHP = 654,
 
         /// <summary>
         /// Leone (SIERRA LEONE)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SLL")]
         SLL = 694,
 
         /// <summary>
         /// Somali Shilling (SOMALIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SOS")]
         SOS = 706,
 
         /// <summary>
         /// Surinam Dollar (SURINAME)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SRD")]
         SRD = 968,
 
         /// <summary>
         /// Dobra (SÃO TOME AND PRINCIPE)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("STD")]
         STD = 678,
 
         /// <summary>
         /// Syrian Pound (SYRIAN ARAB REPUBLIC)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SYP")]
         SYP = 760,
 
         /// <summary>
         /// Lilangeni (SWAZILAND)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SZL")]
         SZL = 748,
 
         /// <summary>
         /// Baht (THAILAND)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("THB")]
         THB = 764,
 
         /// <summary>
         /// Somoni (TAJIKISTAN)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("TJS")]
         TJS = 972,
 
         /// <summary>
         /// New Manat (TURKMENISTAN)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("TMT")]
         TMT = 934,
 
         /// <summary>
         /// Tunisian Dinar (TUNISIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("TND")]
         TND = 788,
 
         /// <summary>
         /// Pa’anga (TONGA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("TOP")]
         TOP = 776,
 
         /// <summary>
         /// Turkish Lira (TURKEY)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("TRY")]
         TRY = 949,
 
         /// <summary>
         /// Trinidad and Tobago Dollar (TRINIDAD AND TOBAGO)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("TTD")]
         TTD = 780,
 
         /// <summary>
         /// New Taiwan Dollar (TAIWAN, PROVINCE OF CHINA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("TWD")]
         TWD = 901,
 
         /// <summary>
         /// Tanzanian Shilling (TANZANIA, UNITED REPUBLIC OF)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("TZS")]
         TZS = 834,
 
         /// <summary>
         /// Hryvnia (UKRAINE)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("UAH")]
         UAH = 980,
 
         /// <summary>
         /// Uganda Shilling (UGANDA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("UGX")]
         UGX = 800,
 
         /// <summary>
         /// US Dollar
         /// </summary>
-        [CurrencySymbole("$")]
+        [CurrencySymbol("$")]
         [CurrencyLabel("USD")]
         USD = 840,
 
         /// <summary>
         /// US Dollar (Next day)  (UNITED STATES)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("USN")]
         USN = 997,
 
         /// <summary>
         /// US Dollar (Same day)  (UNITED STATES)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("USS")]
         USS = 998,
 
         /// <summary>
         /// Uruguay Peso en Unidades Indexadas (URUIURUI) (URUGUAY)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("UYI")]
         UYI = 940,
 
         /// <summary>
         /// Peso Uruguayo (URUGUAY)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("UYU")]
         UYU = 858,
 
         /// <summary>
         /// Uzbekistan Sum (UZBEKISTAN)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("UZS")]
         UZS = 860,
 
         /// <summary>
         /// Bolivar Fuerte (VENEZUELA, BOLIVARIAN REPUBLIC OF)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("VEF")]
         VEF = 937,
 
         /// <summary>
         /// Dong (VIET NAM)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("VND")]
         VND = 704,
 
         /// <summary>
         /// Vatu (VANUATU)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("VUV")]
         VUV = 548,
 
         /// <summary>
         /// Tala (SAMOA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("WST")]
         WST = 882,
 
         /// <summary>
         /// CFA Franc BEAC  (CAMEROON)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XAF")]
         XAF = 950,
 
         /// <summary>
         /// Silver (ZZ11_Silver)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XAG")]
         XAG = 961,
 
         /// <summary>
         /// Gold (ZZ08_Gold)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XAU")]
         XAU = 959,
 
         /// <summary>
         /// Bond Markets Unit European Composite Unit (EURCO) (ZZ01_Bond Markets Unit European_EURCO)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XBA")]
         XBA = 955,
 
         /// <summary>
         /// Bond Markets Unit European Monetary Unit (E.M.U.-6)  (ZZ02_Bond Markets Unit European_EMU-6)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XBB")]
         XBB = 956,
 
         /// <summary>
         /// Bond Markets Unit European Unit of Account 9 (E.U.A.-9) (ZZ03_Bond Markets Unit European_EUA-9)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XBC")]
         XBC = 957,
 
         /// <summary>
         /// Bond Markets Unit European Unit of Account 17 (E.U.A.-17) (ZZ04_Bond Markets Unit European_EUA-17)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XBD")]
         XBD = 958,
 
         /// <summary>
         /// East Caribbean Dollar (ANGUILLA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XCD")]
         XCD = 951,
 
         /// <summary>
         /// SDR (Special Drawing Right) (INTERNATIONAL MONETARY FUND (IMF) )
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XDR")]
         XDR = 960,
 
         /// <summary>
         /// CFA Franc BCEAO  (BENIN)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XOF")]
         XOF = 952,
 
         /// <summary>
         /// Palladium (ZZ09_Palladium)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XPD")]
         XPD = 964,
 
         /// <summary>
         /// CFP Franc (FRENCH POLYNESIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XPF")]
         XPF = 953,
 
         /// <summary>
         /// Platinum (ZZ10_Platinum)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XPT")]
         XPT = 962,
 
         /// <summary>
         /// Sucre (SISTEMA UNITARIO DE COMPENSACION REGIONAL DE PAGOS SUCRE)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XSU")]
         XSU = 994,
 
         /// <summary>
         /// Codes specifically reserved for testing purposes (ZZ06_Testing_Code)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XTS")]
         XTS = 963,
 
         /// <summary>
         /// ADB Unit of Account (MEMBER COUNTRIES OF THE AFRICAN DEVELOPMENT BANK GROUP)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XUA")]
         XUA = 965,
 
         /// <summary>
         /// The codes assigned for transactions where no currency is involved (ZZ07_No_Currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XXX")]
         XXX = 999,
 
         /// <summary>
         /// Yemeni Rial (YEMEN)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("YER")]
         YER = 886,
 
         /// <summary>
         /// Rand (LESOTHO)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ZAR")]
         ZAR = 710,
 
         /// <summary>
         /// Zambian Kwacha (ZAMBIA)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ZMK")]
         ZMK = 894,
 
         /// <summary>
         /// Zimbabwe Dollar (ZIMBABWE)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ZWL")]
         ZWL = 932,
 
@@ -1274,376 +1274,376 @@ namespace Adom.Framework.MoneyType
         /// <summary>
         /// Andorran peseta (1:1 peg to the Spanish peseta) (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ADP")]
         ADP = 20,
 
         /// <summary>
         /// Austrian schilling (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ATS")]
         ATS = 40,
 
         /// <summary>
         /// Belgian franc (currency union with LUF) (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("BEF")]
         BEF = 56,
 
         /// <summary>
         /// Cypriot pound (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CYP")]
         CYP = 196,
 
         /// <summary>
         /// German mark (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("DEM")]
         DEM = 276,
 
         /// <summary>
         /// Estonian kroon (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("EEK")]
         EEK = 233,
 
         /// <summary>
         /// Spanish peseta (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ESP")]
         ESP = 724,
 
         /// <summary>
         /// Finnish markka (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("FIM")]
         FIM = 246,
 
         /// <summary>
         /// French franc (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("FRF")]
         FRF = 250,
 
         /// <summary>
         /// Greek drachma (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("GRD")]
         GRD = 300,
 
         /// <summary>
         /// Irish pound (punt in Irish language) (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("IEP")]
         IEP = 372,
 
         /// <summary>
         /// Italian lira (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ITL")]
         ITL = 380,
 
         /// <summary>
         /// Luxembourg franc (currency union with BEF) (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("LUF")]
         LUF = 442,
 
         /// <summary>
         /// Maltese lira (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MTL")]
         MTL = 470,
 
         /// <summary>
         /// Netherlands guilder (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("NLG")]
         NLG = 528,
 
         /// <summary>
         /// Portuguese escudo (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("PTE")]
         PTE = 620,
 
         /// <summary>
         /// Slovenian tolar (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SIT")]
         SIT = 705,
 
         /// <summary>
         /// Slovak koruna (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SKK")]
         SKK = 703,
 
         /// <summary>
         /// European Currency Unit (1 XEU = 1 EUR) (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("XEU")]
         XEU = 954,
 
         /// <summary>
         /// Afghan afghani (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("AFA")]
         AFA = 4,
 
         /// <summary>
         /// Angolan new kwanza (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("AON")]
         AON = 24,
 
         /// <summary>
         /// Angolan kwanza readjustado (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("AOR")]
         AOR = 982,
 
         /// <summary>
         /// Azerbaijani manat (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("AZM")]
         AZM = 31,
 
         /// <summary>
         /// Bulgarian lev A/99 (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("BGL")]
         BGL = 100,
 
         /// <summary>
         /// Serbian dinar (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CSD")]
         CSD = 891,
 
         /// <summary>
         /// Czechoslovak koruna (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("CSK")]
         CSK = 200,
 
         /// <summary>
         /// East German Mark of the GDR (East Germany) (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("DDM")]
         DDM = 278,
 
         /// <summary>
         /// Ecuadorian sucre (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ECS")]
         ECS = 218,
 
         /// <summary>
         /// Ecuador Unidad de Valor Constante (funds code) (discontinued) (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ECV")]
         ECV = 983,
 
         /// <summary>
         /// Spanish peseta (account A) (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ESA")]
         ESA = 996,
 
         /// <summary>
         /// Spanish peseta (account B) (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ESB")]
         ESB = 995,
 
         /// <summary>
         /// Ghanaian cedi (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("GHC")]
         GHC = 288,
 
         /// <summary>
         /// Guinea-Bissau peso (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("GWP")]
         GWP = 624,
 
         /// <summary>
         /// Malagasy franc (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MGF")]
         MGF = 450,
 
         /// <summary>
         /// Mozambican metical (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("MZM")]
         MZM = 508,
 
         /// <summary>
         /// Polish zloty A/94 (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("PLZ")]
         PLZ = 616,
 
         /// <summary>
         /// Romanian leu A/05 (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ROL")]
         ROL = 642,
 
         /// <summary>
         /// Russian rouble A/97 (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("RUR")]
         RUR = 810,
 
         /// <summary>
         /// Sudanese dinar (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SDD")]
         SDD = 736,
 
         //// <summary>
         //// Sudanese old pound (historical currency)
         //// </summary>
-        //// [CurrencySymbole("")]
+        //// [CurrencySymbol("")]
         //// SDP = 736, // Duplicate numeric code with 'Sudanese dinar' (the initial code is duplicate see http://en.wikipedia.org/wiki/ISO_4217)
 
         /// <summary>
         /// Suriname guilder (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SRG")]
         SRG = 740,
 
         /// <summary>
         /// Salvadoran colón (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("SVC")]
         SVC = 222,
 
         /// <summary>
         /// Tajikistani ruble (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("TJR")]
         TJR = 762,
 
         /// <summary>
         /// Turkmenistani manat (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("TMM")]
         TMM = 795,
 
         /// <summary>
         /// Turkish lira A/05 (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("TRL")]
         TRL = 792,
 
         /// <summary>
         /// Ukrainian karbovanets (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("UAK")]
         UAK = 804,
 
         /// <summary>
         /// Venezuelan bolívar (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("VEB")]
         VEB = 862,
 
         /// <summary>
         /// South Yemeni dinar (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("YDD")]
         YDD = 720,
 
         //// <summary>
         //// Yugoslav dinar (historical currency)
         //// </summary>
-        //// [CurrencySymbole("")]
+        //// [CurrencySymbol("")]
         //// YUM = 891, // Duplicate numeric code with 'Serbian dinar' (the initial code is duplicate see http://en.wikipedia.org/wiki/ISO_4217)
 
         /// <summary>
         /// South African financial rand (funds code) (discontinued) (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ZAL")]
         ZAL = 991,
 
         /// <summary>
         /// Zaïrean new zaïre (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ZRN")]
         ZRN = 180,
 
         /// <summary>
         /// Zimbabwean dollar A/06 (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ZWD")]
         ZWD = 716,
 
         /// <summary>
         /// Zimbabwean dollar A/08 (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ZWN")]
         ZWN = 942,
 
         /// <summary>
         /// Zimbabwean dollar A/09 (historical currency)
         /// </summary>
-        [CurrencySymbole("")]
+        [CurrencySymbol("")]
         [CurrencyLabel("ZWR")]
         ZWR = 935,
 

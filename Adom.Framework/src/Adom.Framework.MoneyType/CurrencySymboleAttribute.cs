@@ -4,9 +4,9 @@ using System.Reflection;
 namespace Adom.Framework.MoneyType
 {
     [AttributeUsage(AttributeTargets.Enum | AttributeTargets.Field)]
-    internal sealed class CurrencySymboleAttribute : Attribute
+    internal sealed class CurrencySymbolAttribute : Attribute
     {
-        public CurrencySymboleAttribute(string symbol) => this.Symbol = symbol;
+        public CurrencySymbolAttribute(string symbol) => this.Symbol = symbol;
 
         public string Symbol { get; private set; }
     }
@@ -26,7 +26,7 @@ namespace Adom.Framework.MoneyType
             if (fieldInfo != null)
             {
                 // Get the stringvalue attributes
-                CurrencySymboleAttribute symboleAttribute = (fieldInfo.GetCustomAttribute(typeof(CurrencySymboleAttribute)) as CurrencySymboleAttribute)!;
+                CurrencySymbolAttribute symboleAttribute = (fieldInfo.GetCustomAttribute(typeof(CurrencySymbolAttribute)) as CurrencySymbolAttribute)!;
 
                 if (symboleAttribute != null && currency != Currency.None)
                 {

@@ -15,14 +15,7 @@ namespace Adom.Framework.Linq
         /// <param name="newItem">Item to insert</param>
         public static void Replace<T>(this IList<T> list, T oldItem, T newItem)
         {
-#if NET6_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(list, nameof(list));
-#else
-            if (list == null)
-            {
-                throw new ArgumentNullException(nameof(list));
-            }
-#endif
 
             var index = list.IndexOf(oldItem);
             if (index < 0)
@@ -43,14 +36,7 @@ namespace Adom.Framework.Linq
         /// <param name="newItem">Item to insert</param>
         public static void AddOrReplace<T>(this IList<T> list, T? oldItem, T newItem)
         {
-#if NET6_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(list, nameof(list));
-#else
-            if (list == null)
-            {
-                throw new ArgumentNullException(nameof(list));
-            }
-#endif
 
             if (oldItem == null)
             {
@@ -111,14 +97,7 @@ namespace Adom.Framework.Linq
         /// <returns></returns>
         public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> source) where T : struct
         {
-#if NET6_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source, nameof(source));
-#else
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-#endif
 
             foreach (var item in source)
             {

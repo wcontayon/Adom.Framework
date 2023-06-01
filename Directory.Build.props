@@ -5,7 +5,7 @@
     <LangVersion>latest</LangVersion>
     <!--<TreatWarningsAsErrors Condition="'$(Configuration)' != 'Debug'">true</TreatWarningsAsErrors>-->
     <Deterministic>true</Deterministic>
-    <LatestTargetFramework>net6.0</LatestTargetFramework>
+    <LatestTargetFramework>net8.0</LatestTargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ValidateProjectTargets>true</ValidateProjectTargets>
     <Features>strict</Features>

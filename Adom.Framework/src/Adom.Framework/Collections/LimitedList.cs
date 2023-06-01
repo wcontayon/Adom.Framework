@@ -133,17 +133,10 @@ namespace Adom.Framework.Collections
                 ThrowHelper.ThrowArgumentException(MSG_FORMAT_NEGATIVE_CAPACITY);
             }
 
-#if NET6_0_OR_GREATER
             if ((uint)newCapacity > Array.MaxLength)
             {
                 _capacity = Array.MaxLength;
             } 
-#else
-            if ((uint)newCapacity > int.MaxValue)
-            {
-                _capacity = int.MaxValue;
-            }
-#endif
             else 
             {
                 _capacity += newCapacity;
@@ -220,14 +213,7 @@ namespace Adom.Framework.Collections
 
         public void ForEach(Action<T> action)
         {
-#if NET6_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(action, nameof(action));
-#else
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
-#endif
 
             // Copy the version, to check if he has changed
             int version = _version;
@@ -581,14 +567,8 @@ namespace Adom.Framework.Collections
 
             public LimitedListEnumerator(LimitedList<T> list)
             {
-#if NET6_0_OR_GREATER
                 ArgumentNullException.ThrowIfNull(list, nameof(list));
-#else
-                if (list == null)
-                {
-                    throw new ArgumentNullException(nameof(list));
-                }
-#endif
+
                 _list = list;
                 _index = 0;
                 _version = list._version;

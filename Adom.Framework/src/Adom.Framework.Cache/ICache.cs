@@ -10,7 +10,7 @@ namespace Adom.Framework.Cache
     {
         /// <summary>
         /// Retrieve a <typeparamref name="T"/> data from the cache store
-        /// associed to the <paramref name="key"/>.
+        /// associated to the <paramref name="key"/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="key">The cache key</param>
@@ -19,7 +19,7 @@ namespace Adom.Framework.Cache
 
         /// <summary>
         /// Retrieve a <typeparamref name="T"/> data from the cache store
-        /// associed to the <paramref name="key"/>.
+        /// associated to the <paramref name="key"/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="key">The cache key</param>
@@ -28,7 +28,7 @@ namespace Adom.Framework.Cache
 
         /// <summary>
         /// Retrieve a <typeparamref name="T"/> data from the cache store
-        /// associed to the <paramref name="key"/>.
+        /// associated to the <paramref name="key"/>.
         /// if the key does not exist, the data is retrieved using the <paramref name="getMethod"/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -39,7 +39,7 @@ namespace Adom.Framework.Cache
 
         /// <summary>
         /// Retrieve a <typeparamref name="T"/> data from the cache store
-        /// associed to the <paramref name="key"/>.
+        /// associated to the <paramref name="key"/>.
         /// if the key does not exist, the data is retrieved using the <paramref name="getMethod"/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
