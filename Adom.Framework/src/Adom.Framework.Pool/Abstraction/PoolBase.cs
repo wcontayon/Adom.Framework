@@ -1,18 +1,22 @@
 ﻿
-using System.Reflection;
-
-namespace Adom.Framework.Pool.Abstraction;
+namespace Adom.Framework.Pools.Abstraction;
 
 public abstract class PoolBase<T> : IPool<T>
+    where T : class
 {
     private readonly PoolPolicy<T> _policy;
-    private PropertyInfo? _pooledObjectValueProperty;
+    private readonly bool _isPooledTypeDisposable;
+    private readonly bool _isDisposableType;
+    private readonly bool _isAsyncDispoableType;
     private bool _isDisposed;
 
     protected PoolBase(PoolPolicy<T> policy)
     {
         ArgumentNullException.ThrowIfNull(nameof(policy));
         ArgumentNullException.ThrowIfNull(nameof(policy.ObjectPooledInitialization), "ObjectPooledInitialization");
+        _isDisposableType = typeof(IDisposable).IsAssignableFrom(typeof(T));
+        _isAsyncDispoableType = typeof(IAsyncDisposable).IsAssignableFrom(typeof(T));
+        _isPooledTypeDisposable = _isDisposableType || _isAsyncDispoableType;
 
         _policy = policy;
         _isDisposed = false;
@@ -22,7 +26,9 @@ public abstract class PoolBase<T> : IPool<T>
 
     #region Dispose
 
+#pragma warning disable CA1063 // Implémenter IDisposable correctement
     public void Dispose()
+#pragma warning restore CA1063 // Implémenter IDisposable correctement
     {
         if (_isDisposed) return;
         if (!_isDisposed)
@@ -47,6 +53,26 @@ public abstract class PoolBase<T> : IPool<T>
         return ValueTask.CompletedTask;
     }
 
+    protected void SafeDispose(T pooledObject)
+    {
+        if (_isPooledTypeDisposable)
+        {
+            ArgumentNullException.ThrowIfNull(pooledObject);
+
+            if (_isAsyncDispoableType)
+            {
+                var disposed = ((IAsyncDisposable)pooledObject)!.DisposeAsync().ConfigureAwait(true);
+                return;
+            }
+
+            if (_isDisposableType)
+            {
+                ((IDisposable)pooledObject)!.Dispose();
+                return;
+            }
+        }
+    }
+
     #endregion
 
     #region PoolBase methods
@@ -59,7 +85,7 @@ public abstract class PoolBase<T> : IPool<T>
     /// <summary>
     /// Ensure that current instance of <see cref="PoolBase{T}"/> is not disposed.
     /// </summary>
-    protected void EnsureNotDispose() => ObjectDisposedException.ThrowIf(_isDisposed, this);
+    protected void EnsureNotDisposed() => ObjectDisposedException.ThrowIf(_isDisposed, this);
 
     #endregion
 
@@ -71,5 +97,6 @@ public abstract class PoolBase<T> : IPool<T>
     /// <inheritdoc />
     public abstract void IncreasePoolSize(int increment);
 
-    public abstract void Release();
+    /// <inheritdoc />
+    public abstract void Release(T item);
 }
