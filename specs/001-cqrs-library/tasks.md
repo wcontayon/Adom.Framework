@@ -142,16 +142,16 @@ Based on plan.md structure:
 
 ### Tests for User Story 4
 
-- [ ] T046 [P] [US4] Unit test for custom cache duration in `Adom.Framework/tests/Adom.CQRS.Tests/CachingBehaviorTests.cs`
-- [ ] T047 [P] [US4] Unit test for custom cache key in `Adom.Framework/tests/Adom.CQRS.Tests/CachingBehaviorTests.cs`
-- [ ] T048 [P] [US4] Unit test for cache key prefix in `Adom.Framework/tests/Adom.CQRS.Tests/CacheKeyGeneratorTests.cs`
+- [X] T046 [P] [US4] Unit test for custom cache duration in `Adom.Framework/tests/Adom.CQRS.Tests/CachingBehaviorTests.cs`
+- [X] T047 [P] [US4] Unit test for custom cache key in `Adom.Framework/tests/Adom.CQRS.Tests/CachingBehaviorTests.cs`
+- [X] T048 [P] [US4] Unit test for cache key prefix in `Adom.Framework/tests/Adom.CQRS.Tests/CachingBehaviorTests.cs`
 
 ### Implementation for User Story 4
 
-- [ ] T049 [US4] Add CacheKey property support to CacheKeyGenerator in `Adom.Framework/src/Adom.CQRS/Caching/CacheKeyGenerator.cs`
-- [ ] T050 [US4] Add KeyPrefix configuration to CacheOptions in `Adom.Framework/src/Adom.CQRS/Caching/CacheOptions.cs`
-- [ ] T051 [US4] Add DefaultDuration configuration to CacheOptions in `Adom.Framework/src/Adom.CQRS/Caching/CacheOptions.cs`
-- [ ] T052 [US4] Implement DisableCaching method in CqrsBuilder in `Adom.Framework/src/Adom.CQRS/Configuration/CqrsBuilder.cs`
+- [X] T049 [US4] Add CacheKey property support to CacheKeyGenerator in `Adom.Framework/src/Adom.CQRS/Caching/CacheKeyGenerator.cs`
+- [X] T050 [US4] Add KeyPrefix configuration to CacheOptions in `Adom.Framework/src/Adom.CQRS/Caching/CacheOptions.cs`
+- [X] T051 [US4] Add DefaultDuration configuration to CacheOptions in `Adom.Framework/src/Adom.CQRS/Caching/CacheOptions.cs`
+- [X] T052 [US4] Implement DisableCaching method in CqrsBuilder in `Adom.Framework/src/Adom.CQRS/Configuration/CqrsBuilder.cs`
 
 **Checkpoint**: Cache configuration complete - full control over caching behavior
 
@@ -165,15 +165,15 @@ Based on plan.md structure:
 
 ### Tests for Pipeline Behaviors
 
-- [ ] T053 [P] Unit test for single behavior execution in `Adom.Framework/tests/Adom.CQRS.Tests/PipelineBehaviorTests.cs`
-- [ ] T054 [P] Unit test for behavior chain order in `Adom.Framework/tests/Adom.CQRS.Tests/PipelineBehaviorTests.cs`
-- [ ] T055 [P] Unit test for behavior short-circuit in `Adom.Framework/tests/Adom.CQRS.Tests/PipelineBehaviorTests.cs`
+- [X] T053 [P] Unit test for single behavior execution in `Adom.Framework/tests/Adom.CQRS.Tests/PipelineBehaviorTests.cs`
+- [X] T054 [P] Unit test for behavior chain order in `Adom.Framework/tests/Adom.CQRS.Tests/PipelineBehaviorTests.cs`
+- [X] T055 [P] Unit test for behavior short-circuit in `Adom.Framework/tests/Adom.CQRS.Tests/PipelineBehaviorTests.cs`
 
 ### Implementation for Pipeline Behaviors
 
-- [ ] T056 Add AddBehavior<T> method to CqrsBuilder in `Adom.Framework/src/Adom.CQRS/Configuration/CqrsBuilder.cs`
-- [ ] T057 Implement behavior ordering in PipelineBuilder in `Adom.Framework/src/Adom.CQRS/Dispatching/PipelineBuilder.cs`
-- [ ] T058 Register behaviors as Scoped in DI in `Adom.Framework/src/Adom.CQRS/Extensions/ServiceCollectionExtensions.cs`
+- [X] T056 Add AddBehavior<T> method to CqrsBuilder in `Adom.Framework/src/Adom.CQRS/Configuration/CqrsBuilder.cs`
+- [X] T057 Implement behavior ordering in PipelineBuilder in `Adom.Framework/src/Adom.CQRS/Dispatching/PipelineBuilder.cs`
+- [X] T058 Register behaviors as Scoped in DI in `Adom.Framework/src/Adom.CQRS/Configuration/CqrsBuilder.cs`
 
 **Checkpoint**: Pipeline behaviors work - custom cross-cutting concerns supported
 
@@ -182,6 +182,8 @@ Based on plan.md structure:
 ## Phase 8: Source Generators (Optional Performance Mode)
 
 **Goal**: Compile-time handler discovery for Native AOT and zero-reflection
+
+**Status**: SKIPPED - Optional feature for future enhancement
 
 ### Tests for Source Generators
 
@@ -202,13 +204,13 @@ Based on plan.md structure:
 
 **Purpose**: Performance optimization, documentation, and final cleanup
 
-- [ ] T064 [P] Create DispatchBenchmarks in `Adom.Framework/tests/Adom.CQRS.Benchmarks/DispatchBenchmarks.cs`
-- [ ] T065 [P] Create CachingBenchmarks in `Adom.Framework/tests/Adom.CQRS.Benchmarks/CachingBenchmarks.cs`
+- [X] T064 [P] Create DispatchBenchmarks in `Adom.Framework/tests/Adom.CQRS.Benchmarks/DispatchBenchmarks.cs`
+- [X] T065 [P] Create CachingBenchmarks in `Adom.Framework/tests/Adom.CQRS.Benchmarks/CachingBenchmarks.cs`
 - [ ] T066 Run benchmarks and verify <1ms dispatch overhead
-- [ ] T067 [P] Add XML documentation to all public types
-- [ ] T068 [P] Configure README.md with quickstart example
+- [X] T067 [P] Add XML documentation to all public types
+- [X] T068 [P] Configure README.md with quickstart example
 - [ ] T069 Verify zero-allocation on hot paths with MemoryDiagnoser
-- [ ] T070 Run all tests and verify 100% pass rate
+- [X] T070 Run all tests and verify 100% pass rate
 - [ ] T071 Build NuGet package and verify metadata
 
 ---
