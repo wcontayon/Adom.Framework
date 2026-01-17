@@ -4,10 +4,12 @@
   <PropertyGroup>
     <_ContinuousIntegrationBuild Condition="'$(TF_BUILD)' == 'true' or '$(GITHUB_ACTIONS)' == 'true' or '$(GITLAB_CI)' == 'true'">True</_ContinuousIntegrationBuild>
 
-    <LangVersion>9.0</LangVersion>
+    <LangVersion>latest</LangVersion>
     <TreatWarningsAsErrors Condition="'$(Configuration)' != 'Debug'">true</TreatWarningsAsErrors>
     <Deterministic>true</Deterministic>
-    <LatestTargetFramework>net8.0</LatestTargetFramework>
+    <LatestTargetFramework>net10.0</LatestTargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ValidateProjectTargets>true</ValidateProjectTargets>
 
