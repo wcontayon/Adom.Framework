@@ -8,23 +8,14 @@ namespace Adom.CQRS.Dispatching;
 /// <summary>
 /// Core dispatcher implementation that routes requests to handlers through the pipeline.
 /// </summary>
+/// <param name="serviceProvider">The service provider for resolving handlers and behaviors.</param>
+/// <param name="handlerRegistry">The handler registry for fast lookups.</param>
 #pragma warning disable CA1812 // Class is instantiated via DI
-internal sealed class Dispatcher : IDispatcher
+internal sealed class Dispatcher(IServiceProvider serviceProvider, HandlerRegistry handlerRegistry) : IDispatcher
 #pragma warning restore CA1812
 {
-    private readonly IServiceProvider _serviceProvider;
-    private readonly HandlerRegistry _handlerRegistry;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="Dispatcher"/> class.
-    /// </summary>
-    /// <param name="serviceProvider">The service provider for resolving handlers and behaviors.</param>
-    /// <param name="handlerRegistry">The handler registry for fast lookups.</param>
-    public Dispatcher(IServiceProvider serviceProvider, HandlerRegistry handlerRegistry)
-    {
-        _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
-        _handlerRegistry = handlerRegistry ?? throw new ArgumentNullException(nameof(handlerRegistry));
-    }
+    private readonly IServiceProvider _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+    private readonly HandlerRegistry _handlerRegistry = handlerRegistry ?? throw new ArgumentNullException(nameof(handlerRegistry));
 
     /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

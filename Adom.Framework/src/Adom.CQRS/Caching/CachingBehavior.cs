@@ -27,13 +27,12 @@ internal sealed class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<T
         WriteIndented = false
     };
 
-    public CachingBehavior(
-        IServiceProvider serviceProvider,
-        IOptions<CacheOptions> options)
+    public CachingBehavior(IServiceProvider serviceProvider, IOptions<CacheOptions> options)
     {
         ArgumentNullException.ThrowIfNull(serviceProvider);
+        ArgumentNullException.ThrowIfNull(options);
         _cache = serviceProvider.GetService<IDistributedCache>();
-        _options = options?.Value ?? new CacheOptions();
+        _options = options.Value;
         _logger = serviceProvider.GetService<ILogger<CachingBehavior<TRequest, TResponse>>>();
     }
 

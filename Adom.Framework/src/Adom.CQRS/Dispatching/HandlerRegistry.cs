@@ -6,19 +6,10 @@ namespace Adom.CQRS.Dispatching;
 /// <summary>
 /// Registry for handler lookups using FrozenDictionary for zero-allocation O(1) lookups.
 /// </summary>
-internal sealed class HandlerRegistry
+/// <param name="handlers">Dictionary of handlers to freeze.</param>
+internal sealed class HandlerRegistry(Dictionary<Type, HandlerDescriptor> handlers)
 {
-    private readonly FrozenDictionary<Type, HandlerDescriptor> _handlers;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="HandlerRegistry"/> class.
-    /// </summary>
-    /// <param name="handlers">Dictionary of handlers to freeze.</param>
-    public HandlerRegistry(Dictionary<Type, HandlerDescriptor> handlers)
-    {
-        ArgumentNullException.ThrowIfNull(handlers);
-        _handlers = handlers.ToFrozenDictionary();
-    }
+    private readonly FrozenDictionary<Type, HandlerDescriptor> _handlers = (handlers ?? throw new ArgumentNullException(nameof(handlers))).ToFrozenDictionary();
 
     /// <summary>
     /// Tries to get a handler descriptor for the specified request type.

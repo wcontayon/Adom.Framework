@@ -8,19 +8,11 @@ namespace Adom.CQRS.Configuration;
 /// <summary>
 /// Fluent builder for configuring CQRS services.
 /// </summary>
-public sealed class CqrsBuilder
+/// <param name="services">The service collection.</param>
+public sealed class CqrsBuilder(IServiceCollection services)
 {
-    private readonly IServiceCollection _services;
-    private readonly List<Assembly> _assembliesToScan = new();
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="CqrsBuilder"/> class.
-    /// </summary>
-    /// <param name="services">The service collection.</param>
-    public CqrsBuilder(IServiceCollection services)
-    {
-        _services = services ?? throw new ArgumentNullException(nameof(services));
-    }
+    private readonly IServiceCollection _services = services ?? throw new ArgumentNullException(nameof(services));
+    private readonly List<Assembly> _assembliesToScan = [];
 
     /// <summary>
     /// Gets the service collection being configured.
