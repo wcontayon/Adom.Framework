@@ -125,6 +125,45 @@ public class DispatcherTests
         // Assert
         await act.Should().ThrowAsync<OperationCanceledException>();
     }
+
+    [Fact]
+    public async Task DispatchAsync_WithQueryAndParameters_ShouldReturnCorrectResult()
+    {
+        // Arrange
+        var services = new ServiceCollection();
+        services.AddAdomCqrs(builder => builder.ScanAssemblyContaining<DispatcherTests>());
+        var serviceProvider = services.BuildServiceProvider();
+        var dispatcher = serviceProvider.GetRequiredService<IDispatcher>();
+
+        var query = new GetUserByIdQuery(Guid.NewGuid(), "TestUser");
+
+        // Act
+        var result = await dispatcher.DispatchAsync<GetUserByIdQuery, UserDto>(query);
+
+        // Assert
+        result.Should().NotBeNull();
+        result.Id.Should().Be(query.UserId);
+        result.Name.Should().Be("TestUser");
+        result.Email.Should().Be("testuser@example.com");
+    }
+
+    [Fact]
+    public async Task DispatchAsync_WithVoidCommand_ShouldExecuteSuccessfully()
+    {
+        // Arrange
+        var services = new ServiceCollection();
+        services.AddAdomCqrs(builder => builder.ScanAssemblyContaining<DispatcherTests>());
+        var serviceProvider = services.BuildServiceProvider();
+        var dispatcher = serviceProvider.GetRequiredService<IDispatcher>();
+
+        var command = new VoidCommand("test-data");
+
+        // Act
+        Func<Task> act = async () => await dispatcher.DispatchAsync(command);
+
+        // Assert
+        await act.Should().NotThrowAsync();
+    }
 }
 
 // Test commands and handlers
@@ -168,5 +207,30 @@ public class CancellableCommandHandler : IHandler<CancellableCommand, string>
     {
         cancellationToken.ThrowIfCancellationRequested();
         return ValueTask.FromResult("Completed");
+    }
+}
+
+// User Story 2 test types
+public record GetUserByIdQuery(Guid UserId, string Name) : IRequest<UserDto>;
+
+public record UserDto(Guid Id, string Name, string Email);
+
+public class GetUserByIdQueryHandler : IHandler<GetUserByIdQuery, UserDto>
+{
+    public ValueTask<UserDto> HandleAsync(GetUserByIdQuery request, CancellationToken cancellationToken = default)
+    {
+        var email = $"{request.Name.ToLowerInvariant()}@example.com";
+        return ValueTask.FromResult(new UserDto(request.UserId, request.Name, email));
+    }
+}
+
+public record VoidCommand(string Data) : IRequest;
+
+public class VoidCommandHandler : IHandler<VoidCommand>
+{
+    public ValueTask<Unit> HandleAsync(VoidCommand request, CancellationToken cancellationToken = default)
+    {
+        // Command executed successfully
+        return ValueTask.FromResult(Unit.Value);
     }
 }
