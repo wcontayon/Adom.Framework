@@ -351,3 +351,15 @@ MigrationBackup/
 nuget.key
 
 .store/
+
+# Claude Code
+.claude/
+.specify/
+CLAUDE.md
+
+# macOS
+.DS_Store
+
+# Spec files (optional - keep specs in repo)
+# specs/**/checklists/
+# specs/**/contracts/

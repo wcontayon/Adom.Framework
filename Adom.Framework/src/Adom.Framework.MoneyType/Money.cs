@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Text;
 
 namespace Adom.Framework.MoneyType
 {
@@ -18,6 +19,8 @@ namespace Adom.Framework.MoneyType
         internal const string EXCEPTION_MSG_CANTHAVE_TWO_CURRENCY = "A Money struct value cannot have two currency codes";
         internal const string EXCEPTION_MSG_MONEY_MUST_HAVE_CURRENCY = "A money struct value required a currency code";
         internal const string EXCEPTION_MSG_MONEY_DIVIDED_BY_ZERO = "Cannot divide Money by zero";
+
+        private static readonly CompositeFormat TypeMismatchFormat = CompositeFormat.Parse(EXCEPTION_MSG_TYPE_MISMATCH);
 
         #endregion
 
@@ -119,7 +122,7 @@ namespace Adom.Framework.MoneyType
                 return CompareTo((Money)obj);
             }
 
-            ThrowHelper.ThrowInvalidOperationException(string.Format(CultureInfo.InvariantCulture, EXCEPTION_MSG_TYPE_MISMATCH, "Money"));
+            ThrowHelper.ThrowInvalidOperationException(string.Format(CultureInfo.InvariantCulture, TypeMismatchFormat, "Money"));
             return -1;
         }
 

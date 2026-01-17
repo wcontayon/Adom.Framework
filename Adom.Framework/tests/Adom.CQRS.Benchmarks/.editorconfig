@@ -1,0 +1,14 @@
+# Suppress analyzer rules for benchmark project
+root = false
+
+[*.cs]
+# CA1515: Make types internal - benchmarks need public types for BenchmarkDotNet
+dotnet_diagnostic.CA1515.severity = none
+# CA1062: Validate parameter is non-null - benchmarks are controlled environment
+dotnet_diagnostic.CA1062.severity = none
+# CA2007: ConfigureAwait - not required for benchmarks
+dotnet_diagnostic.CA2007.severity = none
+# CA5394: Insecure random - acceptable for benchmarks
+dotnet_diagnostic.CA5394.severity = none
+# CA1052: Static holder types - acceptable for benchmark programs
+dotnet_diagnostic.CA1052.severity = none

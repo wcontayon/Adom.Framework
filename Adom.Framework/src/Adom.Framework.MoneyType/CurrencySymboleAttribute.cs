@@ -26,7 +26,7 @@ namespace Adom.Framework.MoneyType
             if (fieldInfo != null)
             {
                 // Get the stringvalue attributes
-                CurrencySymbolAttribute symboleAttribute = (fieldInfo.GetCustomAttribute(typeof(CurrencySymbolAttribute)) as CurrencySymbolAttribute)!;
+                CurrencySymbolAttribute? symboleAttribute = fieldInfo.GetCustomAttribute<CurrencySymbolAttribute>();
 
                 if (symboleAttribute != null && currency != Currency.None)
                 {

@@ -1,0 +1,37 @@
+<Solution>
+  <Folder Name="/Adom.Framework/">
+    <Folder Name="/Adom.Framework/src/">
+      <Project Path="Adom.Framework\src\Adom.Framework\Adom.Framework.csproj" />
+      <Project Path="Adom.Framework\src\Adom.Framework.MoneyType\Adom.Framework.MoneyType.csproj" />
+      <Project Path="Adom.Framework\src\Adom.Framework.ValuePath\Adom.Framework.ValuePath.csproj" />
+      <Project Path="Adom.Framework\src\Adom.Framework.Cache\Adom.Framework.Cache.csproj" />
+      <Project Path="Adom.Framework\src\Adom.Framework.Validation\Adom.Framework.Validation.csproj" />
+      <Project Path="Adom.Framework\src\Adom.Framework.AspNetCore\Adom.Framework.AspNetCore.csproj" />
+      <Project Path="Adom.Framework\src\Adom.Framework.Security\Adom.Framework.Security.csproj" />
+      <Project Path="Adom.Framework\src\Adom.CQRS\Adom.CQRS.csproj" />
+    </Folder>
+    <Folder Name="/Adom.Framework/tests/">
+      <Project Path="Adom.Framework\tests\Adom.Framework.Tests\Adom.Framework.Tests.csproj" />
+      <Project Path="Adom.Framework\tests\Adom.Framework.Validation.Test\Adom.Framework.Validation.Test.csproj" />
+      <Project Path="Adom.Framework\tests\Adom.CQRS.Tests\Adom.CQRS.Tests.csproj" />
+    </Folder>
+    <Folder Name="/Adom.Framework/benckmark/">
+      <Project Path="Adom.Framework\benckmark\Adom.Framework.Perf\Adom.Framework.Perf.csproj" />
+      <Project Path="Adom.Framework\benckmark\Adom.Framework.Security.Perf\Adom.Framework.Security.Perf.csproj" />
+      <Project Path="Adom.Framework\tests\Adom.CQRS.Benchmarks\Adom.CQRS.Benchmarks.csproj" />
+    </Folder>
+    <Folder Name="/Adom.Framework/samples/">
+      <Project Path="Adom.Framework\samples\Adom.Framework.Samples\Adom.Framework.Samples.csproj" />
+      <Project Path="Adom.Framework\samples\Adom.Framework.AspNetCore.Sample\Adom.Framework.AspNetCore.Sample.csproj" />
+    </Folder>
+  </Folder>
+  <Properties>
+    <Property Name="Configuration">
+      <Value>Debug</Value>
+      <Value>Release</Value>
+    </Property>
+    <Property Name="Platform">
+      <Value>Any CPU</Value>
+    </Property>
+  </Properties>
+</Solution>

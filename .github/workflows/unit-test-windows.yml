@@ -14,13 +14,13 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Setup .NET8 environment
+      - name: Setup .NET 10 environment
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
       - name: Restore dependencies
         run: dotnet restore Adom.Framework.sln
       - name: Build
         run: dotnet build Adom.Framework.sln --configuration Debug --no-restore
       - name: Test
-        run: dotnet test Adom.Framework.sln --verbosity normal --no-build --framework net7.0
+        run: dotnet test Adom.Framework.sln --verbosity normal --no-build --framework net10.0

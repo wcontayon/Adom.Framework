@@ -1,0 +1,6 @@
+# Suppress analyzer rules for benchmark projects
+root = false
+
+[*.cs]
+# CA1515: Make types internal - benchmark classes need to be public for BenchmarkDotNet
+dotnet_diagnostic.CA1515.severity = none

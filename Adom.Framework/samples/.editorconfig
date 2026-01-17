@@ -1,0 +1,6 @@
+# Suppress analyzer rules for sample projects
+root = false
+
+[*.cs]
+# CA1515: Make types internal - sample classes are meant to be public for demonstration
+dotnet_diagnostic.CA1515.severity = none
