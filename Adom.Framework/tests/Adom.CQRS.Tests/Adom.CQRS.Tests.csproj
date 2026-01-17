@@ -8,7 +8,7 @@
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
     <!-- Disable code analysis warnings for tests -->
-    <NoWarn>$(NoWarn);CA1707;CA2007;CA1849;CA1515;CA1062;CA2000;CA1308</NoWarn>
+    <NoWarn>$(NoWarn);CA1707;CA2007;CA1849;CA1515;CA1062;CA2000;CA1308;CA2211;CA1305;CA1307</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +25,7 @@
     <PackageReference Include="FluentAssertions" Version="7.0.0" />
     <PackageReference Include="NSubstitute" Version="5.3.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="10.0.0" />
   </ItemGroup>
 
   <ItemGroup>

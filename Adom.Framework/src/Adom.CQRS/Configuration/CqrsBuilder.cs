@@ -1,5 +1,6 @@
 using System.Reflection;
 using Adom.CQRS.Abstractions;
+using Adom.CQRS.Caching;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Adom.CQRS.Configuration;
@@ -80,6 +81,30 @@ public sealed class CqrsBuilder
         where TBehavior : class, IPipelineBehavior<TRequest, TResponse>
     {
         _services.AddScoped<IPipelineBehavior<TRequest, TResponse>, TBehavior>();
+        return this;
+    }
+
+    /// <summary>
+    /// Configures automatic caching for requests implementing <see cref="ICacheableRequest"/>.
+    /// Requires <see cref="Microsoft.Extensions.Caching.Distributed.IDistributedCache"/> to be registered in DI.
+    /// </summary>
+    /// <param name="configure">Optional action to configure cache options.</param>
+    /// <returns>The builder for method chaining.</returns>
+    public CqrsBuilder ConfigureCaching(Action<CacheOptions>? configure = null)
+    {
+        // Register cache options
+        if (configure is not null)
+        {
+            _services.Configure(configure);
+        }
+        else
+        {
+            _services.Configure<CacheOptions>(_ => { });
+        }
+
+        // Register caching behavior (open generic)
+        _services.AddScoped(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
+
         return this;
     }
 }

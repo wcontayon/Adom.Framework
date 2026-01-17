@@ -115,20 +115,20 @@ Based on plan.md structure:
 
 ### Tests for User Story 3
 
-- [ ] T035 [P] [US3] Unit test for cache hit in `Adom.Framework/tests/Adom.CQRS.Tests/CachingBehaviorTests.cs`
-- [ ] T036 [P] [US3] Unit test for cache miss in `Adom.Framework/tests/Adom.CQRS.Tests/CachingBehaviorTests.cs`
-- [ ] T037 [P] [US3] Unit test for non-cacheable request bypass in `Adom.Framework/tests/Adom.CQRS.Tests/CachingBehaviorTests.cs`
-- [ ] T038 [P] [US3] Unit test for cache unavailability fallback in `Adom.Framework/tests/Adom.CQRS.Tests/CachingBehaviorTests.cs`
+- [X] T035 [P] [US3] Unit test for cache hit in `Adom.Framework/tests/Adom.CQRS.Tests/CachingBehaviorTests.cs`
+- [X] T036 [P] [US3] Unit test for cache miss in `Adom.Framework/tests/Adom.CQRS.Tests/CachingBehaviorTests.cs`
+- [X] T037 [P] [US3] Unit test for non-cacheable request bypass in `Adom.Framework/tests/Adom.CQRS.Tests/CachingBehaviorTests.cs`
+- [X] T038 [P] [US3] Unit test for cache unavailability fallback in `Adom.Framework/tests/Adom.CQRS.Tests/CachingBehaviorTests.cs`
 
 ### Implementation for User Story 3
 
-- [ ] T039 [P] [US3] Create ICacheableRequest interface in `Adom.Framework/src/Adom.CQRS/Abstractions/ICacheableRequest.cs`
-- [ ] T040 [P] [US3] Create CacheOptions configuration in `Adom.Framework/src/Adom.CQRS/Caching/CacheOptions.cs`
-- [ ] T041 [US3] Create CacheKeyGenerator with XxHash128 in `Adom.Framework/src/Adom.CQRS/Caching/CacheKeyGenerator.cs`
-- [ ] T042 [US3] Implement CachingBehavior pipeline behavior in `Adom.Framework/src/Adom.CQRS/Caching/CachingBehavior.cs`
-- [ ] T043 [US3] Register CachingBehavior in CqrsBuilder in `Adom.Framework/src/Adom.CQRS/Configuration/CqrsBuilder.cs`
-- [ ] T044 [US3] Add ConfigureCaching method to CqrsBuilder in `Adom.Framework/src/Adom.CQRS/Configuration/CqrsBuilder.cs`
-- [ ] T045 [US3] Handle cache unavailability with graceful fallback in `Adom.Framework/src/Adom.CQRS/Caching/CachingBehavior.cs`
+- [X] T039 [P] [US3] Create ICacheableRequest interface in `Adom.Framework/src/Adom.CQRS/Abstractions/ICacheableRequest.cs`
+- [X] T040 [P] [US3] Create CacheOptions configuration in `Adom.Framework/src/Adom.CQRS/Caching/CacheOptions.cs`
+- [X] T041 [US3] Create CacheKeyGenerator with XxHash128 in `Adom.Framework/src/Adom.CQRS/Caching/CacheKeyGenerator.cs`
+- [X] T042 [US3] Implement CachingBehavior pipeline behavior in `Adom.Framework/src/Adom.CQRS/Caching/CachingBehavior.cs`
+- [X] T043 [US3] Register CachingBehavior in CqrsBuilder in `Adom.Framework/src/Adom.CQRS/Configuration/CqrsBuilder.cs`
+- [X] T044 [US3] Add ConfigureCaching method to CqrsBuilder in `Adom.Framework/src/Adom.CQRS/Configuration/CqrsBuilder.cs`
+- [X] T045 [US3] Handle cache unavailability with graceful fallback in `Adom.Framework/src/Adom.CQRS/Caching/CachingBehavior.cs`
 
 **Checkpoint**: Caching works - ICacheableRequest queries are cached automatically
 
