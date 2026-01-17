@@ -28,9 +28,9 @@ public class DispatchBenchmarks
     }
 
     [Benchmark(Description = "Command Dispatch (void return)")]
-    public async Task<Unit> DispatchCommand()
+    public async Task DispatchCommand()
     {
-        return await _dispatcher.DispatchAsync(_command);
+        await _dispatcher.DispatchAsync(_command);
     }
 
     [Benchmark(Description = "Query Dispatch (with return value)")]

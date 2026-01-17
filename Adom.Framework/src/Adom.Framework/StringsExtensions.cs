@@ -277,7 +277,7 @@ namespace Adom.Framework
             if (index == -1)
             {
                 _splitedLine = ReadOnlySpan<char>.Empty; // the next line will be empty
-                Current = new SplitedLine(span.Slice(0, span.Length), _seperator);
+                Current = new SplitedLine(span, _seperator);
                 return true;
             }
 

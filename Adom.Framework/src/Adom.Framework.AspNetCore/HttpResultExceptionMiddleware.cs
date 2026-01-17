@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,7 @@ namespace Adom.Framework.AspNetCore
 
         public Task InvokeAsync(HttpContext httpContext)
         {
+            ArgumentNullException.ThrowIfNull(httpContext);
             Debug.Assert(httpContext != null);
             ExceptionDispatchInfo? edi = default;
 
@@ -102,7 +104,7 @@ namespace Adom.Framework.AspNetCore
             var responseHeadersString = new StringBuilder();
             foreach (var header in context.Request.Headers)
             {
-                responseHeadersString.Append($"{header.Key}: {string.Join(", ", header.Value.ToString())}{Environment.NewLine}");
+                responseHeadersString.Append(CultureInfo.InvariantCulture, $"{header.Key}: {string.Join(", ", header.Value.ToString())}{Environment.NewLine}");
             }
 
             return responseHeadersString.ToString();

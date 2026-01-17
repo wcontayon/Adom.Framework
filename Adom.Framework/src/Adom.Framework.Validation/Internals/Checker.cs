@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 
 namespace Adom.Framework.Validation
 {
@@ -15,6 +16,10 @@ namespace Adom.Framework.Validation
         public const string ARGUMENT_NOTNULL_MSG_PATTERN = "{0} is not null";
         public const string ARGUMENT_TYPE_MSG_PATTERN = "{0} is not of type {1}";
 
+        private static readonly CompositeFormat ArgumentNullFormat = CompositeFormat.Parse(ARGUMENT_NULL_MSG_PATTERN);
+        private static readonly CompositeFormat ArgumentNotNullFormat = CompositeFormat.Parse(ARGUMENT_NOTNULL_MSG_PATTERN);
+        private static readonly CompositeFormat ArgumentTypeFormat = CompositeFormat.Parse(ARGUMENT_TYPE_MSG_PATTERN);
+
         #region NotNull Check
 
         public static T NotNull<T>([NotNull] T? value, string? paramName, CheckType checkType, CheckLevel level)
@@ -22,7 +27,7 @@ namespace Adom.Framework.Validation
         {
             Fail(
                 !(value is null),
-                string.Format(CultureInfo.InvariantCulture, ARGUMENT_NULL_MSG_PATTERN, paramName),
+                string.Format(CultureInfo.InvariantCulture, ArgumentNullFormat, paramName),
                 checkType,
                 level,
                 true);
@@ -37,7 +42,7 @@ namespace Adom.Framework.Validation
         {
             Fail(
                 value.HasValue,
-                string.Format(CultureInfo.InvariantCulture, ARGUMENT_NULL_MSG_PATTERN, paramName),
+                string.Format(CultureInfo.InvariantCulture, ArgumentNullFormat, paramName),
                 checkType,
                 level,
                 true);
@@ -47,21 +52,21 @@ namespace Adom.Framework.Validation
 
         public static void NotNullOrEmpty(string? value, string? paramName, CheckType checkType, CheckLevel checkLevel)
         {
-            Fail(!string.IsNullOrWhiteSpace(value) && !string.IsNullOrEmpty(value), string.Format(CultureInfo.InvariantCulture, ARGUMENT_NULL_MSG_PATTERN, paramName), checkType, checkLevel, true);
-            Fail(value!.Length > 0, string.Format(CultureInfo.InvariantCulture, ARGUMENT_NULL_MSG_PATTERN, paramName), checkType, checkLevel, true);
-            Fail(value[0] != '\0', string.Format(CultureInfo.InvariantCulture, ARGUMENT_NULL_MSG_PATTERN, paramName), checkType, checkLevel, true);
+            Fail(!string.IsNullOrWhiteSpace(value) && !string.IsNullOrEmpty(value), string.Format(CultureInfo.InvariantCulture, ArgumentNullFormat, paramName), checkType, checkLevel, true);
+            Fail(value!.Length > 0, string.Format(CultureInfo.InvariantCulture, ArgumentNullFormat, paramName), checkType, checkLevel, true);
+            Fail(value[0] != '\0', string.Format(CultureInfo.InvariantCulture, ArgumentNullFormat, paramName), checkType, checkLevel, true);
         }
 
         public static void NotNullOrEmpty<T>(ICollection<T>? values, CheckType checkType, CheckLevel checkLevel)
         {
             NotNull(values, "collection", checkType, checkLevel);
-            Fail(values!.Count != 0, string.Format(CultureInfo.InvariantCulture, ARGUMENT_NULL_MSG_PATTERN, "collection"), checkType, checkLevel, true);
+            Fail(values!.Count != 0, string.Format(CultureInfo.InvariantCulture, ArgumentNullFormat, "collection"), checkType, checkLevel, true);
         }
 
         public static void NotNullOrEmpty<T>(IEnumerable<T>? values, CheckType checkType, CheckLevel checkLevel)
         {
             NotNull(values, "collection", checkType, checkLevel);
-            Fail(values!.Any(), string.Format(CultureInfo.InvariantCulture, ARGUMENT_NULL_MSG_PATTERN, "collection"), checkType, checkLevel, true);
+            Fail(values!.Any(), string.Format(CultureInfo.InvariantCulture, ArgumentNullFormat, "collection"), checkType, checkLevel, true);
         }
 
         #endregion
@@ -74,7 +79,7 @@ namespace Adom.Framework.Validation
             // nullCheck param should be false, either we want the value to be null.
             Fail(
                 value == null,
-                string.Format(CultureInfo.InvariantCulture, ARGUMENT_NOTNULL_MSG_PATTERN, paramName),
+                string.Format(CultureInfo.InvariantCulture, ArgumentNotNullFormat, paramName),
                 checkType,
                 level,
                 false);
@@ -90,7 +95,7 @@ namespace Adom.Framework.Validation
             // nullCheck param should be false, either we want the value to be null.
             Fail(
                 !value.HasValue,
-                string.Format(CultureInfo.InvariantCulture, ARGUMENT_NOTNULL_MSG_PATTERN, paramName),
+                string.Format(CultureInfo.InvariantCulture, ArgumentNotNullFormat, paramName),
                 checkType,
                 level,
                 false);
@@ -100,18 +105,18 @@ namespace Adom.Framework.Validation
 
         public static void NullOrEmpty(string? value, string? paramName, CheckType checkType, CheckLevel checkLevel)
         {
-            Fail(string.IsNullOrEmpty(value), string.Format(CultureInfo.InvariantCulture, ARGUMENT_NOTNULL_MSG_PATTERN, paramName), checkType, checkLevel, false);
-            Fail(string.IsNullOrWhiteSpace(value), string.Format(CultureInfo.InvariantCulture, ARGUMENT_NOTNULL_MSG_PATTERN, paramName), checkType, checkLevel, false);
+            Fail(string.IsNullOrEmpty(value), string.Format(CultureInfo.InvariantCulture, ArgumentNotNullFormat, paramName), checkType, checkLevel, false);
+            Fail(string.IsNullOrWhiteSpace(value), string.Format(CultureInfo.InvariantCulture, ArgumentNotNullFormat, paramName), checkType, checkLevel, false);
         }
 
         public static void NullOrEmpty<T>(ICollection<T>? values, CheckType checkType, CheckLevel checkLevel)
         {
-            Fail(values is null || values!.Count == 0, string.Format(CultureInfo.InvariantCulture, ARGUMENT_NOTNULL_MSG_PATTERN, "collection"), checkType, checkLevel, false);
+            Fail(values is null || values!.Count == 0, string.Format(CultureInfo.InvariantCulture, ArgumentNotNullFormat, "collection"), checkType, checkLevel, false);
         }
 
         public static void NullOrEmpty<T>(IEnumerable<T>? values, CheckType checkType, CheckLevel checkLevel)
         {
-            Fail(values is null || !values!.Any(), string.Format(CultureInfo.InvariantCulture, ARGUMENT_NOTNULL_MSG_PATTERN, "collection"), checkType, checkLevel, false);
+            Fail(values is null || !values!.Any(), string.Format(CultureInfo.InvariantCulture, ArgumentNotNullFormat, "collection"), checkType, checkLevel, false);
         }
 
         #endregion
@@ -123,7 +128,7 @@ namespace Adom.Framework.Validation
         {
             Fail(
                 !(value is T),
-                string.Format(CultureInfo.InvariantCulture, ARGUMENT_TYPE_MSG_PATTERN, paramName, typeof(T).Name),
+                string.Format(CultureInfo.InvariantCulture, ArgumentTypeFormat, paramName, typeof(T).Name),
                 checkType,
                 level,
                 true);
